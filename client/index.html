@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.0/vue-router.min.js"></script>
+        <link rel="stylesheet" href="css/main.css?v=1">
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <span>Exam project</span>
+                <nav>
+                    <router-link to="/ordini"><span>Ordini</span></router-link>
+                    <router-link to="/agenti"><span>Agenti</span></router-link>
+                    <router-link to="/clienti"><span>Clienti</span></router-link>
+                </nav>
+            </header>
+            <router-view id="router-box"></router-view>
+            <footer>
+                Creato da Vincenzo Minolfi
+            </footer>
+        </div>
+        <template id="CustomersViewTemplate">
+            <table>
+                <!--"grade": "2", "opening_amt": "6000.00", "receive_amt": "5000.00", "payment_amt": "7000.00", "outstanding_amt":
+                "4000.00", "phone_no": "BBBBBBB", "agent_code": "A003" -->
+                <thead>
+                    <tr>
+                        <th>Codice</th>
+                        <th>Nome</th>
+                        <th>Città</th>
+                        <th>Area</th>
+                        <th>Nazione</th>
+                        <th>Valut.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="cust in sortedResults" :key="cust.cust_code">
+                        <td>{{cust.cust_code}}</td>
+                        <td>{{cust.cust_name}}</td>
+                        <td>{{cust.cust_city}}</td>
+                        <td>{{cust.working_area}}</td>
+                        <td>{{cust.cust_country}}</td>
+                        <td>{{cust.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </template>
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>

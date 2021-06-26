@@ -1,4 +1,6 @@
-import CustomersView from '/js/customers-view.js'
+import LoginView from './login-view.js'
+import CustomersView from './customers-view.js'
+import store from './store.js'
 
 window.agenti = [
   { "agent_code": "A007", "agent_name": "Ramasundar", "working_area": "Bangalore", "commission": "0.15", "phone_no": "077-25814763", "country": '' },
@@ -16,7 +18,7 @@ window.agenti = [
 ]
 window.clienti = [
   { "cust_code": "C00013", "cust_name": "Holmes", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": "2", "opening_amt": "6000.00", "receive_amt": "5000.00", "payment_amt": "7000.00", "outstanding_amt": "4000.00", "phone_no": "BBBBBBB", "agent_code": "A003" },
-  { "cust_code": "C00001", "cust_name": "Micheal", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": "2", "opening,_amt": "3000.00", "receive_amt": "5000.00", "payment_amt": "2000.00", "outstanding_amt": "6000.00", "phone_no": "CCCCCCC", "agent_code": "A008" },
+  { "cust_code": "C00001", "cust_name": "Micheal", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": "2", "opening_amt": "3000.00", "receive_amt": "5000.00", "payment_amt": "2000.00", "outstanding_amt": "6000.00", "phone_no": "CCCCCCC", "agent_code": "A008" },
   { "cust_code": "C00020", "cust_name": "Albert", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": "3", "opening_amt": "5000.00", "receive_amt": "7000.00", "payment_amt": "6000.00", "outstanding_amt": "6000.00", "phone_no": "BBBBSBB", "agent_code": "A008" },
   { "cust_code": "C00025", "cust_name": "Ravindran", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": "2", "opening_amt": "5000.00", "receive_amt": "7000.00", "payment_amt": "4000.00", "outstanding_amt": "8000.00", "phone_no": "AVAVAVA", "agent_code": "A011" },
   { "cust_code": "C00024", "cust_name": "Cook", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": "2", "opening_amt": "4000.00", "receive_amt": "9000.00", "payment_amt": "7000.00", "outstanding_amt": "6000.00", "phone_no": "FSDDSDF", "agent_code": "A006" },
@@ -78,11 +80,62 @@ window.ordini = [
   { "ord_num": "200133", "ord_amount": "1200.00", "advance_amount": "400.00", "ord_date": "06/29/2008", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" }
 ]
 
+Vue.http.interceptors.push((request, next) => {
+  if (store.state.userToken) {
+    request.headers.set('Authorization', 'Bearer ' + store.state.userToken)
+    request.headers.set('Accept', 'application/json')
+  }
+
+  next(response => {
+    /*//Check for expired token response, if expired, refresh token and resubmit original request
+    if (response.headers('Authorization')) {
+      var token = response.headers('Authorization');
+      localStorage.setItem('id_token', token);
+    }
+    auth.checkExpiredToken(response, request).then(function (response) {
+      return response;
+    })*/
+  })
+})
+
+const currencyFormatter = new Intl.NumberFormat('it-IT', {
+  style: 'currency',
+  currency: 'EUR',
+  minimumFractionDigits: 0
+})
+Vue.filter('currency', function (value) {
+  if (isNaN(value)) {
+    return value
+  }
+  return currencyFormatter.format(value)
+})
+
+Vue.mixin({
+  computed: {
+    userToken () {
+      return this.$store.state.userToken
+    },
+    userInfo () {
+      if (!this.userToken) {
+        return null
+      }
+      var base64Url = this.userToken.split('.')[1]
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      }).join(''))
+
+      return JSON.parse(jsonPayload)
+    }
+  }
+})
+
 const router = new VueRouter({
   routes: [
     { path: '/ordini', component: CustomersView },
     { path: '/agenti', component: CustomersView },
     { path: '/clienti', component: CustomersView },
+    { path: '/accesso', component: LoginView },
     { path: '/', component: CustomersView },
     { path: '*', redirect: '/' }
   ]
@@ -91,9 +144,11 @@ const router = new VueRouter({
 /*var app = */new Vue({
   // el: '#app',
   router,
+  store,
   data() {
     return {
       test: 'Hello world!'
     }
-  }
+  },
+  methods: {}
 }).$mount('#app')

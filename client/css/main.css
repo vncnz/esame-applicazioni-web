@@ -5,9 +5,10 @@
   --white: #fefbfb;
   --black: #000;
   --red: hsl(355, 55%, 45%);
-  --red-transparent: hsla(355, 55%, 45%, 0.2);
+  --red-transparent: hsl(355, 55%, 90%);
   --grey: #474747;
   --yellow: #f2af29;
+  font-size: calc(4mm + .3vw);
 }
 * {
   padding: 0;
@@ -54,11 +55,7 @@ footer {
   /* grid-area: footer; */
   padding: .25rem .5rem;
   font-size: 0.85rem;
-}
-
-nav {
-  /* grid-area: nav;
-  overflow: auto; */
+  border-top: 1px solid var(--grey);
 }
 
 nav a {
@@ -120,10 +117,41 @@ nav a.router-link-active:before {
   /* grid-area: main; */
   overflow: auto;
   align-self: stretch;
+  position: relative;
+  padding: .5rem;
+  flex: 1;
+}
+
+.asLink {
+  /*text-decoration: underline;*/
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.asLink:before {
+  position: absolute;
+  display: block;
+  content: '';
+  background: var(--yellow);
+  padding: 0 .2rem;
+  height: .3rem;
+  bottom: .1rem;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%);
+  transition: width .3s ease, height .3s ease;
+  z-index: -1;
+}
+.asLink:hover:before {
+  height: calc(100% - .2rem);
 }
 
 table {
   border-collapse: collapse;
+  min-width: 100%;
+}
+table tr {
+  background: var(--white);
 }
 table tbody tr:nth-child(2n) {
   background: #eee;
@@ -135,4 +163,48 @@ table th,
 table td {
   text-align: left;
   padding: .3rem;
+}
+table th {
+  position: sticky;
+  top: -0.5rem;
+  background-color: var(--white);
+}
+table.fix-first-column th:first-child,
+table.fix-first-column td:first-child {
+  position: sticky;
+  left: -0.5rem;
+  background-color: inherit;
+  z-index: 1;
+}
+table.fix-first-column th:first-child {
+  z-index: 2;
+}
+
+@media (max-width: 700px) {
+  table.responsive thead {
+    display: none;
+  }
+
+  table.responsive tr,
+  table.responsive td {
+    display: block;
+    text-align: right;
+  }
+  table.responsive tbody tr {
+    background: inherit;
+  }
+  table.responsive tbody td:nth-child(2n) {
+    background: #eee;
+  }
+  table.responsive td::before {
+    content: attr(data-title);
+    float: left;
+  }
+  table.responsive td:first-child {
+    position: sticky;
+    top: 0;
+    background: var(--red);
+    color: var(--white);
+    margin-top: .5rem;
+  }
 }

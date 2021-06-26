@@ -1,4 +1,4 @@
-import SortableDataMixin from '/js/sortable-data-mixin.js'
+import SortableDataMixin from './sortable-data-mixin.js'
 
 export default {
   name: 'CustomersView',
@@ -6,11 +6,26 @@ export default {
   mixins: [SortableDataMixin],
   data () {
     return {
-      results: window.clienti,
+      results: [],
       sortedBy: 'cust_code'
     }
   },
+  computed: {
+    /*results () {
+      return this.$store.state.customers
+    }*/
+  },
+  methods: {
+    openBrokerInfo(id) {
+      console.log('openBrokerInfo', id)
+      this.$store.dispatch({ type: "loadBroker", id }).then(response => {
+        console.log(response)
+      })
+    }
+  },
   mounted () {
-    console.log(this.sortedResults)
+    this.$store.dispatch("loadCustomers").then(results => {
+      this.results.splice(0, this.results.length, ...results)
+    })
   }
 }

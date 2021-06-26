@@ -8,6 +8,9 @@ export default {
     }
   },
   computed: {
+    /*results () {
+      return []
+    },*/
     sortingFunction () {
       return this.sortedAsc ?
         ((a, b) => a[this.sortedBy] > b[this.sortedBy] ? 1 : -1) :

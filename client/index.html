@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.0/vue-router.min.js"></script>
+        <script src="https://unpkg.com/vuex@2.0.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
         <link rel="stylesheet" href="css/main.css?v=1">
     </head>
     <body>
@@ -10,20 +12,20 @@
             <header>
                 <span>Exam project</span>
                 <nav>
-                    <router-link to="/ordini"><span>Ordini</span></router-link>
-                    <router-link to="/agenti"><span>Agenti</span></router-link>
-                    <router-link to="/clienti"><span>Clienti</span></router-link>
+                    <router-link to="/ordini" v-if="userInfo?.orders"><span>Ordini</span></router-link>
+                    <router-link to="/agenti" v-if="userInfo?.brokers"><span>Agenti</span></router-link>
+                    <router-link to="/clienti" v-if="userInfo?.customers"><span>Clienti</span></router-link>
                 </nav>
             </header>
-            <router-view id="router-box"></router-view>
+            <div id="router-box">
+                <router-view></router-view>
+            </div>
             <footer>
                 Creato da Vincenzo Minolfi
             </footer>
         </div>
         <template id="CustomersViewTemplate">
-            <table>
-                <!--"grade": "2", "opening_amt": "6000.00", "receive_amt": "5000.00", "payment_amt": "7000.00", "outstanding_amt":
-                "4000.00", "phone_no": "BBBBBBB", "agent_code": "A003" -->
+            <table class="responsive fix-first-column">
                 <thead>
                     <tr>
                         <th>Codice</th>
@@ -32,20 +34,43 @@
                         <th>Area</th>
                         <th>Nazione</th>
                         <th>Valut.</th>
+                        <th>Anticipo?</th>
+                        <th>Ricevuto?</th>
+                        <th>Pagamento?</th>
+                        <th>Rimanente?</th>
+                        <th>Telefono</th>
+                        <th>Agente</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="cust in sortedResults" :key="cust.cust_code">
-                        <td>{{cust.cust_code}}</td>
-                        <td>{{cust.cust_name}}</td>
-                        <td>{{cust.cust_city}}</td>
-                        <td>{{cust.working_area}}</td>
-                        <td>{{cust.cust_country}}</td>
-                        <td>{{cust.grade}}</td>
+                        <td data-title="Codice">{{cust.cust_code}}</td>
+                        <td data-title="Nome">{{cust.cust_name}}</td>
+                        <td data-title="Città">{{cust.cust_city}}</td>
+                        <td data-title="Area">{{cust.working_area}}</td>
+                        <td data-title="Nazione">{{cust.cust_country}}</td>
+                        <td data-title="Valutazione">{{cust.grade}}</td>
+                        <td data-title="Anticipo?">{{cust.opening_amt | currency}}</td>
+                        <td data-title="Ricevuto?">{{cust.receive_amt| currency}}</td>
+                        <td data-title="Pagamento?">{{cust.payment_amt| currency}}</td>
+                        <td data-title="Rimanente?">{{cust.outstanding_amt| currency}}</td>
+                        <td data-title="Telefono">{{cust.phone_no}}</td>
+                        <td data-title="Agente">
+                            <span class="asLink" role="button" @click="openBrokerInfo(cust.agent_code)">{{cust.agent_code}}</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </template>
-        <script type="module" src="/js/main.js"></script>
+        <template id="LoginViewTemplate">
+            <div>
+                <input type="text" v-model="username" />
+                <input type="password" v-model="password" />
+                <button @click="accedi">Accedi</button>
+                <button @click="esci">Esci</button>
+                <button @click="test">Test protected</button>
+            </div>
+        </template>
+        <script type="module" src="js/main.js"></script>
     </body>
 </html>

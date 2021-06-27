@@ -1,5 +1,7 @@
 import LoginView from './login-view.js'
+import OrdersView from './orders-view.js'
 import CustomersView from './customers-view.js'
+import AgentsView from './agents-view.js'
 import store from './store.js'
 
 window.agenti = [
@@ -87,6 +89,9 @@ Vue.http.interceptors.push((request, next) => {
   }
 
   next(response => {
+    if (response.status === 401) {
+      store.commit('doLogout')
+    }
     /*//Check for expired token response, if expired, refresh token and resubmit original request
     if (response.headers('Authorization')) {
       var token = response.headers('Authorization');
@@ -115,26 +120,27 @@ Vue.mixin({
     userToken () {
       return this.$store.state.userToken
     },
-    userInfo () {
-      if (!this.userToken) {
-        return null
-      }
-      var base64Url = this.userToken.split('.')[1]
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      }).join(''))
-
-      return JSON.parse(jsonPayload)
+    userInfo() {
+      return this.$store.getters.userInfo
     }
   }
 })
 
 const router = new VueRouter({
   routes: [
-    { path: '/ordini', component: CustomersView },
-    { path: '/agenti', component: CustomersView },
-    { path: '/clienti', component: CustomersView },
+    {
+      path: '/ordini', component: OrdersView, beforeEnter: (to, from, next) => {
+        if (!store.getters.userInfo) { next('/accesso') } else { next() }
+      } },
+    {
+      path: '/agenti', component: AgentsView, beforeEnter: (to, from, next) => {
+        if (!store.getters.userInfo?.is_manager) { next('/accesso') } else { next() }
+      } },
+    {
+      path: '/clienti', component: CustomersView, beforeEnter: (to, from, next) => {
+        if (!(store.getters.userInfo?.is_agente || store.getters.userInfo?.is_manager)) { next('/accesso') } else { next() }
+      }
+    },
     { path: '/accesso', component: LoginView },
     { path: '/', component: CustomersView },
     { path: '*', redirect: '/' }
@@ -150,5 +156,26 @@ const router = new VueRouter({
       test: 'Hello world!'
     }
   },
-  methods: {}
+  methods: {},
+  mounted () {
+    this.tokenInterval = setInterval(() => {
+      console.log('check token', this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime())
+      if (this.userInfo) {
+        console.log(this.userInfo.exp, (this.userInfo.exp + 60) * 1000, (new Date()).getTime())
+      }
+      if (this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime()) {
+        this.$store.dispatch('refreshToken')
+      }
+    }, 20000)
+  },
+  beforeDestroy () {
+    clearInterval(this.tokenInterval)
+  },
+  watch: {
+    userToken (newV) {
+      if (!newV) {
+        this.$router.go('/accesso')
+      }
+    }
+  }
 }).$mount('#app')

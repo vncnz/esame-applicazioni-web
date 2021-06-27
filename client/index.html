@@ -5,6 +5,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.0/vue-router.min.js"></script>
         <script src="https://unpkg.com/vuex@2.0.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+            integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="css/main.css?v=1">
     </head>
     <body>
@@ -12,9 +15,10 @@
             <header>
                 <span>Exam project</span>
                 <nav>
-                    <router-link to="/ordini" v-if="userInfo?.orders"><span>Ordini</span></router-link>
-                    <router-link to="/agenti" v-if="userInfo?.brokers"><span>Agenti</span></router-link>
-                    <router-link to="/clienti" v-if="userInfo?.customers"><span>Clienti</span></router-link>
+                    <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
+                    <router-link to="/ordini" v-if="userInfo"><span>Ordini</span></router-link>
+                    <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
+                    <router-link to="/clienti" v-if="userInfo?.is_agente || userInfo?.is_manager"><span>Clienti</span></router-link>
                 </nav>
             </header>
             <div id="router-box">
@@ -25,7 +29,16 @@
             </footer>
         </div>
         <template id="CustomersViewTemplate">
-            <table class="responsive fix-first-column">
+            <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true">
+                <template v-slot:agent_code="{ value }">
+                    <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
+                </template>
+                <template v-slot:opening_amt="{ value }">{{value | currency}}</template>
+                <template v-slot:receive_amt="{ value }">{{value | currency}}</template>
+                <template v-slot:payment_amt="{ value }">{{value | currency}}</template>
+                <template v-slot:outstanding_amt="{ value }">{{value | currency}}</template>
+            </dynamic-table>
+            <!-- <table class="responsive fix-first-column">
                 <thead>
                     <tr>
                         <th>Codice</th>
@@ -56,11 +69,36 @@
                         <td data-title="Rimanente?">{{cust.outstanding_amt| currency}}</td>
                         <td data-title="Telefono">{{cust.phone_no}}</td>
                         <td data-title="Agente">
-                            <span class="asLink" role="button" @click="openBrokerInfo(cust.agent_code)">{{cust.agent_code}}</span>
+                            <span class="asLink" role="button" @click="openAgentInfo(cust.agent_code)">{{cust.agent_code}}</span>
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
+        </template>
+        <template id="OrdersViewTemplate">
+            <div>
+                <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true" :sel-array="selected" sel-key="ord_num">
+                    <template v-slot:agent_code="{ value }">
+                        <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
+                    </template>
+                    <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
+                    <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
+                    <template v-slot:actions="{ row }">
+                        <!--<span class="asLink" role="button" @click="edit(row)" tabindex="0" :disabled="!canEdit(row)">Modifica</span>
+                        <span class="asLink" role="button" @click="delete(row)" tabindex="0" :disabled="!canEdit(row)">Cancella</span>-->
+                        <button @click="edit(row)"><i class="fa fa-fw fa-edit"></i></button>
+                        <button @click="delete(row)"><i class="fa fa-fw fa-trash"></i></button>
+                    </template>
+                </dynamic-table>
+                <div class="toolbar">
+                    <button>Aggiungi</button>
+                    <button>Elimina</button>
+                    <button>Seleziona tutti</button>
+                    <button>Deseleziona tutti</button>
+                </div>
+            </div>
+        </template><template id="AgentsViewTemplate">
+            <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true" />
         </template>
         <template id="LoginViewTemplate">
             <div>

@@ -5,6 +5,20 @@ export default new Vuex.Store({
     userToken: localStorage.getItem('user_token'),
     // customers: []
   },
+  getters: {
+    userInfo: state => {
+      if (!state.userToken) {
+        return null
+      }
+      var base64Url = state.userToken.split('.')[1]
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      }).join(''))
+
+      return JSON.parse(jsonPayload)
+    }
+  },
   mutations: {
     registerUser (state, { token }) {
       state.userToken = token
@@ -13,6 +27,7 @@ export default new Vuex.Store({
     doLogout (state) {
       state.userToken = null
       localStorage.removeItem('user_token')
+      console.log('logout done')
     }/*,
     registerCustomers(state, { customers }) {
       // state.customers.splice(0, state.customers.length, ...customers)
@@ -29,6 +44,11 @@ export default new Vuex.Store({
         context.commit('registerUser', { token: response.body?.access_token })
       })
     },
+    refreshToken () {
+      Vue.http.post('/refreshtoken').then(response => {
+        context.commit('registerUser', { token: response.body?.access_token })
+      })
+    },
     loadCustomers(/*context*/) {
       return Vue.http.get('/customers').then(response => {
         console.log('response', response)
@@ -36,13 +56,13 @@ export default new Vuex.Store({
         return response.body
       })
     },
-    loadBrokers() {
-      return Vue.http.get('/brokers').then(response => {
+    loadAgents() {
+      return Vue.http.get('/agents').then(response => {
         return response.body
       })
     },
-    loadBroker(ctx, { id }) {
-      return Vue.http.get('/broker/' + id).then(response => {
+    loadAgent(ctx, { id }) {
+      return Vue.http.get('/agent/' + id).then(response => {
         return response.body
       })
     },

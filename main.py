@@ -1,7 +1,7 @@
 agenti_test = [
-  { "agent_code": "A007", "agent_name": "Ramasundar", "working_area": "Bangalore", "commission": "0.15", "phone_no": "077-25814763", "country": '' },
-  { "agent_code": "A003", "agent_name": "Alex", "working_area": "London", "commission": "0.13", "phone_no": "075-12458969", "country": '' },
-  { "agent_code": "A008", "agent_name": "Alford", "working_area": "New York", "commission": "0.12", "phone_no": "044-25874365", "country": '' },
+  { "agent_code": "A007", "agent_name": "Ramasundar", "working_area": "Bangalore", "commission": "0.15", "phone_no": "077-25814763", "country": 'India' },
+  { "agent_code": "A003", "agent_name": "Alex", "working_area": "London", "commission": "0.13", "phone_no": "075-12458969", "country": 'UK' },
+  { "agent_code": "A008", "agent_name": "Alford", "working_area": "New York", "commission": "0.12", "phone_no": "044-25874365", "country": 'USA' },
   { "agent_code": "A011", "agent_name": "Ravi Kumar", "working_area": "Bangalore", "commission": "0.15", "phone_no": "077-45625874", "country": '' },
   { "agent_code": "A010", "agent_name": "Santakumar", "working_area": "Chennai", "commission": "0.14", "phone_no": "007-22388644", "country": '' },
   { "agent_code": "A012", "agent_name": "Lucida", "working_area": "San Jose", "commission": "0.12", "phone_no": "044-52981425", "country": '' },
@@ -75,6 +75,8 @@ ordini_test = [
   { "ord_num": "200131", "ord_amount": "900.00", "advance_amount": "150.00", "ord_date": "08/26/2008", "cust_code": "C00012", "agent_code": "A012", "order_description": "SOD" },
   { "ord_num": "200133", "ord_amount": "1200.00", "advance_amount": "400.00", "ord_date": "06/29/2008", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" }
 ]
+
+from datetime import timedelta
 from flask import Flask, request, jsonify
 
 from flask_jwt_extended import create_access_token
@@ -86,26 +88,35 @@ from flask_jwt_extended import JWTManager
 app = Flask(__name__, static_url_path='', static_folder='client')
 
 app.config["JWT_SECRET_KEY"] = "esami-applicazioni-web-2231"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
 jwt = JWTManager(app)
 
 users = [
     # (username, password, claims dictionary)
-    ('dirigente', 'test', { 'orders': True, 'customers': True, 'brokers': True }),
-    ('agente', 'test', { 'orders': True, 'customers': True }),
-    ('cliente', 'test', { 'orders': True })
+    ('dirigente', 'test', { 'is_manager': True, 'is_agent': False, 'is_customer': False }),
+    ('agente', 'test', { 'is_manager': False, 'is_agent': True, 'is_customer': False }),
+    ('cliente', 'test', { 'is_manager': False, 'is_agent': False, 'is_customer': True })
 ]
 
 @app.route("/login", methods=["POST"])
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-    user = next(filter(lambda u: u[0] == username and u[1] == password, users), None)
-    if not user:
+    user = next(filter(lambda u: u[0] == username, users), None)
+    if not user or user[1] != password:
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=username, additional_claims=user[2])
     return jsonify(access_token=access_token)
 
+@app.route("/refreshtoken", methods=["POST"])
+@jwt_required(refresh=True)
+def refresh():
+    identity = get_jwt_identity()
+    user = next(filter(lambda u: u[0] == identity, users), None)
+    access_token = create_access_token(identity=identity, additional_claims=user[2])
+    return jsonify(access_token=access_token)
 
 @app.route("/protected", methods=["GET"])
 @jwt_required()
@@ -114,38 +125,47 @@ def protected():
     current_jwt = get_jwt()
     return jsonify(logged_in_as=current_user), 200
 
+@app.route("/orders", methods=["GET"])
+@jwt_required()
+def orders():
+    current_jwt = get_jwt()
+    allowed = True # current_jwt['is_manager']
+    if not allowed:
+        return jsonify({"msg": "Forbidden"}), 403
+    return jsonify(ordini_test), 200
+
 @app.route("/customers", methods=["GET"])
 @jwt_required()
 def customers():
     current_jwt = get_jwt()
-    allowed = current_jwt['customers']
+    allowed = current_jwt['is_manager'] or current_jwt['is_agent']
     if not allowed:
         return jsonify({"msg": "Forbidden"}), 403
     return jsonify(clienti_test), 200
 
-@app.route("/brokers", methods=["GET"])
+@app.route("/agents", methods=["GET"])
 @jwt_required()
-def brokers():
+def agents():
     current_jwt = get_jwt()
-    allowed = current_jwt['brokers']
+    allowed = current_jwt['is_manager']
     if not allowed:
         return jsonify({"msg": "Forbidden"}), 403
     return jsonify(agenti_test), 200
 
-@app.route("/broker/<code>", methods=["GET"])
+@app.route("/agent/<code>", methods=["GET"])
 @jwt_required()
-def broker(code):
-    current_jwt = get_jwt()
-    # allowed = current_jwt['broker_contact']
+def agent(code):
+    # current_jwt = get_jwt()
+    # allowed = current_jwt['agent_contact']
     # if not allowed:
     #     return jsonify({"msg": "Forbidden"}), 403
-    broker = next(filter(lambda b: b['agent_code'] == code, agenti_test), None)
-    if not broker:
-        return jsonify({'msg': 'Broker not found'}), 404
+    agent = next(filter(lambda b: b['agent_code'] == code, agenti_test), None)
+    if not agent:
+        return jsonify({'msg': 'Agent not found'}), 404
     return jsonify({
-        'agent_code': broker['agent_code'],
-        'agent_name': broker['agent_name'],
-        'phone_no': broker['phone_no']
+        'agent_code': agent['agent_code'],
+        'agent_name': agent['agent_name'],
+        'phone_no': agent['phone_no']
     }), 200
 
 

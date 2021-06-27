@@ -8,6 +8,11 @@
   --red-transparent: hsl(355, 55%, 90%);
   --grey: #474747;
   --yellow: #f2af29;
+  --cornflower: #4C5270;
+  --cornflower-light: hsl(230, 19%, 88%);
+  --hotpink: #F652A0;
+  --cyan: #36EEE0;
+  --tiffanyblue: #BCECE0;
   font-size: calc(4mm + .3vw);
 }
 * {
@@ -43,7 +48,7 @@ header {
   align-items: center;
   padding: .5rem;
   /*background-image: linear-gradient(141deg, #009e6c 0, #00d1b2 71%, #00e7eb 100%);*/
-  background-color: var(--red);
+  background-color: var(--cornflower);
   color: var(--white);
   font-weight: bold;
 }
@@ -70,14 +75,14 @@ nav a:before {
   position: absolute;
   display: block;
   content: '';
-  background: var(--yellow);
+  background: var(--cyan);
   padding: 0 .2rem;
   height: .3rem;
   bottom: .1rem;
   left: 50%;
   width: 100%;
   transform: translate(-50%);
-  transition: width .3s ease, height .3s ease;
+  transition: width .3s ease, height .3s ease, background-color .3s ease;
   z-index: 0;
 }
 
@@ -85,14 +90,15 @@ nav a span {
   z-index: 1;
   position: relative; /* necessario perché prenda in considerazione lo z-index */
 }
-nav a:hover:before {
+nav a:hover:before,
+nav a:active:before {
   /* width: 100%;
   width: calc(100% - .5rem);*/
   height: calc(100% - .2rem);
   /*animation: .3s forwards hover-v ease-in;*/
 }
 nav a.router-link-active:before {
-  background-color: var(--black);
+  background-color: var(--hotpink);
   /*height: 100%;*/
 }
 /*@keyframes hover-v {
@@ -127,12 +133,16 @@ nav a.router-link-active:before {
   cursor: pointer;
   position: relative;
   z-index: 1;
+  text-shadow: 1px 1px 2px var(--white);
+}
+* + .asLink {
+  margin-left: .5rem;
 }
 .asLink:before {
   position: absolute;
   display: block;
   content: '';
-  background: var(--yellow);
+  background: var(--cyan);
   padding: 0 .2rem;
   height: .3rem;
   bottom: .1rem;
@@ -146,8 +156,31 @@ nav a.router-link-active:before {
   height: calc(100% - .2rem);
 }
 
+.toolbar {
+  position: sticky;
+  background-color: var(--cornflower);
+  border-radius: 1rem;
+  bottom: .2rem;
+  margin: .2rem auto;
+  padding: .2rem;
+  width: auto;
+  z-index: 100;
+  display: inline-block;
+}
+
+.toolbar button {
+  border-radius: 1rem;
+  padding: .2rem .5rem;
+  margin-left: .2rem;
+}
+.toolbar button:first-child {
+  margin-left: 0;
+}
+
 table {
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
+  border-collapse: separate; /* Valore predefinito, necessario per gestire i bordi in presenza position: sticky */
+  border-spacing: 0;
   min-width: 100%;
 }
 table tr {
@@ -157,7 +190,7 @@ table tbody tr:nth-child(2n) {
   background: #eee;
 }
 table tbody tr:hover {
-  background: var(--red-transparent);
+  background: var(--cornflower-light);
 }
 table th,
 table td {
@@ -168,6 +201,7 @@ table th {
   position: sticky;
   top: -0.5rem;
   background-color: var(--white);
+  z-index: 5;
 }
 table.fix-first-column th:first-child,
 table.fix-first-column td:first-child {
@@ -177,7 +211,7 @@ table.fix-first-column td:first-child {
   z-index: 1;
 }
 table.fix-first-column th:first-child {
-  z-index: 2;
+  z-index: 7;
 }
 
 @media (max-width: 700px) {

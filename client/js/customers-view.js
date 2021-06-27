@@ -1,13 +1,29 @@
 import SortableDataMixin from './sortable-data-mixin.js'
+import dynamicTable from './dynamic-table.js'
 
 export default {
   name: 'CustomersView',
   template: '#CustomersViewTemplate',
   mixins: [SortableDataMixin],
+  components: { dynamicTable },
   data () {
     return {
       results: [],
-      sortedBy: 'cust_code'
+      sortedBy: 'cust_code',
+      columns: [
+        { l: 'Codice', k: 'cust_code' },
+        { l: 'Nome', k: 'cust_name' },
+        { l: 'Città', k: 'cust_city' },
+        { l: 'Area', k: 'working_area' },
+        { l: 'Nazione', k: 'cust_country' },
+        { l: 'Valut.', k: 'grade' },
+        { l: 'Anticipo', k: 'opening_amt' },
+        { l: 'Ricevuto', k: 'receive_amt' },
+        { l: 'Pagato', k: 'payment_amt' },
+        { l: 'Rimanente', k: 'outstanding_amt' },
+        { l: 'Telefono', k: 'phone_no' },
+        { l: 'Agente', k: 'agent_code' }
+      ]
     }
   },
   computed: {
@@ -16,9 +32,9 @@ export default {
     }*/
   },
   methods: {
-    openBrokerInfo(id) {
-      console.log('openBrokerInfo', id)
-      this.$store.dispatch({ type: "loadBroker", id }).then(response => {
+    openAgentInfo(id) {
+      console.log('openAgentInfo', id)
+      this.$store.dispatch({ type: "loadAgent", id }).then(response => {
         console.log(response)
       })
     }

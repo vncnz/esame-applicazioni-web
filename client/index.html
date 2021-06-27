@@ -77,7 +77,8 @@
         </template>
         <template id="OrdersViewTemplate">
             <div>
-                <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true" :sel-array="selected" sel-key="ord_num">
+                <pre>selected: {{selected.join(',')}}</pre>
+                <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true" v-model="selected" sel-key="ord_num">
                     <template v-slot:agent_code="{ value }">
                         <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
                     </template>

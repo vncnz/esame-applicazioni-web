@@ -17,21 +17,32 @@ export default {
       required: false,
       default: false
     },
-    selArray: {
-      type: Array,
-      required: false,
-      default: false
-    },
     selKey: {
       type: String,
       required: false,
       default: null
+    },
+    value: {
+      required: false
     }
   },
   render(h) {
     let headrow = this.columns.map(col => h('th', col.l))
     if (this.selKey) {
-      headrow.unshift(h('td', null, ''))
+      headrow.unshift(h('td', null, [
+        h('input', {
+          attrs: { type: 'checkbox', value: this.value.length === this.datalist.length },
+          on: {
+            input: () => {
+              if (this.value.length === this.datalist.length) {
+                this.$emit('input', [])
+              } else {
+                this.$emit('input', this.datalist.map(r => r[this.selKey]))
+              }
+            }
+          }
+        })
+      ]))
     }
     let data = this.datalist.map(result => {
       let row = this.columns.map(col => {
@@ -43,7 +54,22 @@ export default {
         }
       })
       if (this.selKey) {
-        row.unshift(h('td', null, '-'))
+        console.log(this.value.indexOf(result[this.selKey]) > -1)
+        row.unshift(h('td', null, [
+          h('input', {
+            attrs: { type: 'checkbox', value: this.value.indexOf(result[this.selKey]) > -1 },
+            on: { input: evt => { 
+              // console.log(value)
+              // let idx = this.value.indexOf(result[this.selKey])
+              // if (idx > -1) {
+                if (!evt.target.checked) {
+                this.$emit('input', this.value.filter(c => c !== result[this.selKey]))
+              } else {
+                this.$emit('input', this.value.concat([result[this.selKey]]))
+              }
+             } }
+          })
+        ]))
       }
       return h('tr', [row])
     })

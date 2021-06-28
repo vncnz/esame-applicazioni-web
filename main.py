@@ -184,4 +184,4 @@ def hello_world(name):
     return f'<p>Hello, {name}!</p>'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

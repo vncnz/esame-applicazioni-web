@@ -2,7 +2,7 @@ export default {
   name: 'SortableMixin',
   data() {
     return {
-      results: [],
+      datalist: [],
       sortedBy: '',
       sortedAsc: true
     }
@@ -16,13 +16,23 @@ export default {
         ((a, b) => a[this.sortedBy] > b[this.sortedBy] ? 1 : -1) :
         ((a, b) => a[this.sortedBy] < b[this.sortedBy] ? 1 : -1)
     },
-    sortedResults () {
+    sortedDatalist () {
       if (this.sortedBy) {
-        const results = this.results.slice()
+        const results = this.datalist.slice()
         results.sort(this.sortingFunction)
         return results
       }
-      return this.results
+      return this.datalist
+    }
+  },
+  methods: {
+    setSorting(col) {
+      if (this.sortedBy === col) {
+        this.sortedAsc = !this.sortedAsc
+      } else {
+        this.sortedBy = col
+        this.sortedAsc = true
+      }
     }
   }
 }

@@ -4,7 +4,6 @@ import dynamicTable from './dynamic-table.mjs'
 export default {
   name: 'OrdersView',
   template: '#OrdersViewTemplate',
-  mixins: [SortableDataMixin],
   components: { dynamicTable },
   data () {
     return {
@@ -21,8 +20,8 @@ export default {
         { l: 'Descrizione', k: 'order_description' },
         { l: 'Agente', k: 'agent_code' },
         { l: 'Cliente', k: 'cust_code' },
-        { l: 'Totale', k: 'ord_amount' },
-        { l: 'Anticipo', k: 'advance_amount' }
+        { l: 'Totale', k: 'ord_amount', numeric: true },
+        { l: 'Anticipo', k: 'advance_amount', numeric: true }
       ]
       if (this.userInfo?.is_manager || this.userInfo?.is_agent) {
         lst.push({ l: 'Azioni', k: 'actions' })
@@ -43,6 +42,12 @@ export default {
     openAgentInfo(id) {
       console.log('openAgentInfo', id)
       this.$store.dispatch({ type: "loadAgent", id }).then(response => {
+        console.log(response)
+      })
+    },
+    openCustomerInfo(id) {
+      console.log('openCustomerInfo', id)
+      this.$store.dispatch({ type: "loadCustomer", id }).then(response => {
         console.log(response)
       })
     },

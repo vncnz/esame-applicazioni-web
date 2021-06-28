@@ -78,9 +78,12 @@
         <template id="OrdersViewTemplate">
             <div>
                 <pre style="display: none">selected: {{selected.join(',')}}</pre>
-                <dynamic-table :datalist="sortedResults" :columns="columns" v-model="selected" sel-key="ord_num">
+                <dynamic-table :datalist="results" :columns="columns" v-model="selected" sel-key="ord_num">
                     <template v-slot:agent_code="{ value }">
-                        <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
+                        <button class="plain" @click="openAgentInfo(value)" tabindex="0">{{value}}</button>
+                    </template>
+                    <template v-slot:cust_code="{ value }">
+                        <button class="asLink" @click="openCustomerInfo(value)" tabindex="0">{{value}}</button>
                     </template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
@@ -93,7 +96,7 @@
                     <template v-slot:tfoot>
                         <div class="toolbar">
                             <button>Aggiungi</button>
-                            <button>Elimina</button>
+                            <button :disabled="selected.length === 0">Elimina selezionati</button>
                         </div>
                     </template>
                 </dynamic-table>

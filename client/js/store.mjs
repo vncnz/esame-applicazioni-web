@@ -56,6 +56,11 @@ export default new Vuex.Store({
         return response.body
       })
     },
+    loadCustomer(ctx, { id }) {
+      return Vue.http.get('/customer/' + id).then(response => {
+        return response.body
+      })
+    },
     loadAgents() {
       return Vue.http.get('/agents').then(response => {
         return response.body

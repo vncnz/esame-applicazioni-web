@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 /* https://coolors.co/ad343e-474747-f2af29-000000-fbfefb */
+/* https://www.quicksprout.com/trending-website-color-schemes/ */
+/* https://a11y-101.com/design/button-vs-link */
 :root {
   --white: hsl(32, 100%, 97%);
   --black: hsl(173, 43%, 4%);
@@ -134,6 +137,36 @@ nav a.router-link-active:before {
   flex: 1;
 }
 
+.numeric {
+  text-align: right;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.sortable::before {
+  display: inline-block;
+  font: normal normal normal 75%/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  opacity: .3;
+  content: "\f160";
+  cursor: pointer;
+  margin-right: .2rem;
+}
+.sortable.sorted-asc::before {
+  opacity: 1;
+  color: var(--deep-saffron);
+  content: "\f160";
+}
+.sortable.sorted-desc::before {
+  opacity: 1;
+  color: var(--deep-saffron);
+  content: "\f161";
+}
+.sortable:hover::before {
+  color: var(--deep-saffron);
+}
+
 .asLink {
   /*text-decoration: underline;*/
   cursor: pointer;
@@ -220,7 +253,7 @@ table tbody tr:hover {
 table th,
 table td {
   text-align: left;
-  padding: .3rem;
+  padding: .5rem;
 }
 table th {
   position: sticky;

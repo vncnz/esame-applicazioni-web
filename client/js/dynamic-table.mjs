@@ -1,7 +1,7 @@
 import SortableDataMixin from './sortable-data-mixin.mjs'
 
 export default {
-  name: 'OrdersView',
+  name: 'DynamicTableView',
   mixins: [SortableDataMixin],
   props: {
     datalist: {
@@ -27,18 +27,28 @@ export default {
     }
   },
   render(h) {
-    let headrow = this.columns.map(col => h('th', {
-      class: col.sticky ? 'sticky' : ''
-    }, col.l))
+    let headrow = this.columns.map(col => {
+      let isColSorted = col.k === this.sortedBy
+      return h('th', {
+        class: [col.sticky ? 'sticky' : '', col.numeric ? 'numeric' : ''],
+        on: {
+          click: () => this.setSorting(col.k)
+        }
+      }, [
+        h('span', {
+          class: 'sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')
+        }, [col.l])
+      ])
+    })
     if (this.selKey) {
-      let checked = this.value.length === this.datalist.length
+      let checked = this.value.length === this.sortedDatalist.length
       headrow.unshift(h('th', null, [
         h('input', {
           attrs: { type: 'checkbox', title: checked ? 'Deseleziona tutto' : 'Seleziona tutto' },
           domProps: { checked },
           on: {
             input: () => {
-              if (this.value.length === this.datalist.length) {
+              if (this.value.length === this.sortedDatalist.length) {
                 this.$emit('input', [])
               } else {
                 this.$emit('input', this.datalist.map(r => r[this.selKey]))
@@ -48,9 +58,9 @@ export default {
         })
       ]))
     }
-    let data = this.datalist.map(result => {
+    let data = this.sortedDatalist.map(result => {
       let row = this.columns.map(col => {
-        let attrs = { class: col.sticky ? 'sticky' : '', attrs: { 'data-title': col.l }}
+        let attrs = { class: [col.sticky ? 'sticky' : '', col.numeric ? 'numeric' : ''], attrs: { 'data-title': col.l }}
         if (this.$scopedSlots[col.k]) {
           return h('td', attrs, this.$scopedSlots[col.k]({ row: result, value: result[col.k] }))
         } else {

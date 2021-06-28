@@ -29,7 +29,7 @@
             </footer>
         </div>
         <template id="CustomersViewTemplate">
-            <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true">
+            <dynamic-table :datalist="sortedResults" :columns="columns">
                 <template v-slot:agent_code="{ value }">
                     <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
                 </template>
@@ -77,8 +77,8 @@
         </template>
         <template id="OrdersViewTemplate">
             <div>
-                <pre>selected: {{selected.join(',')}}</pre>
-                <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true" v-model="selected" sel-key="ord_num">
+                <pre style="display: none">selected: {{selected.join(',')}}</pre>
+                <dynamic-table :datalist="sortedResults" :columns="columns" v-model="selected" sel-key="ord_num">
                     <template v-slot:agent_code="{ value }">
                         <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
                     </template>
@@ -87,17 +87,19 @@
                     <template v-slot:actions="{ row }">
                         <!--<span class="asLink" role="button" @click="edit(row)" tabindex="0" :disabled="!canEdit(row)">Modifica</span>
                         <span class="asLink" role="button" @click="delete(row)" tabindex="0" :disabled="!canEdit(row)">Cancella</span>-->
-                        <button @click="edit(row)"><i class="fa fa-fw fa-edit"></i></button>
-                        <button @click="delete(row)"><i class="fa fa-fw fa-trash"></i></button>
+                        <button @click="edit(row)" :title="`Modifica ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
+                        <button @click="delete(row)" :title="`Elimina ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
+                    </template>
+                    <template v-slot:tfoot>
+                        <div class="toolbar">
+                            <button>Aggiungi</button>
+                            <button>Elimina</button>
+                        </div>
                     </template>
                 </dynamic-table>
-                <div class="toolbar">
-                    <button>Aggiungi</button>
-                    <button>Elimina</button>
-                </div>
             </div>
         </template><template id="AgentsViewTemplate">
-            <dynamic-table :datalist="sortedResults" :columns="columns" :fix-first-col="true" />
+            <dynamic-table :datalist="sortedResults" :columns="columns" />
         </template>
         <template id="LoginViewTemplate">
             <div>

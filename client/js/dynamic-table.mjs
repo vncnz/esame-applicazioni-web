@@ -27,11 +27,15 @@ export default {
     }
   },
   render(h) {
-    let headrow = this.columns.map(col => h('th', col.l))
+    let headrow = this.columns.map(col => h('th', {
+      class: col.sticky ? 'sticky' : ''
+    }, col.l))
     if (this.selKey) {
-      headrow.unshift(h('td', null, [
+      let checked = this.value.length === this.datalist.length
+      headrow.unshift(h('th', null, [
         h('input', {
-          attrs: { type: 'checkbox', value: this.value.length === this.datalist.length },
+          attrs: { type: 'checkbox', title: checked ? 'Deseleziona tutto' : 'Seleziona tutto' },
+          domProps: { checked },
           on: {
             input: () => {
               if (this.value.length === this.datalist.length) {
@@ -46,38 +50,47 @@ export default {
     }
     let data = this.datalist.map(result => {
       let row = this.columns.map(col => {
-        // console.log('->', colkey, this.$scopedSlots[colkey], result[colkey])
+        let attrs = { class: col.sticky ? 'sticky' : '', attrs: { 'data-title': col.l }}
         if (this.$scopedSlots[col.k]) {
-          return h('td', null, this.$scopedSlots[col.k]({ row: result, value: result[col.k] }))
+          return h('td', attrs, this.$scopedSlots[col.k]({ row: result, value: result[col.k] }))
         } else {
-          return h('td', null, result[col.k])
+          return h('td', attrs, result[col.k])
         }
       })
       if (this.selKey) {
-        console.log(this.value.indexOf(result[this.selKey]) > -1)
+        let checked = this.value.indexOf(result[this.selKey]) > -1
         row.unshift(h('td', null, [
           h('input', {
-            attrs: { type: 'checkbox', value: this.value.indexOf(result[this.selKey]) > -1 },
-            on: { input: evt => { 
-              // console.log(value)
-              // let idx = this.value.indexOf(result[this.selKey])
-              // if (idx > -1) {
+            attrs: { type: 'checkbox', title: `${checked ? 'Deseleziona' : 'Seleziona'} ${result[this.selKey]}`},
+            domProps: { checked },
+            on: { input: evt => {
                 if (!evt.target.checked) {
                 this.$emit('input', this.value.filter(c => c !== result[this.selKey]))
-              } else {
-                this.$emit('input', this.value.concat([result[this.selKey]]))
+                } else {
+                  this.$emit('input', this.value.concat([result[this.selKey]]))
+                }
               }
-             } }
+            }
           })
         ]))
       }
       return h('tr', [row])
     })
-    return h('table', {
-      class: this.fixFirstCol ? 'fix-first-column' : null
-    }, [
+    let children = [
       h('thead', [h('tr', headrow)]),
       h('tbody', [data])
-    ])
+    ]
+    if (this.$slots['tfoot']) {
+      children.push(h('tfoot', null, [
+        h('tr', null, [
+          h('td', {
+            attrs: {
+              colspan: this.columns.length + (this.selKey ? 1 : 0)
+            }
+          }, [this.$slots['tfoot']])
+        ])
+      ]))
+    }
+    return h('table', { class: 'responsive' }, children)
   }
 }

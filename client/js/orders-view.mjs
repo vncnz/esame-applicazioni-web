@@ -16,7 +16,7 @@ export default {
   computed: {
     columns () {
       let lst = [
-        { l: 'Numero', k: 'ord_num' },
+        { l: 'Numero', k: 'ord_num', sticky: true },
         { l: 'Data', k: 'ord_date' },
         { l: 'Descrizione', k: 'order_description' },
         { l: 'Agente', k: 'agent_code' },

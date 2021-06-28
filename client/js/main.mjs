@@ -1,8 +1,8 @@
-import LoginView from './login-view.js'
-import OrdersView from './orders-view.js'
-import CustomersView from './customers-view.js'
-import AgentsView from './agents-view.js'
-import store from './store.js'
+import LoginView from './login-view.mjs'
+import OrdersView from './orders-view.mjs'
+import CustomersView from './customers-view.mjs'
+import AgentsView from './agents-view.mjs'
+import store from './store.mjs'
 
 window.agenti = [
   { "agent_code": "A007", "agent_name": "Ramasundar", "working_area": "Bangalore", "commission": "0.15", "phone_no": "077-25814763", "country": '' },

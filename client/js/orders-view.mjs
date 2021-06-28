@@ -1,5 +1,5 @@
-import SortableDataMixin from './sortable-data-mixin.js'
-import dynamicTable from './dynamic-table.js'
+import SortableDataMixin from './sortable-data-mixin.mjs'
+import dynamicTable from './dynamic-table.mjs'
 
 export default {
   name: 'OrdersView',

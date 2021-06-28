@@ -1,4 +1,4 @@
-import SortableDataMixin from './sortable-data-mixin.js'
+import SortableDataMixin from './sortable-data-mixin.mjs'
 
 export default {
   name: 'OrdersView',

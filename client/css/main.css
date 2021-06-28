@@ -5,7 +5,7 @@
 /* https://www.quicksprout.com/trending-website-color-schemes/ */
 /* https://a11y-101.com/design/button-vs-link */
 :root {
-  --white: hsl(32, 100%, 97%);
+  --white: whitesmoke;
   --black: hsl(173, 43%, 4%);
   --red: hsl(355, 55%, 45%);
   --red-transparent: hsl(355, 55%, 90%);
@@ -22,7 +22,7 @@
   --space-cadet: hsl(254, 31%, 27%);
   --space-cadet-light: hsl(254, 31%, 88%);
 
-  font-size: calc(4mm + .3vw);
+  font-size: calc(3mm + .3vw);
 }
 * {
   padding: 0;
@@ -202,6 +202,26 @@ nav a.router-link-active:before {
 }
 .asLink:hover:before {
   height: calc(100% - .2rem);
+}
+
+button.link-icon::after {
+  display: inline-block;
+  font: normal normal normal 75%/1 FontAwesome;
+  /*font-size: 75%;*/
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  content: "\f08e";
+  margin-left: .1rem;
+}
+
+.sub-text {
+  display: inline-block;
+  font-size: 85%;
+  line-height: 1rem;
+}
+button.link-icon {
+  float: right;
+  display: inline;
 }
 
 .toolbar {

@@ -80,10 +80,16 @@
                 <pre style="display: none">selected: {{selected.join(',')}}</pre>
                 <dynamic-table :datalist="results" :columns="columns" v-model="selected" sel-key="ord_num">
                     <template v-slot:agent_code="{ value }">
-                        <button class="plain" @click="openAgentInfo(value)" tabindex="0">{{value}}</button>
+                        <div>{{value}}</div>
+                        <div class="sub-text">Jane Doe</div>
+                        <button class="link-icon" @click="openAgentInfo(value)" tabindex="0" :title="`Apri agente ${value}`"></button><!--<button class="link-icon" @click="openAgentInfo(value)" tabindex="0" :title="`Apri agente ${value}`">{{value}}</button>-->
                     </template>
                     <template v-slot:cust_code="{ value }">
-                        <button class="asLink" @click="openCustomerInfo(value)" tabindex="0">{{value}}</button>
+                        <div>{{value}}</div>
+                        <div class="sub-text">Jane Doe</div>
+                        <button class="link-icon" @click="openCustomerInfo(value)" tabindex="0"
+                            :title="`Apri cliente ${value}`"></button>
+                        <!--<button class="link-icon" @click="openCustomerInfo(value)" tabindex="0" :title="`Apri cliente ${value}`">{{value}}</button>-->
                     </template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>

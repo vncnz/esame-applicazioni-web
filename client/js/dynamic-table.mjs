@@ -67,8 +67,9 @@ export default {
           return h('td', attrs, result[col.k])
         }
       })
+      let checked = false
       if (this.selKey) {
-        let checked = this.value.indexOf(result[this.selKey]) > -1
+        checked = this.value.indexOf(result[this.selKey]) > -1
         row.unshift(h('td', null, [
           h('input', {
             attrs: { type: 'checkbox', title: `${checked ? 'Deseleziona' : 'Seleziona'} ${result[this.selKey]}`},
@@ -84,7 +85,9 @@ export default {
           })
         ]))
       }
-      return h('tr', [row])
+      return h('tr', {
+        class: checked ? 'selected' : ''
+      }, [row])
     })
     let children = [
       h('thead', [h('tr', headrow)]),

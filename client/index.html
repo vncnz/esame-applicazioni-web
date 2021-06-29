@@ -18,7 +18,7 @@
                     <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
                     <router-link to="/ordini" v-if="userInfo"><span>Ordini</span></router-link>
                     <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
-                    <router-link to="/clienti" v-if="userInfo?.is_agente || userInfo?.is_manager"><span>Clienti</span></router-link>
+                    <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
                 </nav>
             </header>
             <div id="router-box">
@@ -79,18 +79,19 @@
             <div>
                 <pre style="display: none">selected: {{selected.join(',')}}</pre>
                 <dynamic-table :datalist="results" :columns="columns" v-model="selected" sel-key="ord_num">
-                    <template v-slot:agent_code="{ value }">
+                    <template v-slot:agent_code="{ value, row }">
                         <div>{{value}}</div>
-                        <div class="sub-text">Jane Doe</div>
+                        <div class="sub-text">{{row.agent_name}}</div>
                         <button class="link-icon" @click="openAgentInfo(value)" tabindex="0" :title="`Apri agente ${value}`"></button><!--<button class="link-icon" @click="openAgentInfo(value)" tabindex="0" :title="`Apri agente ${value}`">{{value}}</button>-->
                     </template>
-                    <template v-slot:cust_code="{ value }">
+                    <template v-slot:cust_code="{ value, row }">
                         <div>{{value}}</div>
-                        <div class="sub-text">Jane Doe</div>
+                        <div class="sub-text">{{row.cust_name}}</div>
                         <button class="link-icon" @click="openCustomerInfo(value)" tabindex="0"
                             :title="`Apri cliente ${value}`"></button>
                         <!--<button class="link-icon" @click="openCustomerInfo(value)" tabindex="0" :title="`Apri cliente ${value}`">{{value}}</button>-->
                     </template>
+                    <template v-slot:ord_date="{ value }">{{value | date}}</template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:actions="{ row }">
@@ -112,8 +113,14 @@
         </template>
         <template id="LoginViewTemplate">
             <div>
-                <input type="text" v-model="username" />
-                <input type="password" v-model="password" />
+                <div class="input-box">
+                    <input type="text" v-model="username" placeholder=" " />
+                    <label>Nome utente</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" v-model="password" placeholder=" " />
+                    <label>Password</label>
+                </div>
                 <button @click="accedi">Accedi</button>
                 <button @click="esci">Esci</button>
                 <!-- <button @click="test">Test protected</button> -->

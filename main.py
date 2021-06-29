@@ -40,40 +40,40 @@ clienti_test = [
   { "cust_code": "C00011", "cust_name": "Sundariya", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 3, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 11000, "phone_no": "PPHGRTS", "agent_code": "A010" }
 ]
 ordini_test = [
-  { "ord_num": "200100", "ord_amount": 1000, "advance_amount": 600, "ord_date": "08/01/2008", "cust_code": "C00013", "agent_code": "A003", "order_description": "SOD" },
-  { "ord_num": "200110", "ord_amount": 3000, "advance_amount": 500, "ord_date": "04/15/2008", "cust_code": "C00019", "agent_code": "A010", "order_description": "SOD" },
-  { "ord_num": "200107", "ord_amount": 4500, "advance_amount": 900, "ord_date": "08/30/2008", "cust_code": "C00007", "agent_code": "A010", "order_description": "SOD" },
-  { "ord_num": "200112", "ord_amount": 2000, "advance_amount": 400, "ord_date": "05/30/2008", "cust_code": "C00016", "agent_code": "A007", "order_description": "SOD" },
-  { "ord_num": "200113", "ord_amount": 4000, "advance_amount": 600, "ord_date": "06/10/2008", "cust_code": "C00022", "agent_code": "A002", "order_description": "SOD" },
-  { "ord_num": "200102", "ord_amount": 2000, "advance_amount": 300, "ord_date": "05/25/2008", "cust_code": "C00012", "agent_code": "A012", "order_description": "SOD" },
-  { "ord_num": "200114", "ord_amount": 3500, "advance_amount": 2000, "ord_date": "08/15/2008", "cust_code": "C00002", "agent_code": "A008", "order_description": "SOD" },
-  { "ord_num": "200122", "ord_amount": 2500, "advance_amount": 400, "ord_date": "09/16/2008", "cust_code": "C00003", "agent_code": "A004", "order_description": "SOD" },
-  { "ord_num": "200118", "ord_amount": 500, "advance_amount": 100, "ord_date": "07/20/2008", "cust_code": "C00023", "agent_code": "A006", "order_description": "SOD" },
-  { "ord_num": "200119", "ord_amount": 4000, "advance_amount": 700, "ord_date": "09/16/2008", "cust_code": "C00007", "agent_code": "A010", "order_description": "SOD" },
-  { "ord_num": "200121", "ord_amount": 1500, "advance_amount": 600, "ord_date": "09/23/2008", "cust_code": "C00008", "agent_code": "A004", "order_description": "SOD" },
-  { "ord_num": "200130", "ord_amount": 2500, "advance_amount": 400, "ord_date": "07/30/2008", "cust_code": "C00025", "agent_code": "A011", "order_description": "SOD" },
-  { "ord_num": "200134", "ord_amount": 4200, "advance_amount": 1800, "ord_date": "09/25/2008", "cust_code": "C00004", "agent_code": "A005", "order_description": "SOD" },
-  { "ord_num": "200108", "ord_amount": 4000, "advance_amount": 600, "ord_date": "02/15/2008", "cust_code": "C00008", "agent_code": "A004", "order_description": "SOD" },
-  { "ord_num": "200103", "ord_amount": 1500, "advance_amount": 700, "ord_date": "05/15/2008", "cust_code": "C00021", "agent_code": "A005", "order_description": "SOD" },
-  { "ord_num": "200105", "ord_amount": 2500, "advance_amount": 500, "ord_date": "07/18/2008", "cust_code": "C00025", "agent_code": "A011", "order_description": "SOD" },
-  { "ord_num": "200109", "ord_amount": 3500, "advance_amount": 800, "ord_date": "07/30/2008", "cust_code": "C00011", "agent_code": "A010", "order_description": "SOD" },
-  { "ord_num": "200101", "ord_amount": 3000, "advance_amount": 1000, "ord_date": "07/15/2008", "cust_code": "C00001", "agent_code": "A008", "order_description": "SOD" },
-  { "ord_num": "200111", "ord_amount": 1000, "advance_amount": 300, "ord_date": "07/10/2008", "cust_code": "C00020", "agent_code": "A008", "order_description": "SOD" },
-  { "ord_num": "200104", "ord_amount": 1500, "advance_amount": 500, "ord_date": "03/13/2008", "cust_code": "C00006", "agent_code": "A004", "order_description": "SOD" },
-  { "ord_num": "200106", "ord_amount": 2500, "advance_amount": 700, "ord_date": "04/20/2008", "cust_code": "C00005", "agent_code": "A002", "order_description": "SOD" },
-  { "ord_num": "200125", "ord_amount": 2000, "advance_amount": 600, "ord_date": "10/10/2008", "cust_code": "C00018", "agent_code": "A005", "order_description": "SOD" },
-  { "ord_num": "200117", "ord_amount": 800, "advance_amount": 200, "ord_date": "10/20/2008", "cust_code": "C00014", "agent_code": "A001", "order_description": "SOD" },
-  { "ord_num": "200123", "ord_amount": 500, "advance_amount": 100, "ord_date": "09/16/2008", "cust_code": "C00022", "agent_code": "A002", "order_description": "SOD" },
-  { "ord_num": "200120", "ord_amount": 500, "advance_amount": 100, "ord_date": "07/20/2008", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" },
-  { "ord_num": "200116", "ord_amount": 500, "advance_amount": 100, "ord_date": "07/13/2008", "cust_code": "C00010", "agent_code": "A009", "order_description": "SOD" },
-  { "ord_num": "200124", "ord_amount": 500, "advance_amount": 100, "ord_date": "06/20/2008", "cust_code": "C00017", "agent_code": "A007", "order_description": "SOD" },
-  { "ord_num": "200126", "ord_amount": 500, "advance_amount": 100, "ord_date": "06/24/2008", "cust_code": "C00022", "agent_code": "A002", "order_description": "SOD" },
-  { "ord_num": "200129", "ord_amount": 2500, "advance_amount": 500, "ord_date": "07/20/2008", "cust_code": "C00024", "agent_code": "A006", "order_description": "SOD" },
-  { "ord_num": "200127", "ord_amount": 2500, "advance_amount": 400, "ord_date": "07/20/2008", "cust_code": "C00015", "agent_code": "A003", "order_description": "SOD" },
-  { "ord_num": "200128", "ord_amount": 3500, "advance_amount": 1500, "ord_date": "07/20/2008", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" },
-  { "ord_num": "200135", "ord_amount": 2000, "advance_amount": 800, "ord_date": "09/16/2008", "cust_code": "C00007", "agent_code": "A010", "order_description": "SOD" },
-  { "ord_num": "200131", "ord_amount": 900, "advance_amount": 150, "ord_date": "08/26/2008", "cust_code": "C00012", "agent_code": "A012", "order_description": "SOD" },
-  { "ord_num": "200133", "ord_amount": 1200, "advance_amount": 400, "ord_date": "06/29/2008", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" }
+  { "ord_num": "200100", "ord_amount": 1000, "advance_amount": 600, "ord_date": "2008-08-01", "cust_code": "C00013", "agent_code": "A003", "order_description": "SOD" },
+  { "ord_num": "200110", "ord_amount": 3000, "advance_amount": 500, "ord_date": "2008-04-15", "cust_code": "C00019", "agent_code": "A010", "order_description": "SOD" },
+  { "ord_num": "200107", "ord_amount": 4500, "advance_amount": 900, "ord_date": "2008-08-30", "cust_code": "C00007", "agent_code": "A010", "order_description": "SOD" },
+  { "ord_num": "200112", "ord_amount": 2000, "advance_amount": 400, "ord_date": "2008-05-30", "cust_code": "C00016", "agent_code": "A007", "order_description": "SOD" },
+  { "ord_num": "200113", "ord_amount": 4000, "advance_amount": 600, "ord_date": "2008-06-10", "cust_code": "C00022", "agent_code": "A002", "order_description": "SOD" },
+  { "ord_num": "200102", "ord_amount": 2000, "advance_amount": 300, "ord_date": "2008-05-25", "cust_code": "C00012", "agent_code": "A012", "order_description": "SOD" },
+  { "ord_num": "200114", "ord_amount": 3500, "advance_amount": 2000, "ord_date": "2008-08-15", "cust_code": "C00002", "agent_code": "A008", "order_description": "SOD" },
+  { "ord_num": "200122", "ord_amount": 2500, "advance_amount": 400, "ord_date": "2008-09-16", "cust_code": "C00003", "agent_code": "A004", "order_description": "SOD" },
+  { "ord_num": "200118", "ord_amount": 500, "advance_amount": 100, "ord_date": "2008-07-20", "cust_code": "C00023", "agent_code": "A006", "order_description": "SOD" },
+  { "ord_num": "200119", "ord_amount": 4000, "advance_amount": 700, "ord_date": "2008-09-16", "cust_code": "C00007", "agent_code": "A010", "order_description": "SOD" },
+  { "ord_num": "200121", "ord_amount": 1500, "advance_amount": 600, "ord_date": "2008-09-23", "cust_code": "C00008", "agent_code": "A004", "order_description": "SOD" },
+  { "ord_num": "200130", "ord_amount": 2500, "advance_amount": 400, "ord_date": "2008-07-30", "cust_code": "C00025", "agent_code": "A011", "order_description": "SOD" },
+  { "ord_num": "200134", "ord_amount": 4200, "advance_amount": 1800, "ord_date": "2008-09-25", "cust_code": "C00004", "agent_code": "A005", "order_description": "SOD" },
+  { "ord_num": "200108", "ord_amount": 4000, "advance_amount": 600, "ord_date": "2008-02-15", "cust_code": "C00008", "agent_code": "A004", "order_description": "SOD" },
+  { "ord_num": "200103", "ord_amount": 1500, "advance_amount": 700, "ord_date": "2008-05-15", "cust_code": "C00021", "agent_code": "A005", "order_description": "SOD" },
+  { "ord_num": "200105", "ord_amount": 2500, "advance_amount": 500, "ord_date": "2008-07-18", "cust_code": "C00025", "agent_code": "A011", "order_description": "SOD" },
+  { "ord_num": "200109", "ord_amount": 3500, "advance_amount": 800, "ord_date": "2008-07-30", "cust_code": "C00011", "agent_code": "A010", "order_description": "SOD" },
+  { "ord_num": "200101", "ord_amount": 3000, "advance_amount": 1000, "ord_date": "2008-07-15", "cust_code": "C00001", "agent_code": "A008", "order_description": "SOD" },
+  { "ord_num": "200111", "ord_amount": 1000, "advance_amount": 300, "ord_date": "2008-07-10", "cust_code": "C00020", "agent_code": "A008", "order_description": "SOD" },
+  { "ord_num": "200104", "ord_amount": 1500, "advance_amount": 500, "ord_date": "2008-03-13", "cust_code": "C00006", "agent_code": "A004", "order_description": "SOD" },
+  { "ord_num": "200106", "ord_amount": 2500, "advance_amount": 700, "ord_date": "2008-04-20", "cust_code": "C00005", "agent_code": "A002", "order_description": "SOD" },
+  { "ord_num": "200125", "ord_amount": 2000, "advance_amount": 600, "ord_date": "2008-10-10", "cust_code": "C00018", "agent_code": "A005", "order_description": "SOD" },
+  { "ord_num": "200117", "ord_amount": 800, "advance_amount": 200, "ord_date": "2008-10-20", "cust_code": "C00014", "agent_code": "A001", "order_description": "SOD" },
+  { "ord_num": "200123", "ord_amount": 500, "advance_amount": 100, "ord_date": "2008-09-16", "cust_code": "C00022", "agent_code": "A002", "order_description": "SOD" },
+  { "ord_num": "200120", "ord_amount": 500, "advance_amount": 100, "ord_date": "2008-07-20", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" },
+  { "ord_num": "200116", "ord_amount": 500, "advance_amount": 100, "ord_date": "2008-07-13", "cust_code": "C00010", "agent_code": "A009", "order_description": "SOD" },
+  { "ord_num": "200124", "ord_amount": 500, "advance_amount": 100, "ord_date": "2008-06-20", "cust_code": "C00017", "agent_code": "A007", "order_description": "SOD" },
+  { "ord_num": "200126", "ord_amount": 500, "advance_amount": 100, "ord_date": "2008-06-24", "cust_code": "C00022", "agent_code": "A002", "order_description": "SOD" },
+  { "ord_num": "200129", "ord_amount": 2500, "advance_amount": 500, "ord_date": "2008-07-20", "cust_code": "C00024", "agent_code": "A006", "order_description": "SOD" },
+  { "ord_num": "200127", "ord_amount": 2500, "advance_amount": 400, "ord_date": "2008-07-20", "cust_code": "C00015", "agent_code": "A003", "order_description": "SOD" },
+  { "ord_num": "200128", "ord_amount": 3500, "advance_amount": 1500, "ord_date": "2008-07-20", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" },
+  { "ord_num": "200135", "ord_amount": 2000, "advance_amount": 800, "ord_date": "2008-09-16", "cust_code": "C00007", "agent_code": "A010", "order_description": "SOD" },
+  { "ord_num": "200131", "ord_amount": 900, "advance_amount": 150, "ord_date": "2008-08-26", "cust_code": "C00012", "agent_code": "A012", "order_description": "SOD" },
+  { "ord_num": "200133", "ord_amount": 1200, "advance_amount": 400, "ord_date": "2008-06-29", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" }
 ]
 
 from datetime import timedelta
@@ -95,8 +95,8 @@ jwt = JWTManager(app)
 users = [
     # (username, password, claims dictionary)
     ('dirigente', 'test', { 'is_manager': True, 'is_agent': False, 'is_customer': False }),
-    ('agente', 'test', { 'is_manager': False, 'is_agent': True, 'is_customer': False }),
-    ('cliente', 'test', { 'is_manager': False, 'is_agent': False, 'is_customer': True })
+    ('A010', 'test', { 'is_manager': False, 'is_agent': True, 'is_customer': False }),
+    ('C00022', 'test', { 'is_manager': False, 'is_agent': False, 'is_customer': True })
 ]
 
 @app.route("/login", methods=["POST"])
@@ -128,11 +128,47 @@ def protected():
 @app.route("/orders", methods=["GET"])
 @jwt_required()
 def orders():
+    identity = get_jwt_identity()
     current_jwt = get_jwt()
     allowed = True # current_jwt['is_manager']
     if not allowed:
         return jsonify({"msg": "Forbidden"}), 403
-    return jsonify(ordini_test), 200
+    ordini_utente = ordini_test
+    if current_jwt['is_customer']:
+        ordini_utente = filter(lambda o: o['cust_code'] == identity, ordini_utente)
+    elif current_jwt['is_agent']:
+        ordini_utente = filter(lambda o: o['agent_code'] == identity, ordini_utente)
+    toSend = []
+    for ord in ordini_utente:
+        o = ord.copy()
+        o['agent_name'] = 'Jane Doe'
+        o['cust_name'] = 'John Doe'
+        # o['agent_phone'] = '123456789'
+        toSend.append(o)
+    return jsonify(toSend), 200
+
+@app.route("/orders", methods=["DELETE"])
+@jwt_required()
+def deleteOrders():
+    identity = get_jwt_identity()
+    current_jwt = get_jwt()
+    allowed = True # current_jwt['is_manager']
+    # TODO: idx = get_json()
+    if not allowed:
+        return jsonify({"msg": "Forbidden"}), 403
+    ordini_utente = ordini_test
+    if current_jwt['is_customer']:
+        ordini_utente = filter(lambda o: o['cust_code'] == identity, ordini_utente)
+    elif current_jwt['is_agent']:
+        ordini_utente = filter(lambda o: o['agent_code'] == identity, ordini_utente)
+    toSend = []
+    for ord in ordini_utente:
+        o = ord.copy()
+        o['agent_name'] = 'Jane Doe'
+        o['cust_name'] = 'John Doe'
+        # o['agent_phone'] = '123456789'
+        toSend.append(o)
+    return jsonify(toSend), 200
 
 @app.route("/customers", methods=["GET"])
 @jwt_required()
@@ -200,4 +236,4 @@ def hello_world(name):
     return f'<p>Hello, {name}!</p>'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)

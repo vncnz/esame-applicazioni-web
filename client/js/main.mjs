@@ -37,6 +37,21 @@ Vue.filter('currency', function (value) {
   return currencyFormatter.format(value)
 })
 
+/* const dateFormatter = new Intl.DateTimeFormat('it-IT')
+Vue.filter('date', function (value) {
+  if (!value) {
+    return value
+  }
+  console.log(value)
+  return dateFormatter.format(value)
+}) */
+Vue.filter('date', function (value) {
+  if (!value || value.length < 10) {
+    return value
+  }
+  return `${value.substring(8,10)}/${value.substring(5,7)}/${value.substring(0,4)}`
+})
+
 Vue.directive('col-sortable', {
   inserted (el, binding, vnode) {
     el.className = vnode.context.classiOrdinamento(binding.value)
@@ -75,7 +90,7 @@ const router = new VueRouter({
       } },
     {
       path: '/clienti', component: CustomersView, beforeEnter: (to, from, next) => {
-        if (!(store.getters.userInfo?.is_agente || store.getters.userInfo?.is_manager)) { next('/accesso') } else { next() }
+        if (!(store.getters.userInfo?.is_agent || store.getters.userInfo?.is_manager)) { next('/accesso') } else { next() }
       }
     },
     { path: '/accesso', component: LoginView },

@@ -99,8 +99,8 @@
                     <template v-slot:actions="{ row }">
                         <!--<span class="asLink" role="button" @click="edit(row)" tabindex="0" :disabled="!canEdit(row)">Modifica</span>
                         <span class="asLink" role="button" @click="delete(row)" tabindex="0" :disabled="!canEdit(row)">Cancella</span>-->
-                        <button @click="editOrder(row, evt)" :title="`Modifica ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
-                        <button @click="deleteOrder(row, evt)" :title="`Elimina ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
+                        <button @click="editOrder(row)" :title="`Modifica ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
+                        <button @click="deleteOrder(row)" :title="`Elimina ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
                     <template v-slot:tfoot>
                         <div class="toolbar">

@@ -75,6 +75,11 @@ export default new Vuex.Store({
       return Vue.http.get('/orders').then(response => {
         return response.body
       })
+    },
+    deleteOrder (ctx, id) {
+      return Vue.http.delete('/order/' + id).then(response => {
+        return response.body
+      })
     }
 
   }

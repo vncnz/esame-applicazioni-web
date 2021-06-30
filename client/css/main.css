@@ -329,6 +329,46 @@ button:active {
   margin-left: 0;
 }
 
+.dcontainer .dglass {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--white);
+  opacity: 0.75;
+  z-index: 999;
+}
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 70%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  box-shadow: 1px 1px 0.1rem black;
+  border: 1px solid black;
+  padding: .5rem;
+  z-index: 1000;
+}
+.dialog .dheader {
+  flex: 0;
+}
+.dialog .dbody {
+  flex: 1;
+  overflow: auto;
+}
+.dialog .dfooter {
+  flex: 0;
+  text-align: right;
+}
+.dialog .dfooter button + button {
+  margin-left: .5rem;
+}
+
 table {
   /* border-collapse: collapse; */
   border-collapse: separate; /* Valore predefinito, necessario per gestire i bordi in presenza position: sticky */

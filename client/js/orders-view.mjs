@@ -1,5 +1,9 @@
-import SortableDataMixin from './sortable-data-mixin.mjs'
+// import SortableDataMixin from './sortable-data-mixin.mjs'
 import dynamicTable from './dynamic-table.mjs'
+import ConfirmDialog from './confirm-dialog.mjs'
+const { createPromiseDialog } = window.vuePromiseDialogs
+
+const confirmDialog = createPromiseDialog(ConfirmDialog)
 
 export default {
   name: 'OrdersView',
@@ -51,8 +55,21 @@ export default {
         console.log(response)
       })
     },
-    edit(row) { },
-    delete(row) { }
+    editOrder (row) {
+      console.log('edit')
+    },
+    deleteOrder (row, evt) {
+      console.log('delete')
+      confirmDialog({ text: `Sei sicuro di voler eliminare l\'ordine numero ${row.ord_num}?` }).then(confirmed => {
+        if (!confirmed) {
+          window.previousFocusedElement?.focus()
+        } else {
+          this.results = this.results.filter(r => r !== row)
+        }
+      })/*.catch(err => {
+        console.log(err)
+      })*/
+    }
   },
   mounted () {
     this.$store.dispatch("loadOrders").then(results => {

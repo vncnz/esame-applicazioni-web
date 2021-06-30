@@ -3,6 +3,14 @@ import OrdersView from './orders-view.mjs'
 import CustomersView from './customers-view.mjs'
 import AgentsView from './agents-view.mjs'
 import store from './store.mjs'
+const { PromiseDialogsWrapper } = window.vuePromiseDialogs
+
+window.currentFocusedElement = null
+window.previousFocusedElement = null
+document.body.addEventListener('focusin', evt => {
+  window.previousFocusedElement = window.currentFocusedElement
+  window.currentFocusedElement = evt.target
+})
 
 Vue.http.interceptors.push((request, next) => {
   if (store.state.userToken) {
@@ -103,12 +111,7 @@ const router = new VueRouter({
   // el: '#app',
   router,
   store,
-  data() {
-    return {
-      test: 'Hello world!'
-    }
-  },
-  methods: {},
+  components: { PromiseDialogsWrapper },
   mounted () {
     this.tokenInterval = setInterval(() => {
       console.log('check token', this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime())

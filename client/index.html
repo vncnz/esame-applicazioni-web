@@ -5,6 +5,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.0/vue-router.min.js"></script>
         <script src="https://unpkg.com/vuex@2.0.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+        <script src="https://unpkg.com/vue-promise-dialogs@1.2.0/dist/vue-promise-dialogs.umd.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
             integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,6 +28,7 @@
             <footer>
                 Creato da Vincenzo Minolfi
             </footer>
+            <promise-dialogs-wrapper />
         </div>
         <template id="CustomersViewTemplate">
             <dynamic-table :datalist="sortedResults" :columns="columns">
@@ -97,8 +99,8 @@
                     <template v-slot:actions="{ row }">
                         <!--<span class="asLink" role="button" @click="edit(row)" tabindex="0" :disabled="!canEdit(row)">Modifica</span>
                         <span class="asLink" role="button" @click="delete(row)" tabindex="0" :disabled="!canEdit(row)">Cancella</span>-->
-                        <button @click="edit(row)" :title="`Modifica ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
-                        <button @click="delete(row)" :title="`Elimina ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
+                        <button @click="editOrder(row, evt)" :title="`Modifica ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
+                        <button @click="deleteOrder(row, evt)" :title="`Elimina ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
                     <template v-slot:tfoot>
                         <div class="toolbar">

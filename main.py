@@ -155,30 +155,17 @@ def deleteOrders (id):
     global ordini_test
     identity = get_jwt_identity()
     current_jwt = get_jwt()
-    allowed = True # current_jwt['is_manager']
-    if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
     ordini_utente = ordini_test
     if current_jwt['is_customer']:
-        ordini_utente = filter(lambda o: o['cust_code'] == identity, ordini_utente)
+        ordini_utente = filter(lambda order: order['cust_code'] == identity, ordini_utente)
     elif current_jwt['is_agent']:
-        ordini_utente = filter(lambda o: o['agent_code'] == identity, ordini_utente)
+        ordini_utente = filter(lambda order: order['agent_code'] == identity, ordini_utente)
     ordine = next(filter(lambda o: o['ord_num'] == id, ordini_utente), None)
     if ordine:
         ordini_test = list(filter(lambda o: o['ord_num'] != id, ordini_test))
         return '', 200
     else:
         return jsonify({"msg": "Forbidden"}), 403
-
-
-    toSend = []
-    for ord in ordini_utente:
-        o = ord.copy()
-        o['agent_name'] = 'Jane Doe'
-        o['cust_name'] = 'John Doe'
-        # o['agent_phone'] = '123456789'
-        toSend.append(o)
-    return jsonify(toSend), 200
 
 @app.route("/customers", methods=["GET"])
 @jwt_required()

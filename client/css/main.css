@@ -364,6 +364,7 @@ button:active {
 .dialog .dfooter {
   flex: 0;
   text-align: right;
+  margin-top: .5rem;
 }
 .dialog .dfooter button + button {
   margin-left: .5rem;

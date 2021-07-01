@@ -80,32 +80,29 @@
         <template id="OrdersViewTemplate">
             <div>
                 <pre style="display: none">selected: {{selected.join(',')}}</pre>
-                <dynamic-table :datalist="results" :columns="columns" v-model="selected" sel-key="ord_num">
-                    <template v-slot:agent_code="{ value, row }">
-                        <div>{{value}}</div>
-                        <div class="sub-text">{{row.agent_name}}</div>
-                        <button class="link-icon" @click="openAgentInfo(value)" tabindex="0" :title="`Apri agente ${value}`"></button><!--<button class="link-icon" @click="openAgentInfo(value)" tabindex="0" :title="`Apri agente ${value}`">{{value}}</button>-->
+                <h3>I tuoi ordini</h3>
+                <dynamic-table :datalist="results" :columns="columns"><!-- v-model="selected" :sel-key="userInfo?.is_customer ? null : 'ord_num'" -->
+                    <template v-slot:agent_name="{ value, row }">
+                        <span>{{value}}</span>
+                        <button class="link-icon" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`"></button>
                     </template>
-                    <template v-slot:cust_code="{ value, row }">
-                        <div>{{value}}</div>
-                        <div class="sub-text">{{row.cust_name}}</div>
-                        <button class="link-icon" @click="openCustomerInfo(value)" tabindex="0"
+                    <template v-slot:cust_name="{ value, row }">
+                        <span>{{value}}</span>
+                        <button class="link-icon" @click="openCustomerInfo(row.cust_code)" tabindex="0"
                             :title="`Apri cliente ${value}`"></button>
-                        <!--<button class="link-icon" @click="openCustomerInfo(value)" tabindex="0" :title="`Apri cliente ${value}`">{{value}}</button>-->
                     </template>
                     <template v-slot:ord_date="{ value }">{{value | date}}</template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:actions="{ row }">
-                        <!--<span class="asLink" role="button" @click="edit(row)" tabindex="0" :disabled="!canEdit(row)">Modifica</span>
-                        <span class="asLink" role="button" @click="delete(row)" tabindex="0" :disabled="!canEdit(row)">Cancella</span>-->
-                        <button @click="editOrder(row)" :title="`Modifica ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
-                        <button @click="deleteOrder(row)" :title="`Elimina ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
+                        <button @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
+                        <button @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
-                    <template v-slot:tfoot>
+                    <template v-slot:tfoot v-if="canCreateNewOrder">
                         <div class="toolbar">
-                            <button>Aggiungi</button>
-                            <button :disabled="selected.length === 0">Elimina selezionati</button>
+                            <!--<button>Aggiungi</button>
+                            <button :disabled="selected.length === 0">Elimina selezionati</button>-->
+                            <button title="Crea un nuovo ordine" @click="createNewOrder"><i class="fa fa-fw fa-plus"></i></button>
                         </div>
                     </template>
                 </dynamic-table>

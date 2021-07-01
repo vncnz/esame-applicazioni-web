@@ -1,10 +1,12 @@
 // import SortableDataMixin from './sortable-data-mixin.mjs'
 import dynamicTable from './dynamic-table.mjs'
 import SimpleDialog from './simple-dialog.mjs'
+import ContactDialog from './contact-dialog.mjs'
 import storeMjs from './store.mjs'
 const { createPromiseDialog } = window.vuePromiseDialogs
 
 const simpleDialog = createPromiseDialog(SimpleDialog)
+const contactDialog = createPromiseDialog(ContactDialog)
 
 export default {
   name: 'OrdersView',
@@ -23,15 +25,22 @@ export default {
         { l: 'Numero', k: 'ord_num', sticky: true },
         { l: 'Data', k: 'ord_date' },
         { l: 'Descrizione', k: 'order_description' },
-        { l: 'Agente', k: 'agent_code' },
-        { l: 'Cliente', k: 'cust_code' },
         { l: 'Totale', k: 'ord_amount', numeric: true },
         { l: 'Anticipo', k: 'advance_amount', numeric: true }
       ]
+      if (!this.userInfo?.is_manager) {
+        lst.splice(3, 0, { l: 'Agente', k: 'agent_name' })
+      }
+      if (!this.userInfo?.is_customer) {
+        lst.splice(3, 0, { l: 'Cliente', k: 'cust_name' })
+      }
       if (this.userInfo?.is_manager || this.userInfo?.is_agent) {
         lst.push({ l: 'Azioni', k: 'actions' })
       }
       return lst
+    },
+    canCreateNewOrder() {
+      return this.userInfo?.is_agent
     }
   },
   methods: {
@@ -44,16 +53,31 @@ export default {
       }
       return false
     },
+    createNewOrder () {
+      // TODO
+    },
     openAgentInfo(id) {
       console.log('openAgentInfo', id)
       this.$store.dispatch({ type: "loadAgent", id }).then(response => {
         console.log(response)
+        contactDialog({
+          typeLabel: 'Agente',
+          code: response.agent_code,
+          name: response.agent_name,
+          phone: response.phone_no
+        })
       })
     },
     openCustomerInfo(id) {
       console.log('openCustomerInfo', id)
       this.$store.dispatch({ type: "loadCustomer", id }).then(response => {
         console.log(response)
+        contactDialog({
+          typeLabel: 'Cliente',
+          code: response.cust_code,
+          name: response.cust_name,
+          phone: response.phone_no
+        })
       })
     },
     editOrder (row) {

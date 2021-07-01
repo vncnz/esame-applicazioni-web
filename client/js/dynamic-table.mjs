@@ -37,7 +37,13 @@ export default {
       }, [
         h('span', {
           class: 'sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')
-        }, [col.l])
+        }, [col.l]),
+        h('button', {
+          class: 'sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted'),
+          domProps: {
+            title: 'Ordina per ' + col.l
+          }
+        }, [])
       ])
     })
     if (this.selKey) {

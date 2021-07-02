@@ -96,7 +96,7 @@ jwt = JWTManager(app)
 users = [
     # (username, password, claims dictionary)
     ('dirigente', 'test', { 'is_manager': True, 'is_agent': False, 'is_customer': False }),
-    ('A010', 'test', { 'is_manager': False, 'is_agent': True, 'is_customer': False }),
+    ('A002', 'test', { 'is_manager': False, 'is_agent': True, 'is_customer': False }),
     ('C00022', 'test', { 'is_manager': False, 'is_agent': False, 'is_customer': True })
 ]
 
@@ -143,8 +143,10 @@ def orders():
     toSend = []
     for ord in ordini_utente:
         o = ord.copy()
-        o['agent_name'] = 'Jane Doe'
-        o['cust_name'] = 'John Doe'
+        ag = next(filter(lambda o: o['agent_code'] == ord['agent_code'], agenti_test), None)
+        cu = next(filter(lambda o: o['cust_code'] == ord['cust_code'], clienti_test), None)
+        o['agent_name'] = (ag and ag['agent_name']) or 'Jane Doe'
+        o['cust_name'] = (cu and cu['cust_name']) or 'John Doe'
         # o['agent_phone'] = '123456789'
         toSend.append(o)
     return jsonify(toSend), 200

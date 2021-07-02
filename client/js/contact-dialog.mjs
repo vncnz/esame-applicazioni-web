@@ -1,41 +1,27 @@
+import dialogMixin from './dialog-mixin.mjs'
+
 export default {
   name: 'ContactDialog',
-  props: {
-    params: {
-      type: Object,
-      required: true,
-    }
-  },
+  mixins: [dialogMixin],
   methods: {
-    close () {
-      this.$emit('resolve')
+    createTitleHtml(h) {
+      return [`${this.params.typeLabel} ${this.params.code}`]
+    },
+    createBodyHtml(h) {
+      return [
+        h('div', [`Nome: ${this.params.name}`]),
+        h('div', [`Numero: ${this.params.phone}`])
+      ]
+    },
+    createFooterHtml(h) {
+      return [
+        h('button', {
+          class: 'primary',
+          on: {
+            click: () => { this.resolve() }
+          }
+        }, ['ok'])
+      ]
     }
-  },
-  mounted () {
-    this.$el.querySelector('button:first-child').focus()
-  },
-  render (h) {
-    return h('div', {
-      class: 'dcontainer',
-    }, [
-      h('div', { class: 'dglass' }, []),
-      h('div', {
-        class: 'dialog'
-      }, [
-        h('div', { class: 'dheader' }, [`${this.params.typeLabel} ${this.params.code}`]),
-        h('div', { class: 'dbody' }, [
-          h('div', [`Nome: ${this.params.name}`]),
-          h('div', [`Numero: ${this.params.phone}`])
-        ]),
-        h('div', { class: 'dfooter' }, [
-          h('button', {
-            class: 'primary',
-            on: {
-              click: () => { this.close() }
-            }
-          }, ['ok'])
-        ])
-      ])
-    ])
   }
 }

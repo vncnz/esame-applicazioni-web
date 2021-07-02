@@ -2,11 +2,13 @@
 import dynamicTable from './dynamic-table.mjs'
 import SimpleDialog from './simple-dialog.mjs'
 import ContactDialog from './contact-dialog.mjs'
+import OrderDialog from './order-dialog.mjs'
 import storeMjs from './store.mjs'
 const { createPromiseDialog } = window.vuePromiseDialogs
 
 const simpleDialog = createPromiseDialog(SimpleDialog)
 const contactDialog = createPromiseDialog(ContactDialog)
+const orderDialog = createPromiseDialog(OrderDialog)
 
 export default {
   name: 'OrdersView',
@@ -28,7 +30,7 @@ export default {
         { l: 'Totale', k: 'ord_amount', numeric: true },
         { l: 'Anticipo', k: 'advance_amount', numeric: true }
       ]
-      if (!this.userInfo?.is_manager) {
+      if (!this.userInfo?.is_agent) {
         lst.splice(3, 0, { l: 'Agente', k: 'agent_name' })
       }
       if (!this.userInfo?.is_customer) {
@@ -54,7 +56,9 @@ export default {
       return false
     },
     createNewOrder () {
-      // TODO
+      orderDialog({}).then(new_row => {
+        this.results.push(new_row)
+      }).catch(() => { })
     },
     openAgentInfo(id) {
       console.log('openAgentInfo', id)
@@ -81,7 +85,12 @@ export default {
       })
     },
     editOrder (row) {
-      console.log('edit')
+      orderDialog(row).then(new_row => {
+          Object.entries(new_row).forEach((key_value) => {
+            this.$set(row, key_value[0], key_value[1])
+          })
+        }
+      ).catch(() => {})
     },
     deleteOrder (row) {
       console.log('delete')

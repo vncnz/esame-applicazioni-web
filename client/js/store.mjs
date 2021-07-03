@@ -51,8 +51,12 @@ export default new Vuex.Store({
     },
     loadCustomers(/*context*/) {
       return Vue.http.get('/customers').then(response => {
-        console.log('response', response)
         // context.commit('registerCustomers', { customers: response.body })
+        return response.body
+      })
+    },
+    loadCustomersResume () {
+      return Vue.http.get('/customers-resume').then(response => {
         return response.body
       })
     },

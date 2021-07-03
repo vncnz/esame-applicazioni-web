@@ -29,21 +29,23 @@ export default {
   render(h) {
     let headrow = this.columns.map(col => {
       let isColSorted = col.k === this.sortedBy
+      let isColSortable = col.sortable !== false
       return h('th', {
         class: [col.sticky ? 'sticky' : '', col.numeric ? 'numeric' : ''],
+        domProps: { scope: 'col' },
         on: {
           click: () => this.setSorting(col.k)
         }
       }, [
         h('span', {
-          class: 'sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')
+          class: isColSortable ? ('sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')) : null
         }, [col.l]),
-        h('button', {
-          class: 'sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted'),
+        isColSortable ? h('button', {
+          class: 'on-right sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted'),
           domProps: {
             title: 'Ordina per ' + col.l
           }
-        }, [])
+        }, []) : null
       ])
     })
     if (this.selKey) {
@@ -66,7 +68,11 @@ export default {
     }
     let data = this.sortedDatalist.map(result => {
       let row = this.columns.map(col => {
-        let attrs = { class: [col.sticky ? 'sticky' : '', col.numeric ? 'numeric' : ''], attrs: { 'data-title': col.l }}
+        let isRowHeader = col.sticky
+        let attrs = {
+          class: [isRowHeader ? 'sticky' : '', col.numeric ? 'numeric' : ''], attrs: { 'data-title': col.l },
+          domProps: isRowHeader ? { scope: 'row' } : {},
+        }
         if (this.$scopedSlots[col.k]) {
           return h('td', attrs, this.$scopedSlots[col.k]({ row: result, value: result[col.k] }))
         } else {

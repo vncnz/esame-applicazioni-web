@@ -58,8 +58,8 @@ header {
   align-items: center;
   padding: .5rem;
   /*background-image: linear-gradient(141deg, #009e6c 0, #00d1b2 71%, #00e7eb 100%);*/
-  background-color: var(--space-cadet);
-  color: var(--white);
+  /*background-color: var(--space-cadet);*/
+  color: darkred;
   font-weight: bold;
 }
 header > *:first-child {
@@ -74,12 +74,12 @@ footer {
 }
 
 nav a {
-  color: inherit;
+  color: var(--black);
   position: relative;
   text-decoration: none;
   font-size: 1.2rem;
   margin: 0 .5rem;
-  text-shadow: 1px 1px 2px var(--black);
+  text-shadow: 1px 1px 2px var(--white);
 }
 nav a:before {
   position: absolute;
@@ -205,24 +205,14 @@ nav a.router-link-active:before {
   height: calc(100% - .2rem);
 }
 
-button.link-icon::after {
-  display: inline-block;
-  font: normal normal normal 75%/1 FontAwesome;
-  /*font-size: 75%;*/
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  content: "\f08e";
-  margin-left: .1rem;
-}
-
 .sub-text {
   display: inline-block;
   font-size: 85%;
   line-height: 1rem;
 }
-button.link-icon {
+
+.on-right {
   float: right;
-  display: inline;
 }
 
 .toolbar {
@@ -265,6 +255,26 @@ button:active {
   transform: translate(2px, 2px);
 }
 
+.input-box-2 {
+  position: relative;
+  display: block;
+  margin: .5rem;
+}
+
+.input-box-2 label {
+  color: inherit;
+  display: block;
+}
+
+.input-box-2 input,
+.input-box-2 select {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  padding: .3rem;
+}
+
 .input-box {
   position: relative;
   border: 2px solid gray;
@@ -283,20 +293,20 @@ button:active {
 }
 
 .input-box input:disabled {
-  background-color: var(--grey);
-  background-image:
+  opacity: .5;
+  /* background-image:
       linear-gradient(to top left,
           transparent 0%,
           transparent calc(50% - 1.5px),
           var(--grey) 50%,
           transparent calc(50% + 1.5px),
-          transparent 100%)/*,
+          transparent 100%),
       linear-gradient(to top right,
           transparent 0%,
           transparent calc(50% - 1.5px),
-          $grey 50%,
+          var(--grey) 50%,
           transparent calc(50% + 1.5px),
-          transparent 100%) */;
+          transparent 100%); */
 }
 
 .input-box label {

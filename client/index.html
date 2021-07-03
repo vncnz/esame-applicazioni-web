@@ -84,12 +84,11 @@
                 <dynamic-table :datalist="results" :columns="columns"><!-- v-model="selected" :sel-key="userInfo?.is_customer ? null : 'ord_num'" -->
                     <template v-slot:agent_name="{ value, row }">
                         <span>{{value}}</span>
-                        <button class="link-icon" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`"></button>
+                        <button @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
                     </template>
                     <template v-slot:cust_name="{ value, row }">
                         <span>{{value}}</span>
-                        <button class="link-icon" @click="openCustomerInfo(row.cust_code)" tabindex="0"
-                            :title="`Apri cliente ${value}`"></button>
+                        <button @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
                     </template>
                     <template v-slot:ord_date="{ value }">{{value | date}}</template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>

@@ -75,6 +75,7 @@ Vue.directive('col-sortable', {
   }
 })
 
+/* Utilities varie valide un po' per tutti */
 Vue.mixin({
   computed: {
     userToken () {
@@ -83,7 +84,8 @@ Vue.mixin({
     userInfo() {
       return this.$store.getters.userInfo
     }
-  }
+  },
+  methods: {}
 })
 
 const router = new VueRouter({

@@ -178,6 +178,16 @@ def customers():
         return jsonify({"msg": "Forbidden"}), 403
     return jsonify(clienti_test), 200
 
+@app.route("/customers-resume", methods=["GET"])
+@jwt_required()
+def customers_resume():
+    current_jwt = get_jwt()
+    allowed = current_jwt['is_manager'] or current_jwt['is_agent']
+    if not allowed:
+        return jsonify({"msg": "Forbidden"}), 403
+    return jsonify(list(map(lambda c: { 'name': c['cust_name'], 'code': c['cust_code'] }, clienti_test))), 200
+
+
 @app.route("/agents", methods=["GET"])
 @jwt_required()
 def agents():

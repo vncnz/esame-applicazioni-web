@@ -37,7 +37,7 @@ export default {
         lst.splice(3, 0, { l: 'Cliente', k: 'cust_name' })
       }
       if (this.userInfo?.is_manager || this.userInfo?.is_agent) {
-        lst.push({ l: 'Azioni', k: 'actions' })
+        lst.push({ l: 'Azioni', k: 'actions', sortable: false })
       }
       return lst
     },

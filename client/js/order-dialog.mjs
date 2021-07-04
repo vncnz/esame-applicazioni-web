@@ -39,6 +39,13 @@ export default {
     }
   },
   methods: {
+    save () {
+      this.$store.dispatch(this.order.ord_num ? 'updateOrder' : 'createOrder', this.order).then(response => {
+        this.resolve()
+      }).catch(err => {
+        // TODO
+      })
+    },
     createTitleHtml(h) {
       return this.isNew ? 'Nuovo ordine' : 'Modifica ordine'
     },
@@ -65,7 +72,7 @@ export default {
         h('button', {
           class: 'primary',
           on: {
-            click: () => { this.resolve() }
+            click: () => { this.save() }
           }
         }, ['Salva'])
       ]

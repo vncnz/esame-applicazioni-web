@@ -229,6 +229,20 @@ def customer(code):
         'phone_no': customer['phone_no']
     }), 200
 
+@app.route("/order/<number>", methods=["PUT"])
+@jwt_required()
+def updateOrder(number):
+    current_jwt = get_jwt()
+    allowed = current_jwt['is_agent']
+    if not allowed:
+        return jsonify({"msg": "Forbidden"}), 403
+    ord_idx = next(map(lambda c: c[0], filter(lambda c: c[1]['ord_num'] == number, enumerate(ordini_test))), None)
+    if not ord_idx:
+        return jsonify({'msg': 'Order not found'}), 404
+    else:
+        ordini_test[ord_idx] = request.json
+    return jsonify(request.json), 200
+
 
 
 

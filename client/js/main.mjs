@@ -5,6 +5,8 @@ import AgentsView from './agents-view.mjs'
 import store from './store.mjs'
 const { PromiseDialogsWrapper } = window.vuePromiseDialogs
 
+// retry mechanism: https://gist.github.com/nivv/f41f2bb2486e8057cc0f5c931a67d7bc
+
 window.currentFocusedElement = null
 window.previousFocusedElement = null
 document.body.addEventListener('focusin', evt => {

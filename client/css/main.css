@@ -5,7 +5,7 @@
 /* https://www.quicksprout.com/trending-website-color-schemes/ */
 /* https://a11y-101.com/design/button-vs-link */
 :root {
-  --white: whitesmoke;
+  --whiteee: whitesmoke;
   --black: hsl(173, 43%, 4%);
   --red: hsl(355, 55%, 45%);
   --red-transparent: hsl(355, 55%, 90%);
@@ -22,6 +22,10 @@
   --deep-saffron-transparent: hsl(30, 100%, 60%, 0.3);
   --space-cadet: hsl(254, 31%, 27%);
   --space-cadet-light: hsl(254, 31%, 88%);
+
+  --primary: #8d0000; /* darkred */
+  --secondary: #77A0A9; /* pewter blue */
+  --white: #fffcff; /* snow */
 
   font-size: calc(3mm + .3vw);
 }
@@ -59,7 +63,7 @@ header {
   padding: .5rem;
   /*background-image: linear-gradient(141deg, #009e6c 0, #00d1b2 71%, #00e7eb 100%);*/
   /*background-color: var(--space-cadet);*/
-  color: darkred;
+  color: var(--primary);
   font-weight: bold;
 }
 header > *:first-child {

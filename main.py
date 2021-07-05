@@ -78,6 +78,7 @@ ordini_test = [
 
 from datetime import timedelta
 from time import sleep
+import random, string
 from flask import Flask, request, jsonify
 
 from flask_jwt_extended import create_access_token
@@ -158,9 +159,7 @@ def deleteOrders (id):
     identity = get_jwt_identity()
     current_jwt = get_jwt()
     ordini_utente = ordini_test
-    if current_jwt['is_customer']:
-        ordini_utente = filter(lambda order: order['cust_code'] == identity, ordini_utente)
-    elif current_jwt['is_agent']:
+    if current_jwt['is_agent']:
         ordini_utente = filter(lambda order: order['agent_code'] == identity, ordini_utente)
     ordine = next(filter(lambda o: o['ord_num'] == id, ordini_utente), None)
     if ordine:
@@ -243,7 +242,19 @@ def updateOrder(number):
         ordini_test[ord_idx] = request.json
     return jsonify(request.json), 200
 
-
+@app.route("/order", methods=["POST"])
+@jwt_required()
+def createOrder():
+    current_jwt = get_jwt()
+    allowed = current_jwt['is_agent']
+    if not allowed:
+        return jsonify({"msg": "Forbidden"}), 403
+    identity = get_jwt_identity()
+    ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6))
+    request.json['ord_num'] = ord_num
+    request.json['agent_code'] = identity
+    ordini_test.append(request.json)
+    return jsonify(request.json), 200
 
 
 

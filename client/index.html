@@ -95,7 +95,7 @@
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:actions="{ row }">
                         <button @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
-                        <button @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-trash"></i></button>
+                        <button @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`" v-if="userInfo?.is_agent"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
                     <template v-slot:tfoot v-if="canCreateNewOrder">
                         <div class="toolbar">

@@ -41,7 +41,7 @@ export default {
   methods: {
     save () {
       this.$store.dispatch(this.order.ord_num ? 'updateOrder' : 'createOrder', this.order).then(response => {
-        this.resolve()
+        this.resolve(response)
       }).catch(err => {
         // TODO
       })

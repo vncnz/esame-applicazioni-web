@@ -52,13 +52,23 @@ export default {
     createBodyHtml(h) {
       // return this.order?.ord_num
       return [
-        this.createInputHtml(h, { label: 'Numero', disabled: true, placeholder: '-' }, this.order, 'ord_num'),
-        this.createInputHtml(h, { label: 'Data', type: 'date' }, this.order, 'ord_date'),
-        this.createTextareaHtml(h, { label: 'Descrizione', placeholder: 'Contenuto ordine' }, this.order, 'order_description'),
-        this.createInputHtml(h, { label: 'Anticipo', type: 'number', placeholder: '100.00' }, this.order, 'advance_amount'),
-        this.createInputHtml(h, { label: 'Totale', type: 'number', placeholder: '1000.00' }, this.order, 'ord_amount'),
-        this.createSelectHtml(h, { label: 'Cliente', options: this.customerOptions }, this.order, 'cust_code'),
-        h('pre', JSON.stringify(this.order))
+        // this.createFieldsetHtml(h, { legend: 'Prova' }, [])
+        h('fieldset', [
+          h('legend', 'Identificazione ordine'),
+          this.createInputHtml(h, { label: 'Numero', disabled: true, placeholder: '-' }, this.order, 'ord_num'),
+          this.createInputHtml(h, { label: 'Data', type: 'date' }, this.order, 'ord_date')
+        ]),
+        h('fieldset', [
+          h('legend', 'Informazioni ordine'),
+          this.createTextareaHtml(h, { label: 'Descrizione', placeholder: 'Contenuto ordine' }, this.order, 'order_description'),
+          this.createSelectHtml(h, { label: 'Cliente', options: this.customerOptions }, this.order, 'cust_code')
+        ]),
+        h('fieldset', [
+          h('legend', 'Costi?'),
+          this.createInputHtml(h, { label: 'Anticipo', type: 'number', placeholder: '100.00' }, this.order, 'advance_amount'),
+          this.createInputHtml(h, { label: 'Totale', type: 'number', placeholder: '1000.00' }, this.order, 'ord_amount')
+        ])
+        // h('pre', JSON.stringify(this.order))
       ]
     },
     createFooterHtml(h) {

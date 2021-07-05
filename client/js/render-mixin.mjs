@@ -1,5 +1,8 @@
 export default {
   methods: {
+    /* createFieldsetHtml (h, params, children) {
+      return h('fieldset', [])
+    }, */
     createInputHtml(h, params, model, key) {
       const self = this
       params = Object.assign({ type: 'text', disabled: false, placeholder: null }, params)

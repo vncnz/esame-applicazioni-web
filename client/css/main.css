@@ -259,6 +259,14 @@ button:active {
   transform: translate(2px, 2px);
 }
 
+fieldset {
+  border: 1px solid lightgray;
+}
+
+legend {
+  margin-left: .5rem;
+}
+
 .input-box-2 {
   position: relative;
   display: block;
@@ -271,12 +279,14 @@ button:active {
 }
 
 .input-box-2 input,
-.input-box-2 select {
+.input-box-2 select,
+.input-box-2 textarea {
+  width: 100%;
+  padding: .3rem;
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
   font-family: inherit;
-  padding: .3rem;
 }
 
 .input-box {
@@ -413,8 +423,9 @@ table th {
 table tfoot td {
   position: sticky;
   bottom: 0;
-  background-color: var(--space-cadet-light);
+  /* background-color: var(--space-cadet-light); */
   box-shadow: 0 .6rem 0 var(--white);
+  background-color: rgba(255, 255, 255, 0.85);
   z-index: 5;
 }
 table th.sticky,
@@ -457,3 +468,12 @@ table th.sticky {
     z-index: 5;
   }
 }
+
+/* .order-grid {
+  display: grid;
+  grid-template-areas:
+    "ord_identifier"
+    "nav main"
+    "footer footer";
+  grid-template-columns: auto auto;
+} */

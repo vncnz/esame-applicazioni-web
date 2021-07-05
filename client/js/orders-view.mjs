@@ -58,7 +58,9 @@ export default {
     createNewOrder () {
       orderDialog({}).then(new_row => {
         this.results.push(new_row)
-      }).catch(() => { })
+      }).catch(() => {
+        // TODO
+      })
     },
     openAgentInfo(id) {
       console.log('openAgentInfo', id)

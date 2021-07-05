@@ -91,7 +91,7 @@ export default new Vuex.Store({
       })
     },
     createOrder(ctx, order) {
-      return Vue.http.post('/order').then(response => {
+      return Vue.http.post('/order', order).then(response => {
         return response.body
       })
     }

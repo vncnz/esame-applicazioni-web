@@ -111,6 +111,7 @@ export default {
       }, [row])
     })
     let children = [
+      // h('caption', ''),
       h('thead', [h('tr', headrow)]),
       h('tbody', [data])
     ]

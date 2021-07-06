@@ -147,7 +147,7 @@ nav a.router-link-active:before {
   font-family: 'Roboto Mono', monospace;
 }
 
-.sortable::before {
+/* .sortable::before {
   display: inline-block;
   font: normal normal normal 75%/1 FontAwesome;
   font-size: inherit;
@@ -170,7 +170,7 @@ nav a.router-link-active:before {
 }
 .sortable:hover::before {
   color: var(--deep-saffron);
-}
+} */
 
 .asLink {
   /*text-decoration: underline;*/
@@ -413,6 +413,7 @@ table th,
 table td {
   text-align: left;
   padding: .5rem;
+  border-right: 1px dotted lightgray;
 }
 table th {
   position: sticky;

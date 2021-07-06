@@ -30,9 +30,14 @@ export default {
     let headrow = this.columns.map(col => {
       let isColSorted = col.k === this.sortedBy
       let isColSortable = col.sortable !== false
+      
+      let domProps = { scope: 'col' }
+      if (isColSorted) {
+        domProps['aria-sort'] = this.sortedAsc ? 'ascending' : 'descending'
+      }
       return h('th', {
         class: [col.sticky ? 'sticky' : '', col.numeric ? 'numeric' : ''],
-        domProps: { scope: 'col' },
+        domProps,
         on: {
           click: () => this.setSorting(col.k)
         }
@@ -41,11 +46,15 @@ export default {
           class: isColSortable ? ('sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')) : null
         }, [col.l]),
         isColSortable ? h('button', {
-          class: 'on-right sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted'),
+          class: 'on-right',
           domProps: {
             title: 'Ordina per ' + col.l
           }
-        }, []) : null
+        }, [
+          h('i', {
+            class: 'fa fa-fw ' + (isColSorted ? (this.sortedAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort unsorted'),
+          })
+        ]) : null
       ])
     })
     if (this.selKey) {

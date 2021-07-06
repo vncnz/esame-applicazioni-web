@@ -127,6 +127,16 @@ const router = new VueRouter({
   router,
   store,
   components: { PromiseDialogsWrapper, notifier },
+  methods: {
+    logout () {
+      this.$store.commit('doLogout').then(response => {
+        this.internalBus.$emit('notify', {
+          text: 'Utente disconnesso con successo',
+          type: 'success'
+        })
+      })
+    }
+  },
   mounted () {
     this.tokenInterval = setInterval(() => {
       console.log('check token', this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime())

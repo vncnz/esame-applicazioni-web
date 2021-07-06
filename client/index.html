@@ -9,12 +9,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
             integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="css/main.css?v=1">
+        <link rel="stylesheet" href="css/main.css?v=1" />
     </head>
     <body>
         <div id="app">
             <notifier></notifier>
-
             <header>
                 <span>Exam project</span>
                 <nav>
@@ -22,6 +21,7 @@
                     <router-link to="/ordini" v-if="userInfo"><span>Ordini</span></router-link>
                     <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
                     <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
+                    <button v-if="userInfo" @click="logout">Esci</button>
                 </nav>
             </header>
             <div id="router-box">
@@ -43,7 +43,7 @@
             </div>
         </template>
         <template id="CustomersViewTemplate">
-            <dynamic-table :datalist="sortedResults" :columns="columns">
+            <dynamic-table :datalist="results" :columns="columns">
                 <template v-slot:agent_code="{ value }">
                     <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
                 </template>
@@ -91,7 +91,6 @@
         </template>
         <template id="OrdersViewTemplate">
             <div>
-                <pre style="display: none">selected: {{selected.join(',')}}</pre>
                 <h3>I tuoi ordini</h3>
                 <dynamic-table :datalist="results" :columns="columns"><!-- v-model="selected" :sel-key="userInfo?.is_customer ? null : 'ord_num'" -->
                     <template v-slot:agent_name="{ value, row }">
@@ -119,7 +118,7 @@
                 </dynamic-table>
             </div>
         </template><template id="AgentsViewTemplate">
-            <dynamic-table :datalist="sortedResults" :columns="columns" />
+            <dynamic-table :datalist="results" :columns="columns" />
         </template>
         <template id="LoginViewTemplate">
             <div>

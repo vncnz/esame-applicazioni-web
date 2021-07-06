@@ -15,6 +15,7 @@ export default {
           text: 'Accesso effettuato con successo',
           type: 'success'
         })
+        this.$router.push('/ordini')
       }).catch(err => {
         let text = err.body?.msg
         if (!text) {

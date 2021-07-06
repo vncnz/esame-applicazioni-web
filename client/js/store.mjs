@@ -40,7 +40,7 @@ export default new Vuex.Store({
         context.commit('registerUser', { token: response.body?.access_token })
       })
     },
-    refreshToken () {
+    refreshToken (context) {
       return Vue.http.post('/refreshtoken').then(response => {
         context.commit('registerUser', { token: response.body?.access_token })
       })

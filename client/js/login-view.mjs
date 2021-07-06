@@ -33,9 +33,6 @@ export default {
     },
     esci () {
       this.$store.commit('doLogout')
-    },
-    test () {
-      this.$http.get('/protected')
     }
   }
 }

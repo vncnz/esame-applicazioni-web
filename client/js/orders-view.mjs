@@ -17,8 +17,8 @@ export default {
   data () {
     return {
       results: [],
-      sortedBy: 'ord_num',
-      selected: []
+      sortedBy: 'ord_num'
+      // selected: []
     }
   },
   computed: {

@@ -232,7 +232,7 @@ def customer(code):
 @jwt_required()
 def updateOrder(number):
     current_jwt = get_jwt()
-    allowed = current_jwt['is_agent']
+    allowed = current_jwt['is_agent'] or current_jwt['is_manager']
     if not allowed:
         return jsonify({"msg": "Forbidden"}), 403
     ord_idx = next(map(lambda c: c[0], filter(lambda c: c[1]['ord_num'] == number, enumerate(ordini_test))), None)

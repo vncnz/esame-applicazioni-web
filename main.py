@@ -90,7 +90,7 @@ from flask_jwt_extended import JWTManager
 app = Flask(__name__, static_url_path='', static_folder='client')
 
 app.config["JWT_SECRET_KEY"] = "esami-applicazioni-web-2231"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
 jwt = JWTManager(app)
 
@@ -113,7 +113,7 @@ def login():
     return jsonify(access_token=access_token)
 
 @app.route("/refreshtoken", methods=["POST"])
-@jwt_required(refresh=True)
+@jwt_required(refresh=False)
 def refresh():
     identity = get_jwt_identity()
     user = next(filter(lambda u: u[0] == identity, users), None)
@@ -236,6 +236,8 @@ def updateOrder(number):
     if not allowed:
         return jsonify({"msg": "Forbidden"}), 403
     ord_idx = next(map(lambda c: c[0], filter(lambda c: c[1]['ord_num'] == number, enumerate(ordini_test))), None)
+    customer = next(filter(lambda b: b['cust_code'] == request.json['cust_code'], clienti_test), None)
+    request.json['cust_name'] = customer['cust_name']
     if not ord_idx:
         return jsonify({'msg': 'Order not found'}), 404
     else:
@@ -251,8 +253,10 @@ def createOrder():
         return jsonify({"msg": "Forbidden"}), 403
     identity = get_jwt_identity()
     ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6))
+    customer = next(filter(lambda b: b['cust_code'] == request.json['cust_code'], clienti_test), None)
     request.json['ord_num'] = ord_num
     request.json['agent_code'] = identity
+    request.json['cust_name'] = customer['cust_name']
     ordini_test.append(request.json)
     return jsonify(request.json), 200
 

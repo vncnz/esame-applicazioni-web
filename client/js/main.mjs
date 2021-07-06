@@ -129,21 +129,20 @@ const router = new VueRouter({
   components: { PromiseDialogsWrapper, notifier },
   methods: {
     logout () {
-      this.$store.commit('doLogout').then(response => {
-        this.internalBus.$emit('notify', {
-          text: 'Utente disconnesso con successo',
-          type: 'success'
-        })
+      this.$store.commit('doLogout')
+      this.internalBus.$emit('notify', {
+        text: 'Utente disconnesso con successo',
+        type: 'success'
       })
     }
   },
   mounted () {
     this.tokenInterval = setInterval(() => {
-      console.log('check token', this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime())
+      /* console.log('check token', this.userInfo && (this.userInfo.exp - 60) * 1000 < (new Date()).getTime())
       if (this.userInfo) {
-        console.log(this.userInfo.exp, (this.userInfo.exp + 60) * 1000, (new Date()).getTime())
-      }
-      if (this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime()) {
+        console.log((this.userInfo.exp - (new Date()).getTime() / 1000) + ' secs', this.userInfo.exp, (this.userInfo.exp - 60) * 1000, (new Date()).getTime())
+      } */
+      if (this.userInfo && (this.userInfo.exp - 60) * 1000 < (new Date()).getTime()) {
         this.$store.dispatch('refreshToken')
       }
     }, 20000)
@@ -154,7 +153,7 @@ const router = new VueRouter({
   watch: {
     userToken (newV) {
       if (!newV) {
-        this.$router.go('/accesso')
+        this.$router.push('/accesso')
       }
     }
   }

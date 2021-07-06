@@ -17,7 +17,12 @@ export default {
     createFooterHtml(h) {}
   },
   mounted () {
-    this.$el.querySelector('button:first-child').focus()
+    let firstInput = this.$el.querySelector('input:enabled')
+    if (firstInput) {
+      firstInput.focus()
+    } else {
+      this.$el.querySelector('button:first-child').focus()
+    }
   },
   render (h) {
     return h('div', {

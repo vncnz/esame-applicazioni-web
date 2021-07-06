@@ -95,19 +95,21 @@ const router = new VueRouter({
     {
       path: '/ordini', component: OrdersView, beforeEnter: (to, from, next) => {
         if (!store.getters.userInfo) { next('/accesso') } else { next() }
-      } },
+      }
+    },
     {
       path: '/agenti', component: AgentsView, beforeEnter: (to, from, next) => {
         if (!store.getters.userInfo?.is_manager) { next('/accesso') } else { next() }
-      } },
+      }
+    },
     {
       path: '/clienti', component: CustomersView, beforeEnter: (to, from, next) => {
         if (!(store.getters.userInfo?.is_agent || store.getters.userInfo?.is_manager)) { next('/accesso') } else { next() }
       }
     },
     { path: '/accesso', component: LoginView },
-    { path: '/', component: CustomersView },
-    { path: '*', redirect: '/' }
+    // { path: '/', component: OrdersView },
+    { path: '*', redirect: '/accesso' }
   ]
 })
 

@@ -13,6 +13,8 @@
     </head>
     <body>
         <div id="app">
+            <notifier></notifier>
+
             <header>
                 <span>Exam project</span>
                 <nav>
@@ -30,6 +32,16 @@
             </footer>
             <promise-dialogs-wrapper />
         </div>
+        <template id="NotifierTemplate">
+            <div id="notify">
+                <transition-group tag="span" name="notification">
+                    <div v-for="notif in notifications" :key="notif.id" :class="notif.type">
+                        <span>{{notif.text}}</span>
+                        <button class="close" @click="close(notif.id)"><i class="fa fa-fw fa-close"></i></button>
+                    </div>
+                </transition-group>
+            </div>
+        </template>
         <template id="CustomersViewTemplate">
             <dynamic-table :datalist="sortedResults" :columns="columns">
                 <template v-slot:agent_code="{ value }">

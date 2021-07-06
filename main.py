@@ -107,7 +107,7 @@ def login():
     password = request.json.get("password", None)
     user = next(filter(lambda u: u[0] == username, users), None)
     if not user or user[1] != password:
-        return jsonify({"msg": "Bad username or password"}), 401
+        return jsonify({"msg": "Credenziali non riconosciute"}), 401
 
     access_token = create_access_token(identity=username, additional_claims=user[2])
     return jsonify(access_token=access_token)

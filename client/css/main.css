@@ -9,7 +9,7 @@
   --black: hsl(173, 43%, 4%);
   --red: hsl(355, 55%, 45%);
   --red-transparent: hsl(355, 55%, 90%);
-  --grey: #474747;
+  --gray: #474747;
   --yellow: #f2af29;
   --cornflower: #4C5270;
   --cornflower-light: hsl(230, 19%, 88%);
@@ -74,7 +74,7 @@ footer {
   /* grid-area: footer; */
   padding: .25rem .5rem;
   font-size: 0.85rem;
-  border-top: 1px solid var(--grey);
+  border-top: 1px solid var(--gray);
 }
 
 nav a {
@@ -312,13 +312,13 @@ legend {
       linear-gradient(to top left,
           transparent 0%,
           transparent calc(50% - 1.5px),
-          var(--grey) 50%,
+          var(--gray) 50%,
           transparent calc(50% + 1.5px),
           transparent 100%),
       linear-gradient(to top right,
           transparent 0%,
           transparent calc(50% - 1.5px),
-          var(--grey) 50%,
+          var(--gray) 50%,
           transparent calc(50% + 1.5px),
           transparent 100%); */
 }
@@ -478,3 +478,55 @@ table th.sticky {
     "footer footer";
   grid-template-columns: auto auto;
 } */
+
+#notify {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  max-width: calc(100% - 2rem);
+  z-index: 10000;
+}
+
+#notify div {
+  padding: .5rem;
+  background-color: var(--white);
+  box-shadow: 2px 2px 5px var(--gray);
+  margin-top: .5rem;
+  border-left: .2rem solid gray;
+  border-radius: .2rem;
+}
+#notify div button.close {
+  float: right;
+  margin-left: 1rem;
+}
+#notify div.success {
+  border-color: green;
+}
+#notify div.error {
+  border-color: red;
+}
+.notification-move {
+  transition: transform .4s;
+}
+.notification-leave {
+  transform: translateX(1rem);
+  transition: transform .2s;
+}
+
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -3,9 +3,11 @@ import OrdersView from './orders-view.mjs'
 import CustomersView from './customers-view.mjs'
 import AgentsView from './agents-view.mjs'
 import store from './store.mjs'
+import notifier from './notifier.mjs'
 const { PromiseDialogsWrapper } = window.vuePromiseDialogs
 
 // retry mechanism: https://gist.github.com/nivv/f41f2bb2486e8057cc0f5c931a67d7bc
+// tabelle accessibili https://adrianroselli.com/2021/04/sortable-table-columns.html
 
 window.currentFocusedElement = null
 window.previousFocusedElement = null
@@ -77,8 +79,15 @@ Vue.directive('col-sortable', {
   }
 })
 
+let internalBus = new Vue()
+
 /* Utilities varie valide un po' per tutti */
 Vue.mixin({
+  data () {
+    return {
+      internalBus
+    }
+  },
   computed: {
     userToken () {
       return this.$store.state.userToken
@@ -117,7 +126,7 @@ const router = new VueRouter({
   // el: '#app',
   router,
   store,
-  components: { PromiseDialogsWrapper },
+  components: { PromiseDialogsWrapper, notifier },
   mounted () {
     this.tokenInterval = setInterval(() => {
       console.log('check token', this.userInfo && (this.userInfo.exp + 60) * 1000 < (new Date()).getTime())

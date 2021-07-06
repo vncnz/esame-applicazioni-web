@@ -2,7 +2,7 @@ export default {
   name: 'SortableMixin',
   data() {
     return {
-      datalist: [],
+      // datalist: [],
       sortedBy: '',
       sortedAsc: true
     }

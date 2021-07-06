@@ -421,6 +421,9 @@ table th {
   background-color: var(--white);
   z-index: 5;
 }
+table th button.on-right {
+  margin-left: .5rem;
+}
 table tfoot td {
   position: sticky;
   bottom: 0;

@@ -135,7 +135,7 @@ def orders():
     current_jwt = get_jwt()
     allowed = True # current_jwt['is_manager']
     if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
     ordini_utente = ordini_test
     if current_jwt['is_customer']:
         ordini_utente = filter(lambda o: o['cust_code'] == identity, ordini_utente)
@@ -166,7 +166,7 @@ def deleteOrders (id):
         ordini_test = list(filter(lambda o: o['ord_num'] != id, ordini_test))
         return '', 200
     else:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
 
 @app.route("/customers", methods=["GET"])
 @jwt_required()
@@ -174,7 +174,7 @@ def customers():
     current_jwt = get_jwt()
     allowed = current_jwt['is_manager'] or current_jwt['is_agent']
     if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
     return jsonify(clienti_test), 200
 
 @app.route("/customers-resume", methods=["GET"])
@@ -183,8 +183,17 @@ def customers_resume():
     current_jwt = get_jwt()
     allowed = current_jwt['is_manager'] or current_jwt['is_agent']
     if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
     return jsonify(list(map(lambda c: { 'name': c['cust_name'], 'code': c['cust_code'] }, clienti_test))), 200
+
+@app.route("/agents-resume", methods=["GET"])
+@jwt_required()
+def agents_resume():
+    current_jwt = get_jwt()
+    allowed = current_jwt['is_manager']
+    if not allowed:
+        return jsonify({"msg": "Accesso negato"}), 403
+    return jsonify(list(map(lambda c: { 'name': c['agent_name'], 'code': c['agent_code'] }, agenti_test))), 200
 
 
 @app.route("/agents", methods=["GET"])
@@ -193,7 +202,7 @@ def agents():
     current_jwt = get_jwt()
     allowed = current_jwt['is_manager']
     if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
     return jsonify(agenti_test), 200
 
 @app.route("/agent/<code>", methods=["GET"])
@@ -202,7 +211,7 @@ def agent(code):
     # current_jwt = get_jwt()
     # allowed = current_jwt['agent_contact']
     # if not allowed:
-    #     return jsonify({"msg": "Forbidden"}), 403
+    #     return jsonify({"msg": "Accesso negato"}), 403
     agent = next(filter(lambda b: b['agent_code'] == code, agenti_test), None)
     if not agent:
         return jsonify({'msg': 'Agent not found'}), 404
@@ -218,7 +227,7 @@ def customer(code):
     # current_jwt = get_jwt()
     # allowed = current_jwt['agent_contact']
     # if not allowed:
-    #     return jsonify({"msg": "Forbidden"}), 403
+    #     return jsonify({"msg": "Accesso negato"}), 403
     customer = next(filter(lambda b: b['cust_code'] == code, clienti_test), None)
     if not customer:
         return jsonify({'msg': 'Customer not found'}), 404
@@ -234,10 +243,12 @@ def updateOrder(number):
     current_jwt = get_jwt()
     allowed = current_jwt['is_agent'] or current_jwt['is_manager']
     if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
     ord_idx = next(map(lambda c: c[0], filter(lambda c: c[1]['ord_num'] == number, enumerate(ordini_test))), None)
     customer = next(filter(lambda b: b['cust_code'] == request.json['cust_code'], clienti_test), None)
+    agent = next(filter(lambda b: b['agent_code'] == request.json['agent_code'], agenti_test), None)
     request.json['cust_name'] = customer['cust_name']
+    request.json['agent_name'] = agent['agent_name']
     if not ord_idx:
         return jsonify({'msg': 'Order not found'}), 404
     else:
@@ -250,13 +261,15 @@ def createOrder():
     current_jwt = get_jwt()
     allowed = current_jwt['is_agent']
     if not allowed:
-        return jsonify({"msg": "Forbidden"}), 403
+        return jsonify({"msg": "Accesso negato"}), 403
     identity = get_jwt_identity()
     ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6))
     customer = next(filter(lambda b: b['cust_code'] == request.json['cust_code'], clienti_test), None)
+    agent = next(filter(lambda b: b['agent_code'] == request.json['agent_code'], agenti_test), None)
     request.json['ord_num'] = ord_num
     request.json['agent_code'] = identity
     request.json['cust_name'] = customer['cust_name']
+    request.json['agent_name'] = agent['agent_name']
     ordini_test.append(request.json)
     return jsonify(request.json), 200
 

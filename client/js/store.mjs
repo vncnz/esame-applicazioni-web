@@ -66,6 +66,11 @@ export default new Vuex.Store({
         return response.body
       })
     },
+    loadAgentsResume () {
+      return Vue.http.get('/agents-resume').then(response => {
+        return response.body
+      })
+    },
     loadAgent(ctx, { id }) {
       return Vue.http.get('/agent/' + id).then(response => {
         return response.body

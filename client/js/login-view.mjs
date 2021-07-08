@@ -3,7 +3,7 @@ export default {
   template: '#LoginViewTemplate',
   data() {
     return {
-      username: 'dirigente',
+      username: 'A002',
       password: 'test'
     }
   },

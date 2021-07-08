@@ -9,7 +9,7 @@
   --black: hsl(173, 43%, 4%);
   --red: hsl(355, 55%, 45%);
   --red-transparent: hsl(355, 55%, 90%);
-  --gray: #474747;
+  --gray: #999;
   --yellow: #f2af29;
   --cornflower: #4C5270;
   --cornflower-light: hsl(230, 19%, 88%);
@@ -27,7 +27,7 @@
   --secondary: #77A0A9; /* pewter blue */
   --white: #fffcff; /* snow */
 
-  font-size: calc(3mm + .3vw);
+  /* font-size: calc(3mm + .3vw); */
 }
 * {
   padding: 0;
@@ -238,23 +238,23 @@ nav a.router-link-active:before {
 button {
   background-color: var(--white);
   border: 1px solid var(--space-cadet);
-  border-radius: 0.1rem;
+  border-radius: 0.3rem;
   padding: .2rem .5rem;
   cursor: pointer;
 
-  box-shadow: 2px 2px 0 var(--black);
+  box-shadow: 2px 2px 0 var(--gray);
   transition: all .15s ease;
   will-change: background-color, transform;
 }
 button:hover,
 button:focus {
-  box-shadow: 1px 1px 0 var(--black);
+  box-shadow: 1px 1px 0 var(--gray);
   transform: translate(1px, 1px);
   background-color: var(--deep-saffron-transparent);
   outline: none;
 }
 button:active {
-  box-shadow: 0 0 0 var(--black);
+  box-shadow: 0 0 0 var(--gray);
   background-color: var(--deep-saffron);
   transform: translate(2px, 2px);
 }
@@ -421,7 +421,7 @@ table th {
   background-color: var(--white);
   z-index: 5;
 }
-table th button.on-right {
+table button.on-right {
   margin-left: .5rem;
 }
 table tfoot td {
@@ -452,6 +452,7 @@ table th.sticky {
   table.responsive td {
     display: block;
     text-align: right;
+    min-height: 2rem;
   }
   table.responsive tbody tr {
     background: inherit;

@@ -1,13 +1,11 @@
 // import SortableDataMixin from './sortable-data-mixin.mjs'
 import dynamicTable from './dynamic-table.mjs'
 import SimpleDialog from './simple-dialog.mjs'
-import ContactDialog from './contact-dialog.mjs'
 import OrderDialog from './order-dialog.mjs'
 import storeMjs from './store.mjs'
 const { createPromiseDialog } = window.vuePromiseDialogs
 
 const simpleDialog = createPromiseDialog(SimpleDialog)
-const contactDialog = createPromiseDialog(ContactDialog)
 const orderDialog = createPromiseDialog(OrderDialog)
 
 export default {
@@ -60,30 +58,6 @@ export default {
         this.results.push(new_row)
       }).catch(() => {
         // TODO
-      })
-    },
-    openAgentInfo(id) {
-      console.log('openAgentInfo', id)
-      this.$store.dispatch({ type: "loadAgent", id }).then(response => {
-        console.log(response)
-        contactDialog({
-          typeLabel: 'Agente',
-          code: response.agent_code,
-          name: response.agent_name,
-          phone: response.phone_no
-        })
-      })
-    },
-    openCustomerInfo(id) {
-      console.log('openCustomerInfo', id)
-      this.$store.dispatch({ type: "loadCustomer", id }).then(response => {
-        console.log(response)
-        contactDialog({
-          typeLabel: 'Cliente',
-          code: response.cust_code,
-          name: response.cust_name,
-          phone: response.phone_no
-        })
       })
     },
     editOrder (row) {

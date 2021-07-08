@@ -334,7 +334,7 @@ legend {
 
 .input-box input:focus + label,
 .input-box input:not(:placeholder-shown) + label {
-  color: var(--white);
+  color: var(--black);
   left: 0;
   bottom: 0;
   width: 100%;
@@ -373,8 +373,9 @@ legend {
   display: flex;
   flex-direction: column;
   background: var(--white);
-  box-shadow: 1px 1px 0.1rem black;
-  border: 1px solid black;
+  box-shadow: 1px 1px 0.1rem var(--gray);
+  border-radius: .3rem;
+  border: 1px solid var(--gray);
   padding: .5rem;
   z-index: 1000;
 }
@@ -466,7 +467,7 @@ table th.sticky {
   }
   table.responsive td.sticky {
     position: sticky;
-    top: 0;
+    top: -0.5rem;
     background-color: var(--space-cadet) !important;
     color: var(--white);
     margin-top: .5rem;

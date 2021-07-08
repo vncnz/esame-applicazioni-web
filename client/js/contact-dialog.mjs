@@ -17,6 +17,7 @@ export default {
       return [
         h('button', {
           class: 'primary',
+          domProps: { type: 'button' },
           on: {
             click: () => { this.resolve() }
           }

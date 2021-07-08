@@ -48,7 +48,8 @@ export default {
         isColSortable ? h('button', {
           class: 'on-right',
           domProps: {
-            title: 'Ordina per ' + col.l
+            title: 'Ordina per ' + col.l,
+            type: 'button'
           }
         }, [
           h('i', {

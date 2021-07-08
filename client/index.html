@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.0/vue-router.min.js"></script>
         <script src="https://unpkg.com/vuex@2.0.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
@@ -11,18 +11,20 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="css/main.css?v=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Progetto esame web sessione estiva 2021</title>
+        <meta name="description" content="Questa applicazione web è stata sviluppata come progetto per l'esame Siti ed applicazioni web">
     </head>
     <body>
         <div id="app">
             <notifier></notifier>
             <header>
-                <span>Exam project</span>
+                <h1>Exam project</h1>
                 <nav>
                     <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
                     <router-link to="/ordini" v-if="userInfo"><span>Ordini</span></router-link>
                     <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
                     <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
-                    <button v-if="userInfo" @click="logout">Esci</button>
+                    <button type="button" v-if="userInfo" @click="logout">Esci</button>
                 </nav>
             </header>
             <div id="router-box">
@@ -38,57 +40,23 @@
                 <transition-group tag="span" name="notification">
                     <div v-for="notif in notifications" :key="notif.id" :class="notif.type">
                         <span>{{notif.text}}</span>
-                        <button class="close" @click="close(notif.id)"><i class="fa fa-fw fa-close"></i></button>
+                        <button type="button" class="close" @click="close(notif.id)"><i class="fa fa-fw fa-close"></i></button>
                     </div>
                 </transition-group>
             </div>
         </template>
         <template id="CustomersViewTemplate">
             <dynamic-table :datalist="results" :columns="columns">
-                <template v-slot:agent_code="{ value }">
-                    <span class="asLink" role="button" @click="openAgentInfo(value)" tabindex="0">{{value}}</span>
+                <template v-slot:agent_name="{ value, row }">
+                    <span>{{value}}</span>
+                    <button type="button" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i
+                            class="fa fa-fw fa-external-link"></i></button>
                 </template>
                 <template v-slot:opening_amt="{ value }">{{value | currency}}</template>
                 <template v-slot:receive_amt="{ value }">{{value | currency}}</template>
                 <template v-slot:payment_amt="{ value }">{{value | currency}}</template>
                 <template v-slot:outstanding_amt="{ value }">{{value | currency}}</template>
             </dynamic-table>
-            <!-- <table class="responsive fix-first-column">
-                <thead>
-                    <tr>
-                        <th>Codice</th>
-                        <th>Nome</th>
-                        <th>Città</th>
-                        <th>Area</th>
-                        <th>Nazione</th>
-                        <th>Valut.</th>
-                        <th>Anticipo?</th>
-                        <th>Ricevuto?</th>
-                        <th>Pagamento?</th>
-                        <th>Rimanente?</th>
-                        <th>Telefono</th>
-                        <th>Agente</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="cust in sortedResults" :key="cust.cust_code">
-                        <td data-title="Codice">{{cust.cust_code}}</td>
-                        <td data-title="Nome">{{cust.cust_name}}</td>
-                        <td data-title="Città">{{cust.cust_city}}</td>
-                        <td data-title="Area">{{cust.working_area}}</td>
-                        <td data-title="Nazione">{{cust.cust_country}}</td>
-                        <td data-title="Valutazione">{{cust.grade}}</td>
-                        <td data-title="Anticipo?">{{cust.opening_amt | currency}}</td>
-                        <td data-title="Ricevuto?">{{cust.receive_amt| currency}}</td>
-                        <td data-title="Pagamento?">{{cust.payment_amt| currency}}</td>
-                        <td data-title="Rimanente?">{{cust.outstanding_amt| currency}}</td>
-                        <td data-title="Telefono">{{cust.phone_no}}</td>
-                        <td data-title="Agente">
-                            <span class="asLink" role="button" @click="openAgentInfo(cust.agent_code)">{{cust.agent_code}}</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
         </template>
         <template id="OrdersViewTemplate">
             <div>
@@ -96,24 +64,24 @@
                 <dynamic-table :datalist="results" :columns="columns"><!-- v-model="selected" :sel-key="userInfo?.is_customer ? null : 'ord_num'" -->
                     <template v-slot:agent_name="{ value, row }">
                         <span>{{value}}</span>
-                        <button @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
+                        <button type="button" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
                     </template>
                     <template v-slot:cust_name="{ value, row }">
                         <span>{{value}}</span>
-                        <button @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
+                        <button type="button" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
                     </template>
                     <template v-slot:ord_date="{ value }">{{value | date}}</template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:actions="{ row }">
-                        <button @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
-                        <button @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`" v-if="userInfo?.is_agent"><i class="fa fa-fw fa-trash"></i></button>
+                        <button type="button" @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
+                        <button type="button" @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`" v-if="userInfo?.is_agent"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
                     <template v-slot:tfoot v-if="canCreateNewOrder">
                         <div class="toolbar">
-                            <!--<button>Aggiungi</button>
-                            <button :disabled="selected.length === 0">Elimina selezionati</button>-->
-                            <button title="Crea un nuovo ordine" @click="createNewOrder"><i class="fa fa-fw fa-plus"></i></button>
+                            <!--<button type="button">Aggiungi</button>
+                            <button type="button" :disabled="selected.length === 0">Elimina selezionati</button>-->
+                            <button type="button" title="Crea un nuovo ordine" @click="createNewOrder"><i class="fa fa-fw fa-plus"></i></button>
                         </div>
                     </template>
                 </dynamic-table>
@@ -124,16 +92,16 @@
         <template id="LoginViewTemplate">
             <div>
                 <div class="input-box">
-                    <input type="text" v-model="username" placeholder=" " />
-                    <label>Nome utente</label>
+                    <input id="username-input" type="text" v-model="username" placeholder=" " />
+                    <label for="username-input">Nome utente</label>
                 </div>
                 <div class="input-box">
-                    <input type="password" v-model="password" placeholder=" " />
-                    <label>Password</label>
+                    <input id="password-input" type="password" v-model="password" placeholder=" " />
+                    <label for="password-input">Password</label>
                 </div>
-                <button @click="accedi">Accedi</button>
-                <button @click="esci">Esci</button>
-                <!-- <button @click="test">Test protected</button> -->
+                <button type="button" @click="accedi">Accedi</button>
+                <button type="button" @click="esci">Esci</button>
+                <!-- <button type="button" @click="test">Test protected</button> -->
             </div>
         </template>
         <script type="module" src="js/main.mjs"></script>

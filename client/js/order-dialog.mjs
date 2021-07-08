@@ -88,12 +88,14 @@ export default {
       return [
         h('button', {
           class: 'secondary',
+          domProps: { type: 'button' },
           on: {
             click: () => { this.reject() }
           }
         }, ['Annulla']),
         h('button', {
           class: 'primary',
+          domProps: { type: 'button' },
           on: {
             click: () => { this.save() }
           }

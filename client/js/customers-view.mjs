@@ -7,9 +7,13 @@ export default {
   data () {
     return {
       results: [],
-      sortedBy: 'cust_code',
-      columns: [
-        { l: 'Codice', k: 'cust_code' },
+      sortedBy: 'cust_code'
+    }
+  },
+  computed: {
+    columns () {
+      let lst = [
+        { l: 'Codice', k: 'cust_code', sticky: true },
         { l: 'Nome', k: 'cust_name' },
         { l: 'Città', k: 'cust_city' },
         { l: 'Area', k: 'working_area' },
@@ -19,23 +23,16 @@ export default {
         { l: 'Ricevuto', k: 'receive_amt' },
         { l: 'Pagato', k: 'payment_amt' },
         { l: 'Rimanente', k: 'outstanding_amt' },
-        { l: 'Telefono', k: 'phone_no' },
-        { l: 'Agente', k: 'agent_code' }
+        { l: 'Telefono', k: 'phone_no' }
       ]
+      if (!this.userInfo?.is_agent) {
+        lst.push({ l: 'Agente', k: 'agent_name' })
+      }
+      return lst
     }
-  },
-  computed: {
     /*results () {
       return this.$store.state.customers
     }*/
-  },
-  methods: {
-    openAgentInfo(id) {
-      console.log('openAgentInfo', id)
-      this.$store.dispatch({ type: "loadAgent", id }).then(response => {
-        console.log(response)
-      })
-    }
   },
   mounted () {
     this.$store.dispatch("loadCustomers").then(results => {

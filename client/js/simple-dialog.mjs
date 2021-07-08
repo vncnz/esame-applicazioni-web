@@ -26,12 +26,14 @@ export default {
         return [
           h('button', {
             class: 'secondary',
+            domProps: { type: 'button' },
             on: {
               click: () => { this.resolve(false) }
             }
           }, ['No']),
           h('button', {
             class: 'primary',
+            domProps: { type: 'button' },
             on: {
               click: () => { this.resolve(true) }
             }
@@ -41,6 +43,7 @@ export default {
         return [
           h('button', {
             class: 'primary',
+            domProps: { type: 'button' },
             on: {
               click: () => { this.yes() }
             }

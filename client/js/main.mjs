@@ -4,7 +4,8 @@ import CustomersView from './customers-view.mjs'
 import AgentsView from './agents-view.mjs'
 import store from './store.mjs'
 import notifier from './notifier.mjs'
-const { PromiseDialogsWrapper } = window.vuePromiseDialogs
+import ContactDialog from './contact-dialog.mjs'
+const { PromiseDialogsWrapper, createPromiseDialog } = window.vuePromiseDialogs
 
 // retry mechanism: https://gist.github.com/nivv/f41f2bb2486e8057cc0f5c931a67d7bc
 // tabelle accessibili https://adrianroselli.com/2021/04/sortable-table-columns.html
@@ -82,6 +83,7 @@ Vue.directive('col-sortable', {
 let internalBus = new Vue()
 
 /* Utilities varie valide un po' per tutti */
+const contactDialog = createPromiseDialog(ContactDialog)
 Vue.mixin({
   data () {
     return {
@@ -96,7 +98,28 @@ Vue.mixin({
       return this.$store.getters.userInfo
     }
   },
-  methods: {}
+  methods: {
+    openAgentInfo(id) {
+      this.$store.dispatch({ type: "loadAgent", id }).then(response => {
+        contactDialog({
+          typeLabel: 'Agente',
+          code: response.agent_code,
+          name: response.agent_name,
+          phone: response.phone_no
+        })
+      })
+    },
+    openCustomerInfo(id) {
+      this.$store.dispatch({ type: "loadCustomer", id }).then(response => {
+        contactDialog({
+          typeLabel: 'Cliente',
+          code: response.cust_code,
+          name: response.cust_name,
+          phone: response.phone_no
+        })
+      })
+    }
+  }
 })
 
 const router = new VueRouter({

@@ -175,6 +175,10 @@ def customers():
     allowed = current_jwt['is_manager'] or current_jwt['is_agent']
     if not allowed:
         return jsonify({"msg": "Accesso negato"}), 403
+    for cl in clienti_test:
+        agent = next(filter(lambda b: b['agent_code'] == cl['agent_code'], agenti_test), None)
+        if agent:
+            cl['agent_name'] = agent['agent_name']
     return jsonify(clienti_test), 200
 
 @app.route("/customers-resume", methods=["GET"])

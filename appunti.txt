@@ -1,4 +1,0 @@
-1) Valutare una UI più leggera, con un colore primario e sfondi tutti chiari
-2) Valutare pulsanti fab
-3) Valutare se avere i pulsanti plain per l'ordinamento
-4) ...

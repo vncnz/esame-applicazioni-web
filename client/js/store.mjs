@@ -27,7 +27,6 @@ export default new Vuex.Store({
     doLogout (state) {
       state.userToken = null
       localStorage.removeItem('user_token')
-      console.log('logout done')
     }/*,
     registerCustomers(state, { customers }) {
       // state.customers.splice(0, state.customers.length, ...customers)

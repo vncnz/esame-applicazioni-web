@@ -51,9 +51,18 @@ export default {
   methods: {
     save () {
       this.$store.dispatch(this.order.ord_num ? 'updateOrder' : 'createOrder', this.order).then(response => {
+        this.internalBus.$emit('notify', {
+          id: 'saveOrder' + this.uid,
+          text: 'Ordine salvato con successo',
+          type: 'success'
+        })
         this.resolve(response)
       }).catch(err => {
-        // TODO
+        this.internalBus.$emit('notify', {
+          id: 'saveOrder' + this.uid,
+          text: err?.msg || 'Si è verificato un errore',
+          type: 'error'
+        })
       })
     },
     createTitleHtml(h) {

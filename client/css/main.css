@@ -141,11 +141,16 @@ nav a.router-link-active:before {
 
 #router-box {
   /* grid-area: main; */
+  display: flex;
+  flex: 1;
   overflow: auto;
   align-self: stretch;
   position: relative;
   padding: .5rem;
-  flex: 1;
+}
+
+#router-box > div {
+  width: 100%;
 }
 
 .numeric {
@@ -276,7 +281,7 @@ legend {
 .input-box-2 {
   position: relative;
   display: block;
-  margin: .5rem;
+  margin: .5rem 0;
 }
 
 .input-box-2 label {
@@ -288,6 +293,7 @@ legend {
 .input-box-2 select,
 .input-box-2 textarea {
   width: 100%;
+  margin-left: 1px;
   padding: .3rem;
   color: inherit;
   font-size: inherit;
@@ -422,7 +428,7 @@ table td {
   padding: .5rem;
   border-right: 1px dotted lightgray;
 }
-table th {
+table thead th {
   position: sticky;
   top: -0.5rem;
   background-color: var(--white);
@@ -449,7 +455,7 @@ table td.sticky {
   background-color: inherit;
   z-index: 1;
 }
-table th.sticky {
+table thead th.sticky {
   z-index: 7;
 }
 
@@ -548,4 +554,11 @@ table th.sticky {
   100% {
     transform: scale(1);
   }
+}
+
+#login-box {
+  max-width: 20rem;
+  /* justify-self: center; */
+  align-self: center;
+  margin: 0 auto;
 }

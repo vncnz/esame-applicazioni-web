@@ -272,6 +272,7 @@ button:active {
 
 fieldset {
   border: 1px solid lightgray;
+  padding: .5rem;
 }
 
 legend {
@@ -289,11 +290,17 @@ legend {
   display: block;
 }
 
+.input-box-2 .error-msg {
+  color: red;
+  margin-top: -1rem;
+}
+
 .input-box-2 input,
 .input-box-2 select,
 .input-box-2 textarea {
   width: 100%;
   margin-left: 1px;
+  margin-bottom: 1rem;
   padding: .3rem;
   color: inherit;
   font-size: inherit;
@@ -426,6 +433,7 @@ table th,
 table td {
   text-align: left;
   padding: .5rem;
+  height: 3rem;
   border-right: 1px dotted lightgray;
 }
 table thead th {
@@ -433,6 +441,7 @@ table thead th {
   top: -0.5rem;
   background-color: var(--white);
   z-index: 5;
+  border-bottom: 1px solid var(--black);
 }
 table th.sortable {
   cursor: pointer;

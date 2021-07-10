@@ -77,6 +77,12 @@ footer {
   border-top: 1px solid var(--gray);
 }
 
+header > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 nav a {
   color: var(--black);
   position: relative;
@@ -422,6 +428,9 @@ table th {
   background-color: var(--white);
   z-index: 5;
 }
+table th.sortable {
+  cursor: pointer;
+}
 table button.on-right {
   margin-left: .5rem;
 }
@@ -472,6 +481,11 @@ table th.sticky {
     color: var(--white);
     margin-top: .5rem;
     z-index: 5;
+  }
+
+  .dialog {
+    max-width: calc(100% - 2rem);
+    max-height: calc(100% - 2rem);
   }
 }
 

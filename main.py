@@ -45,7 +45,6 @@ class UserType(enum.Enum):
     agent = 1
     manager = 2
 
-    @classmethod
     def asFullDict(self):
         return { 
             'is_manager': self == UserType.manager,

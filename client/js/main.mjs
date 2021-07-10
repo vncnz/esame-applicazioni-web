@@ -81,6 +81,7 @@ Vue.directive('col-sortable', {
 })
 
 let internalBus = new Vue()
+let uid = 0
 
 /* Utilities varie valide un po' per tutti */
 const contactDialog = createPromiseDialog(ContactDialog)
@@ -119,6 +120,9 @@ Vue.mixin({
         })
       })
     }
+  },
+  beforeCreate() {
+    this.uid = uid++
   }
 })
 

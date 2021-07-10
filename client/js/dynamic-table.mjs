@@ -36,19 +36,21 @@ export default {
         domProps['aria-sort'] = this.sortedAsc ? 'ascending' : 'descending'
       }
       return h('th', {
-        class: [col.sticky ? 'sticky' : '', col.numeric ? 'numeric' : ''],
+        class: [
+          col.sticky ? 'sticky' : '',
+          col.numeric ? 'numeric' : '',
+          isColSortable ? ('sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')) : ''
+        ],
         domProps,
         on: {
           click: () => this.setSorting(col.k)
         }
       }, [
-        h('span', {
-          class: isColSortable ? ('sortable ' + (isColSorted ? (this.sortedAsc ? 'sorted-asc' : 'sorted-desc') : 'unsorted')) : null
-        }, [col.l]),
+        h('span', [col.l]),
         isColSortable ? h('button', {
           class: 'on-right',
           domProps: {
-            title: 'Ordina per ' + col.l,
+            title: (isColSorted ? 'Inverti ordinamento per' : 'Ordina per ') + col.l,
             type: 'button'
           }
         }, [

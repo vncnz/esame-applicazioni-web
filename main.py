@@ -1,46 +1,4 @@
-agenti_test = [
-  { "agent_code": "A007", "agent_name": "Ramasundar", "working_area": "Bangalore", "commission": 0.15, "phone_no": "077-25814763", "country": 'India' },
-  { "agent_code": "A003", "agent_name": "Alex", "working_area": "London", "commission": 0.13, "phone_no": "075-12458969", "country": 'UK' },
-  { "agent_code": "A008", "agent_name": "Alford", "working_area": "New York", "commission": 0.12, "phone_no": "044-25874365", "country": 'USA' },
-  { "agent_code": "A011", "agent_name": "Ravi Kumar", "working_area": "Bangalore", "commission": 0.15, "phone_no": "077-45625874", "country": '' },
-  { "agent_code": "A010", "agent_name": "Santakumar", "working_area": "Chennai", "commission": 0.14, "phone_no": "007-22388644", "country": '' },
-  { "agent_code": "A012", "agent_name": "Lucida", "working_area": "San Jose", "commission": 0.12, "phone_no": "044-52981425", "country": '' },
-  { "agent_code": "A005", "agent_name": "Anderson", "working_area": "Brisban", "commission": 0.13, "phone_no": "045-21447739", "country": '' },
-  { "agent_code": "A001", "agent_name": "Subbarao", "working_area": "Bangalore", "commission": 0.14, "phone_no": "077-12346674", "country": '' },
-  { "agent_code": "A002", "agent_name": "Mukesh", "working_area": "Mumbai", "commission": 0.11, "phone_no": "029-12358964", "country": '' },
-  { "agent_code": "A006", "agent_name": "McDen", "working_area": "London", "commission": 0.15, "phone_no": "078-22255588", "country": '' },
-  { "agent_code": "A004", "agent_name": "Ivan", "working_area": "Torento", "commission": 0.15, "phone_no": "008-22544166", "country": '' },
-  { "agent_code": "A009", "agent_name": "Benjamin", "working_area": "Hampshair", "commission": 0.11, "phone_no": "008-22536178", "country": '' }
-]
-clienti_test = [
-  { "cust_code": "C00013", "cust_name": "Holmes", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 2, "opening_amt": 6000, "receive_amt": 5000, "payment_amt": 7000, "outstanding_amt": 4000, "phone_no": "BBBBBBB", "agent_code": "A003" },
-  { "cust_code": "C00001", "cust_name": "Micheal", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": 2, "opening_amt": 3000, "receive_amt": 5000, "payment_amt": 2000, "outstanding_amt": 6000, "phone_no": "CCCCCCC", "agent_code": "A008" },
-  { "cust_code": "C00020", "cust_name": "Albert", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": 3, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 6000, "outstanding_amt": 6000, "phone_no": "BBBBSBB", "agent_code": "A008" },
-  { "cust_code": "C00025", "cust_name": "Ravindran", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 4000, "outstanding_amt": 8000, "phone_no": "AVAVAVA", "agent_code": "A011" },
-  { "cust_code": "C00024", "cust_name": "Cook", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 2, "opening_amt": 4000, "receive_amt": 9000, "payment_amt": 7000, "outstanding_amt": 6000, "phone_no": "FSDDSDF", "agent_code": "A006" },
-  { "cust_code": "C00015", "cust_name": "Stuart", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 1, "opening_amt": 6000, "receive_amt": 8000, "payment_amt": 3000, "outstanding_amt": 1100, "phone_no": "GFSGERS", "agent_code": "A003" },
-  { "cust_code": "C00002", "cust_name": "Bolt", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": 3, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 3000, "phone_no": "DDNRDRH", "agent_code": "A008" },
-  { "cust_code": "C00018", "cust_name": "Fleming", "cust_city": "Brisban", "working_area": "Brisban", "cust_country": "Australia", "grade": 2, "opening_amt": 7000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 5000, "phone_no": "NHBGVFC", "agent_code": "A005" },
-  { "cust_code": "C00021", "cust_name": "Jacks", "cust_city": "Brisban", "working_area": "Brisban", "cust_country": "Australia", "grade": 1, "opening_amt": 7000, "receive_amt": 7000, "payment_amt": 7000, "outstanding_amt": 7000, "phone_no": "WERTGDF", "agent_code": "A005" },
-  { "cust_code": "C00019", "cust_name": "Yearannaidu", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 1, "opening_amt": 8000, "receive_amt": 7000, "payment_amt": 7000, "outstanding_amt": 8000, "phone_no": "ZZZZBFV", "agent_code": "A010" },
-  { "cust_code": "C00005", "cust_name": "Sasikant", "cust_city": "Mumbai", "working_area": "Mumbai", "cust_country": "India", "grade": 1, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 1100, "phone_no": "147-25896312", "agent_code": "A002" },
-  { "cust_code": "C00007", "cust_name": "Ramanathan", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 1, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 9000, "outstanding_amt": 9000, "phone_no": "GHRDWSD", "agent_code": "A010" },
-  { "cust_code": "C00022", "cust_name": "Avinash", "cust_city": "Mumbai", "working_area": "Mumbai", "cust_country": "India", "grade": 2, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 9000, "outstanding_amt": 9000, "phone_no": "113-12345678", "agent_code": "A002" },
-  { "cust_code": "C00004", "cust_name": "Winston", "cust_city": "Brisban", "working_area": "Brisban", "cust_country": "Australia", "grade": 1, "opening_amt": 5000, "receive_amt": 8000, "payment_amt": 7000, "outstanding_amt": 6000, "phone_no": "AAAAAAA", "agent_code": "A005" },
-  { "cust_code": "C00023", "cust_name": "Karl", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 0, "opening_amt": 4000, "receive_amt": 6000, "payment_amt": 7000, "outstanding_amt": 3000, "phone_no": "AAAABAA", "agent_code": "A006" },
-  { "cust_code": "C00006", "cust_name": "Shilton", "cust_city": "Torento", "working_area": "Torento", "cust_country": "Canada", "grade": 1, "opening_amt": 10000, "receive_amt": 7000, "payment_amt": 6000, "outstanding_amt": 1100, "phone_no": "DDDDDDD", "agent_code": "A004" },
-  { "cust_code": "C00010", "cust_name": "Charles", "cust_city": "Hampshair", "working_area": "Hampshair", "cust_country": "UK", "grade": 3, "opening_amt": 6000, "receive_amt": 4000, "payment_amt": 5000, "outstanding_amt": 5000, "phone_no": "MMMMMMM", "agent_code": "A009" },
-  { "cust_code": "C00017", "cust_name": "Srinivas", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 8000, "receive_amt": 4000, "payment_amt": 3000, "outstanding_amt": 9000, "phone_no": "AAAAAAB", "agent_code": "A007" },
-  { "cust_code": "C00012", "cust_name": "Steven", "cust_city": "San Jose", "working_area": "San Jose", "cust_country": "USA", "grade": 1, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 3000, "phone_no": "KRFYGJK", "agent_code": "A012" },
-  { "cust_code": "C00008", "cust_name": "Karolina", "cust_city": "Torento", "working_area": "Torento", "cust_country": "Canada", "grade": 1, "opening_amt": 7000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 5000, "phone_no": "HJKORED", "agent_code": "A004" },
-  { "cust_code": "C00003", "cust_name": "Martin", "cust_city": "Torento", "working_area": "Torento", "cust_country": "Canada", "grade": 2, "opening_amt": 8000, "receive_amt": 7000, "payment_amt": 7000, "outstanding_amt": 8000, "phone_no": "MJYURFD", "agent_code": "A004" },
-  { "cust_code": "C00009", "cust_name": "Ramesh", "cust_city": "Mumbai", "working_area": "Mumbai", "cust_country": "India", "grade": 3, "opening_amt": 8000, "receive_amt": 7000, "payment_amt": 3000, "outstanding_amt": 12000, "phone_no": "Phone No", "agent_code": "A002" },
-  { "cust_code": "C00014", "cust_name": "Rangarappa", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 8000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 12000, "phone_no": "AAAATGF", "agent_code": "A001" },
-  { "cust_code": "C00016", "cust_name": "Venkatpati", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 8000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 12000, "phone_no": "JRTVFDD", "agent_code": "A007" },
-  { "cust_code": "C00011", "cust_name": "Sundariya", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 3, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 11000, "phone_no": "PPHGRTS", "agent_code": "A010" }
-]
-
-from datetime import timedelta
+from datetime import timedelta, date
 from os import stat
 from time import sleep
 import enum
@@ -61,14 +19,26 @@ app.config["JWT_SECRET_KEY"] = "esami-applicazioni-web-2231"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:xxnomos@localhost:5432/appdata'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:e27b149y@localhost:5432/appdata'
 app.config['SQLALCHEMY_BINDS'] = {
-    'users': 'postgresql://postgres:xxnomos@localhost:5432/appdata'
+    'users': 'postgresql://postgres:e27b149y@localhost:5432/usermanagement'
 }
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+
+from flask.json import JSONEncoder
+class CustomJSONEncoder(JSONEncoder):
+  "Add support for serializing dates"
+
+  def default(self, value):
+    if type(value) == date:
+        return value.strftime('%Y-%m-%d')
+    else:
+        return super().default(value)
+
+app.json_encoder = CustomJSONEncoder
 
 class UserType(enum.Enum):
     customer = 0
@@ -105,9 +75,12 @@ class Order(db.Model):
     ord_amount = db.Column(db.Integer, nullable=False)
     advance_amount = db.Column(db.Integer, nullable=False)
     ord_date = db.Column(db.Date, nullable=False)
-    cust_code = db.Column(db.Text, nullable=False)
-    agent_code = db.Column(db.Text, nullable=False)
+    cust_code = db.Column(db.Text, db.ForeignKey('customer.cust_code'), nullable=False)
+    agent_code = db.Column(db.Text, db.ForeignKey('agent.agent_code'), nullable=False)
     order_description = db.Column(db.Text, nullable=True)
+
+    agent = db.relationship('Agent')
+    customer = db.relationship('Customer')
 
     @staticmethod
     def get(ord_num):
@@ -126,7 +99,11 @@ class Order(db.Model):
         return Order.query.all()
     
     def toDict(self):
-        return { c.name: getattr(self, c.name) for c in self.__table__.columns }
+        # print(self.agent.agent_name)
+        dict = { c.name: getattr(self, c.name) for c in self.__table__.columns }
+        dict['agent_name'] = self.agent.agent_name
+        dict['cust_name'] = self.customer.cust_name
+        return dict
         # return {
         #     'ord_num': self.ord_num,
         #     'ord_amount': self.ord_amount,
@@ -138,10 +115,79 @@ class Order(db.Model):
         # }
 
 
-INIT_USERS = False
-INIT_ORDERS = False
+class Agent(db.Model):
+    agent_code = db.Column(db.Text, primary_key=True, nullable=False)
+    agent_name = db.Column(db.Text, nullable=False)
+    working_area = db.Column(db.Text, nullable=False)
+    commission = db.Column(db.Float, nullable=False)
+    phone_no = db.Column(db.Text, nullable=False)
+    country = db.Column(db.Text, nullable=False)
+
+    @staticmethod
+    def get(agent_code):
+        return Agent.query.filter_by(agent_code=agent_code).first()
+
+    @staticmethod
+    def getAll():
+        return Agent.query.all()
+    
+    def toDict(self):
+        return { c.name: getattr(self, c.name) for c in self.__table__.columns }
+    
+    def toSmallDict(self):
+        return {
+            'agent_code': self.agent_code,
+            'agent_name': self.agent_name,
+            'phone_no': self.phone_no
+        }
+
+
+class Customer(db.Model):
+    cust_code = db.Column(db.Text, primary_key=True, nullable=False)
+    cust_name = db.Column(db.Text, nullable=False)
+    cust_city = db.Column(db.Text, nullable=False)
+    working_area = db.Column(db.Text, nullable=False)
+    cust_country = db.Column(db.Text, nullable=False)
+    grade = db.Column(db.Integer, nullable=False) # TODO ENUM
+    opening_amt = db.Column(db.Float, nullable=False)
+    receive_amt = db.Column(db.Float, nullable=False)
+    payment_amt = db.Column(db.Float, nullable=False)
+    outstanding_amt = db.Column(db.Float, nullable=False)
+    phone_no = db.Column(db.Text, nullable=False)
+    agent_code = db.Column(db.Text, db.ForeignKey('agent.agent_code'), nullable=False)
+
+    agent = db.relationship('Agent')
+
+    @staticmethod
+    def get(cust_code):
+        return Customer.query.filter_by(cust_code=cust_code).first()
+
+    @staticmethod
+    def getAll():
+        return Customer.query.all()
+    
+    @staticmethod
+    def getAllByAgent(agent_code):
+        return Customer.query.filter_by(agent_code=agent_code)
+    
+    def toDict(self):
+        dict = { c.name: getattr(self, c.name) for c in self.__table__.columns }
+        dict['agent_name'] = self.agent.agent_name
+        return dict
+    
+    def toSmallDict(self):
+        return {
+            'cust_code': self.cust_code,
+            'cust_name': self.cust_name,
+            'phone_no': self.phone_no
+        }
 
 db.create_all()
+
+INIT_USERS = False
+INIT_ORDERS = len(Order.getAll()) == 0
+INIT_AGENTS = len(Agent.getAll()) == 0
+INIT_CUSTOMERS = len(Customer.getAll()) == 0
 
 if INIT_USERS:
     users = [
@@ -150,9 +196,7 @@ if INIT_USERS:
         ('C00022', UserType.customer)
     ]
     for usr in users:
-        print(usr)
         u = User(username=usr[0], password='test', utype=usr[1])
-        print(u)
         db.session.add(u)
     db.session.commit()
 
@@ -194,7 +238,6 @@ if INIT_ORDERS:
         { "ord_num": "200133", "ord_amount": 1200, "advance_amount": 400, "ord_date": "2008-06-29", "cust_code": "C00009", "agent_code": "A002", "order_description": "SOD" }
     ]
     for ord in ordini_test:
-        print(ord)
         o = Order(
             ord_num=ord['ord_num'],
             ord_amount=ord['ord_amount'],
@@ -204,13 +247,87 @@ if INIT_ORDERS:
             agent_code=ord['agent_code'],
             order_description=ord['order_description']
         )
-        print(o)
         db.session.add(o)
     db.session.commit()
 
-# foo = User.get('dirigente')
-# print({x.name: getattr(foo, x.name) for x in foo.__table__.columns})
+if INIT_AGENTS:
+    agenti_test = [
+        { "agent_code": "A007", "agent_name": "Ramasundar", "working_area": "Bangalore", "commission": 0.15, "phone_no": "077-25814763", "country": 'India' },
+        { "agent_code": "A003", "agent_name": "Alex", "working_area": "London", "commission": 0.13, "phone_no": "075-12458969", "country": 'UK' },
+        { "agent_code": "A008", "agent_name": "Alford", "working_area": "New York", "commission": 0.12, "phone_no": "044-25874365", "country": 'USA' },
+        { "agent_code": "A011", "agent_name": "Ravi Kumar", "working_area": "Bangalore", "commission": 0.15, "phone_no": "077-45625874", "country": '' },
+        { "agent_code": "A010", "agent_name": "Santakumar", "working_area": "Chennai", "commission": 0.14, "phone_no": "007-22388644", "country": '' },
+        { "agent_code": "A012", "agent_name": "Lucida", "working_area": "San Jose", "commission": 0.12, "phone_no": "044-52981425", "country": '' },
+        { "agent_code": "A005", "agent_name": "Anderson", "working_area": "Brisban", "commission": 0.13, "phone_no": "045-21447739", "country": '' },
+        { "agent_code": "A001", "agent_name": "Subbarao", "working_area": "Bangalore", "commission": 0.14, "phone_no": "077-12346674", "country": '' },
+        { "agent_code": "A002", "agent_name": "Mukesh", "working_area": "Mumbai", "commission": 0.11, "phone_no": "029-12358964", "country": '' },
+        { "agent_code": "A006", "agent_name": "McDen", "working_area": "London", "commission": 0.15, "phone_no": "078-22255588", "country": '' },
+        { "agent_code": "A004", "agent_name": "Ivan", "working_area": "Torento", "commission": 0.15, "phone_no": "008-22544166", "country": '' },
+        { "agent_code": "A009", "agent_name": "Benjamin", "working_area": "Hampshair", "commission": 0.11, "phone_no": "008-22536178", "country": '' }
+        ]
+    for age in agenti_test:
+        a = Agent(
+            agent_code=age['agent_code'],
+            agent_name=age['agent_name'],
+            working_area=age['working_area'],
+            commission=age['commission'],
+            phone_no=age['phone_no'],
+            country=age['country']
+        )
+        db.session.add(a)
+    db.session.commit()
 
+if INIT_CUSTOMERS:
+    clienti_test = [
+        { "cust_code": "C00013", "cust_name": "Holmes", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 2, "opening_amt": 6000, "receive_amt": 5000, "payment_amt": 7000, "outstanding_amt": 4000, "phone_no": "BBBBBBB", "agent_code": "A003" },
+        { "cust_code": "C00001", "cust_name": "Micheal", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": 2, "opening_amt": 3000, "receive_amt": 5000, "payment_amt": 2000, "outstanding_amt": 6000, "phone_no": "CCCCCCC", "agent_code": "A008" },
+        { "cust_code": "C00020", "cust_name": "Albert", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": 3, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 6000, "outstanding_amt": 6000, "phone_no": "BBBBSBB", "agent_code": "A008" },
+        { "cust_code": "C00025", "cust_name": "Ravindran", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 4000, "outstanding_amt": 8000, "phone_no": "AVAVAVA", "agent_code": "A011" },
+        { "cust_code": "C00024", "cust_name": "Cook", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 2, "opening_amt": 4000, "receive_amt": 9000, "payment_amt": 7000, "outstanding_amt": 6000, "phone_no": "FSDDSDF", "agent_code": "A006" },
+        { "cust_code": "C00015", "cust_name": "Stuart", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 1, "opening_amt": 6000, "receive_amt": 8000, "payment_amt": 3000, "outstanding_amt": 1100, "phone_no": "GFSGERS", "agent_code": "A003" },
+        { "cust_code": "C00002", "cust_name": "Bolt", "cust_city": "NewYork", "working_area": "NewYork", "cust_country": "USA", "grade": 3, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 3000, "phone_no": "DDNRDRH", "agent_code": "A008" },
+        { "cust_code": "C00018", "cust_name": "Fleming", "cust_city": "Brisban", "working_area": "Brisban", "cust_country": "Australia", "grade": 2, "opening_amt": 7000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 5000, "phone_no": "NHBGVFC", "agent_code": "A005" },
+        { "cust_code": "C00021", "cust_name": "Jacks", "cust_city": "Brisban", "working_area": "Brisban", "cust_country": "Australia", "grade": 1, "opening_amt": 7000, "receive_amt": 7000, "payment_amt": 7000, "outstanding_amt": 7000, "phone_no": "WERTGDF", "agent_code": "A005" },
+        { "cust_code": "C00019", "cust_name": "Yearannaidu", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 1, "opening_amt": 8000, "receive_amt": 7000, "payment_amt": 7000, "outstanding_amt": 8000, "phone_no": "ZZZZBFV", "agent_code": "A010" },
+        { "cust_code": "C00005", "cust_name": "Sasikant", "cust_city": "Mumbai", "working_area": "Mumbai", "cust_country": "India", "grade": 1, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 1100, "phone_no": "147-25896312", "agent_code": "A002" },
+        { "cust_code": "C00007", "cust_name": "Ramanathan", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 1, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 9000, "outstanding_amt": 9000, "phone_no": "GHRDWSD", "agent_code": "A010" },
+        { "cust_code": "C00022", "cust_name": "Avinash", "cust_city": "Mumbai", "working_area": "Mumbai", "cust_country": "India", "grade": 2, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 9000, "outstanding_amt": 9000, "phone_no": "113-12345678", "agent_code": "A002" },
+        { "cust_code": "C00004", "cust_name": "Winston", "cust_city": "Brisban", "working_area": "Brisban", "cust_country": "Australia", "grade": 1, "opening_amt": 5000, "receive_amt": 8000, "payment_amt": 7000, "outstanding_amt": 6000, "phone_no": "AAAAAAA", "agent_code": "A005" },
+        { "cust_code": "C00023", "cust_name": "Karl", "cust_city": "London", "working_area": "London", "cust_country": "UK", "grade": 0, "opening_amt": 4000, "receive_amt": 6000, "payment_amt": 7000, "outstanding_amt": 3000, "phone_no": "AAAABAA", "agent_code": "A006" },
+        { "cust_code": "C00006", "cust_name": "Shilton", "cust_city": "Torento", "working_area": "Torento", "cust_country": "Canada", "grade": 1, "opening_amt": 10000, "receive_amt": 7000, "payment_amt": 6000, "outstanding_amt": 1100, "phone_no": "DDDDDDD", "agent_code": "A004" },
+        { "cust_code": "C00010", "cust_name": "Charles", "cust_city": "Hampshair", "working_area": "Hampshair", "cust_country": "UK", "grade": 3, "opening_amt": 6000, "receive_amt": 4000, "payment_amt": 5000, "outstanding_amt": 5000, "phone_no": "MMMMMMM", "agent_code": "A009" },
+        { "cust_code": "C00017", "cust_name": "Srinivas", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 8000, "receive_amt": 4000, "payment_amt": 3000, "outstanding_amt": 9000, "phone_no": "AAAAAAB", "agent_code": "A007" },
+        { "cust_code": "C00012", "cust_name": "Steven", "cust_city": "San Jose", "working_area": "San Jose", "cust_country": "USA", "grade": 1, "opening_amt": 5000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 3000, "phone_no": "KRFYGJK", "agent_code": "A012" },
+        { "cust_code": "C00008", "cust_name": "Karolina", "cust_city": "Torento", "working_area": "Torento", "cust_country": "Canada", "grade": 1, "opening_amt": 7000, "receive_amt": 7000, "payment_amt": 9000, "outstanding_amt": 5000, "phone_no": "HJKORED", "agent_code": "A004" },
+        { "cust_code": "C00003", "cust_name": "Martin", "cust_city": "Torento", "working_area": "Torento", "cust_country": "Canada", "grade": 2, "opening_amt": 8000, "receive_amt": 7000, "payment_amt": 7000, "outstanding_amt": 8000, "phone_no": "MJYURFD", "agent_code": "A004" },
+        { "cust_code": "C00009", "cust_name": "Ramesh", "cust_city": "Mumbai", "working_area": "Mumbai", "cust_country": "India", "grade": 3, "opening_amt": 8000, "receive_amt": 7000, "payment_amt": 3000, "outstanding_amt": 12000, "phone_no": "Phone No", "agent_code": "A002" },
+        { "cust_code": "C00014", "cust_name": "Rangarappa", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 8000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 12000, "phone_no": "AAAATGF", "agent_code": "A001" },
+        { "cust_code": "C00016", "cust_name": "Venkatpati", "cust_city": "Bangalore", "working_area": "Bangalore", "cust_country": "India", "grade": 2, "opening_amt": 8000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 12000, "phone_no": "JRTVFDD", "agent_code": "A007" },
+        { "cust_code": "C00011", "cust_name": "Sundariya", "cust_city": "Chennai", "working_area": "Chennai", "cust_country": "India", "grade": 3, "opening_amt": 7000, "receive_amt": 11000, "payment_amt": 7000, "outstanding_amt": 11000, "phone_no": "PPHGRTS", "agent_code": "A010" }
+        ]
+    for cli in clienti_test:
+        c = Customer(
+            cust_code=cli['cust_code'],
+            cust_name=cli['cust_name'],
+            cust_city=cli['cust_city'],
+            working_area=cli['working_area'],
+            cust_country=cli['cust_country'],
+            grade=cli['grade'],
+            opening_amt=cli['opening_amt'],
+            receive_amt=cli['receive_amt'],
+            payment_amt=cli['payment_amt'],
+            outstanding_amt=cli['outstanding_amt'],
+            phone_no=cli['phone_no'],
+            agent_code=cli['agent_code']
+        )
+        db.session.add(c)
+    db.session.commit()
+
+
+
+##################
+#     ACCESS     #
+##################
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -240,12 +357,8 @@ def refresh():
     access_token = create_access_token(identity=identity, additional_claims=user.utype.asFullDict())
     return jsonify(access_token=access_token)
 
-# @app.route("/protected", methods=["GET"])
-# @jwt_required()
-# def protected():
-#     current_user = get_jwt_identity()
-#     current_jwt = get_jwt()
-#     return jsonify(logged_in_as=current_user), 200
+
+
 
 ##################
 #     ORDERS     #
@@ -264,15 +377,7 @@ def orders():
         orders_lst = Order.getAllByAgent(identity)
     else:
         orders_lst = Order.getAll()
-    toSend = []
-    for ord in orders_lst:
-        o = ord.toDict()
-        ag = next(filter(lambda a: a['agent_code'] == o['agent_code'], agenti_test), None)
-        cu = next(filter(lambda c: c['cust_code'] == o['cust_code'], clienti_test), None)
-        o['agent_name'] = (ag and ag['agent_name']) or 'Jane Doe'
-        o['cust_name'] = (cu and cu['cust_name']) or 'John Doe'
-        toSend.append(o)
-    return jsonify(toSend), 200
+    return jsonify(list(map(lambda order: order.toDict(), orders_lst))), 200
 
 @app.route("/order/<id>", methods=["DELETE"])
 @jwt_required()
@@ -317,7 +422,7 @@ def createOrder():
     else:
         order = Order(
             # ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6)),
-            ord_num = random.randint(1, 10000000),
+            # ord_num = random.randint(1, 10000000),
             ord_amount = request.json['ord_amount'],
             advance_amount = request.json['advance_amount'],
             ord_date = request.json['ord_date'],
@@ -337,41 +442,25 @@ def createOrder():
 
 
 
+##################
+#     AGENTS     #
+##################
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.route("/customers", methods=["GET"])
+@app.route("/agents", methods=["GET"])
 @jwt_required()
-def customers():
+def agents():
     current_jwt = get_jwt()
-    allowed = current_jwt['is_manager'] or current_jwt['is_agent']
-    if not allowed:
+    if not current_jwt['is_manager']:
         return jsonify({"msg": "Accesso negato"}), 403
-    for cl in clienti_test:
-        agent = next(filter(lambda b: b['agent_code'] == cl['agent_code'], agenti_test), None)
-        if agent:
-            cl['agent_name'] = agent['agent_name']
-    return jsonify(clienti_test), 200
+    return jsonify(list(map(lambda a: a.toDict(), Agent.getAll()))), 200
 
-@app.route("/customers-resume", methods=["GET"])
+@app.route("/agent/<code>", methods=["GET"])
 @jwt_required()
-def customers_resume():
-    current_jwt = get_jwt()
-    allowed = current_jwt['is_manager'] or current_jwt['is_agent']
-    if not allowed:
-        return jsonify({"msg": "Accesso negato"}), 403
-    return jsonify(list(map(lambda c: { 'name': c['cust_name'], 'code': c['cust_code'] }, clienti_test))), 200
+def agent(code):
+    agent = Agent.get(code)
+    if not agent:
+        return jsonify({'msg': 'Agent not found'}), 404
+    return jsonify(agent.toSmallDict()), 200
 
 @app.route("/agents-resume", methods=["GET"])
 @jwt_required()
@@ -380,64 +469,60 @@ def agents_resume():
     allowed = current_jwt['is_manager']
     if not allowed:
         return jsonify({"msg": "Accesso negato"}), 403
-    return jsonify(list(map(lambda c: { 'name': c['agent_name'], 'code': c['agent_code'] }, agenti_test))), 200
+    return jsonify(list(map(lambda c: { 'name': c.agent_name, 'code': c.agent_code }, Agent.getAll()))), 200
 
 
-@app.route("/agents", methods=["GET"])
+
+
+##################
+#   CUSTOMERS    #
+##################
+
+@app.route("/customers", methods=["GET"])
 @jwt_required()
-def agents():
+def customers():
     current_jwt = get_jwt()
-    allowed = current_jwt['is_manager']
-    if not allowed:
+    if current_jwt['is_manager']:
+        return jsonify(list(map(lambda cust: cust.toDict(), Customer.getAll()))), 200
+    elif current_jwt['is_agent']:
+        identity = get_jwt_identity()
+        return jsonify(list(map(lambda cust: cust.toDict(), Customer.getAllByAgent(identity)))), 200
+    else:
         return jsonify({"msg": "Accesso negato"}), 403
-    return jsonify(agenti_test), 200
+    
 
-@app.route("/agent/<code>", methods=["GET"])
+@app.route("/customers-resume", methods=["GET"])
 @jwt_required()
-def agent(code):
-    # current_jwt = get_jwt()
-    # allowed = current_jwt['agent_contact']
-    # if not allowed:
-    #     return jsonify({"msg": "Accesso negato"}), 403
-    agent = next(filter(lambda b: b['agent_code'] == code, agenti_test), None)
-    if not agent:
-        return jsonify({'msg': 'Agent not found'}), 404
-    return jsonify({
-        'agent_code': agent['agent_code'],
-        'agent_name': agent['agent_name'],
-        'phone_no': agent['phone_no']
-    }), 200
+def customers_resume():
+    current_jwt = get_jwt()
+    if current_jwt['is_manager']:
+        return jsonify(list(map(lambda c: { 'name': c.cust_name, 'code': c.cust_code }, Customer.getAll()))), 200
+    elif current_jwt['is_agent']:
+        identity = get_jwt_identity()
+        return jsonify(list(map(lambda c: { 'name': c.cust_name, 'code': c.cust_code }, Customer.getAllByAgent(identity)))), 200
+    else:
+        return jsonify({"msg": "Accesso negato"}), 403
+
 
 @app.route("/customer/<code>", methods=["GET"])
 @jwt_required()
 def customer(code):
-    # current_jwt = get_jwt()
-    # allowed = current_jwt['agent_contact']
-    # if not allowed:
-    #     return jsonify({"msg": "Accesso negato"}), 403
-    customer = next(filter(lambda b: b['cust_code'] == code, clienti_test), None)
+    current_jwt = get_jwt()
+    if not (current_jwt['is_manager'] or current_jwt['is_agent']):
+        return jsonify({"msg": "Accesso negato"}), 403
+    customer = Customer.get(code)
     if not customer:
         return jsonify({'msg': 'Customer not found'}), 404
-    return jsonify({
-        'cust_code': customer['cust_code'],
-        'cust_name': customer['cust_name'],
-        'phone_no': customer['phone_no']
-    }), 200
-
-
-
-
-
-
+    return jsonify(customer.toSmallDict()), 200
 
 
 @app.route('/')
 def root():
     return app.send_static_file('index.html')
 
-@app.route("/api/<name>")
-def hello_world(name):
-    return f'<p>Hello, {name}!</p>'
+# @app.route("/api/<name>")
+# def hello_world(name):
+#     return f'<p>Hello, {name}!</p>'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

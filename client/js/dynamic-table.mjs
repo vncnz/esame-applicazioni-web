@@ -83,12 +83,13 @@ export default {
         let isRowHeader = col.sticky
         let attrs = {
           class: [isRowHeader ? 'sticky' : '', col.numeric ? 'numeric' : ''], attrs: { 'data-title': col.l },
-          domProps: isRowHeader ? { scope: 'row' } : {},
+          // domProps: isRowHeader ? { scope: 'row' } : {},
         }
+        let celltag = isRowHeader ? 'th' : 'td'
         if (this.$scopedSlots[col.k]) {
-          return h('td', attrs, this.$scopedSlots[col.k]({ row: result, value: result[col.k] }))
+          return h(celltag, attrs, this.$scopedSlots[col.k]({ row: result, value: result[col.k] }))
         } else {
-          return h('td', attrs, result[col.k])
+          return h(celltag, attrs, result[col.k])
         }
       })
       let checked = false

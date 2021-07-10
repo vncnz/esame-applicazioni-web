@@ -19,13 +19,15 @@
             <notifier></notifier>
             <header>
                 <h1>Exam project</h1>
-                <nav>
-                    <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
-                    <router-link to="/ordini" v-if="userInfo"><span>Ordini</span></router-link>
-                    <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
-                    <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
-                    <button type="button" v-if="userInfo" @click="logout">Esci</button>
-                </nav>
+                <div>
+                    <nav>
+                        <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
+                        <router-link to="/ordini" v-if="userInfo" aria-label="Vai agli ordini"><span>Ordini</span></router-link>
+                        <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
+                        <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
+                    </nav>
+                    <button type="button" v-if="userInfo" @click="logout" aria-label="Disconnetti l'utente">Esci</button>
+                </div>
             </header>
             <div id="router-box">
                 <router-view></router-view>
@@ -38,9 +40,11 @@
         <template id="NotifierTemplate">
             <div id="notify">
                 <transition-group tag="span" name="notification">
-                    <div v-for="notif in notifications" :key="notif.id" :class="notif.type">
+                    <div v-for="notif in notifications" :key="notif.id" :class="notif.type" >
                         <span>{{notif.text}}</span>
-                        <button type="button" class="close" @click="close(notif.id)"><i class="fa fa-fw fa-close"></i></button>
+                        <button type="button" class="close" @click="close(notif.id)" aria-label="close">
+                            <i class="fa fa-fw fa-close" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </transition-group>
             </div>

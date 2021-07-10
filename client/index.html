@@ -50,17 +50,19 @@
             </div>
         </template>
         <template id="CustomersViewTemplate">
-            <dynamic-table :datalist="results" :columns="columns">
-                <template v-slot:agent_name="{ value, row }">
-                    <span>{{value}}</span>
-                    <button type="button" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i
-                            class="fa fa-fw fa-external-link"></i></button>
-                </template>
-                <template v-slot:opening_amt="{ value }">{{value | currency}}</template>
-                <template v-slot:receive_amt="{ value }">{{value | currency}}</template>
-                <template v-slot:payment_amt="{ value }">{{value | currency}}</template>
-                <template v-slot:outstanding_amt="{ value }">{{value | currency}}</template>
-            </dynamic-table>
+            <div>
+                <dynamic-table :datalist="results" :columns="columns">
+                    <template v-slot:agent_name="{ value, row }">
+                        <span>{{value}}</span>
+                        <button type="button" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i
+                                class="fa fa-fw fa-external-link"></i></button>
+                    </template>
+                    <template v-slot:opening_amt="{ value }">{{value | currency}}</template>
+                    <template v-slot:receive_amt="{ value }">{{value | currency}}</template>
+                    <template v-slot:payment_amt="{ value }">{{value | currency}}</template>
+                    <template v-slot:outstanding_amt="{ value }">{{value | currency}}</template>
+                </dynamic-table>
+            </div>
         </template>
         <template id="OrdersViewTemplate">
             <div>
@@ -90,7 +92,9 @@
                 </dynamic-table>
             </div>
         </template><template id="AgentsViewTemplate">
-            <dynamic-table :datalist="results" :columns="columns" />
+            <div>
+                <dynamic-table :datalist="results" :columns="columns" />
+            </div>
         </template>
         <template id="LoginViewTemplate">
             <div id="login-box">

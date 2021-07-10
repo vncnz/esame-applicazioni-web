@@ -1,8 +1,10 @@
 from datetime import timedelta, date
-from os import stat
-from time import sleep
+# from os import stat
+# from time import sleep
 import enum
-import random, string
+import sys
+# import random, string
+from json import load as jsonload
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/binds/
@@ -13,15 +15,34 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 # https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
 
+config = None
+
+with open('server-configuration.json') as configfile:
+    config = jsonload(configfile)
+
+    if not 'auth' in config:
+        sys.exit('Invalid configuration, "auth" key is missing')
+    elif not 'secret' in config['auth']:
+        sys.exit('Invalid configuration, "auth.secret" key is missing')
+    elif not 'databases' in config:
+        sys.exit('Invalid configuration, "databases" key is missing')
+    elif not 'users' in config['databases']:
+        sys.exit('Invalid configuration, "databases.users" key is missing')
+    elif not 'data' in config['databases']:
+        sys.exit('Invalid configuration, "databases.data" key is missing')
+    
+    if not 'duration_minutes' in config['auth']:
+        config['auth']['duration_minutes'] = 30
+
 app = Flask(__name__, static_url_path='', static_folder='client')
 
-app.config["JWT_SECRET_KEY"] = "esami-applicazioni-web-2231"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
+app.config["JWT_SECRET_KEY"] = config['auth']['secret']
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=config['auth']['duration_minutes'])
+# app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:e27b149y@localhost:5432/appdata'
+app.config['SQLALCHEMY_DATABASE_URI'] = config['databases']['data']
 app.config['SQLALCHEMY_BINDS'] = {
-    'users': 'postgresql://postgres:e27b149y@localhost:5432/usermanagement'
+    'users': config['databases']['users']
 }
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

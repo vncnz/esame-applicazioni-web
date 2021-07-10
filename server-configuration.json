@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "secret": "esami-applicazioni-web-2231",
+    "duration_minutes": 30
+  },
+  "databases": {
+    "data": "postgresql://postgres:e27b149y@localhost:5432/appdata",
+    "users": "postgresql://postgres:e27b149y@localhost:5432/usermanagement"
+  }
+}

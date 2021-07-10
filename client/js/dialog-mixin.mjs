@@ -24,15 +24,30 @@ export default {
       this.$el.querySelector('button:first-child').focus()
     }
   },
+  beforeCreate () {
+    console.log(document.activeElement)
+    this.lastFocusedElement = document.activeElement
+  },
+  beforeDestroy () {
+    this.lastFocusedElement.focus()
+  },
   render (h) {
     return h('div', {
-      class: 'dcontainer',
+      class: 'dcontainer'
     }, [
       h('div', { class: 'dglass' }, []),
       h('div', {
-        class: 'dialog'
+        class: 'dialog',
+        domProps: { 'aria-labelledby': 'dialogtitle', role: 'dialog' },
+        on: {
+          keyup: evt => {
+            if (evt.key === "Escape") {
+              this.reject()
+            }
+          }
+        }
       }, [
-        h('div', { class: 'dheader' }, this.createTitleHtml(h)),
+        h('div', { class: 'dheader', id: 'dialogtitle' }, this.createTitleHtml(h)),
         h('div', { class: 'dbody' }, this.createBodyHtml(h)),
         h('div', { class: 'dfooter' }, this.createFooterHtml(h))
       ])

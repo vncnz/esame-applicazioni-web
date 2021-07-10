@@ -11,7 +11,7 @@ export default {
     accedi() {
       this.$store.dispatch('doLogin', { username: this.username, password: this.password }).then(() => {
         this.internalBus.$emit('notify', {
-          id: 'trylogin',
+          id: 'useraccess',
           text: 'Accesso effettuato con successo',
           type: 'success'
         })
@@ -26,7 +26,7 @@ export default {
           }
         }
         this.internalBus.$emit('notify', {
-          id: 'trylogin',
+          id: 'useraccess',
           text,
           type: 'error'
         })

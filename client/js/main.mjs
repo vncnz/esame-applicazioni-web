@@ -158,6 +158,7 @@ const router = new VueRouter({
     logout () {
       this.$store.commit('doLogout')
       this.internalBus.$emit('notify', {
+        id: 'useraccess',
         text: 'Utente disconnesso con successo',
         type: 'success'
       })

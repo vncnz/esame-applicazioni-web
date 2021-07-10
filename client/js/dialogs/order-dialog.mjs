@@ -1,5 +1,5 @@
-import dialogMixin from './dialog-mixin.mjs'
-import renderMixin from './render-mixin.mjs'
+import dialogMixin from '/js/mixin/dialog-mixin.mjs'
+import renderMixin from '/js/mixin/render-mixin.mjs'
 
 export default {
   name: 'OrderDialog',
@@ -26,6 +26,25 @@ export default {
     }
   },
   computed: {
+    errors () {
+      let errors = {}
+      if (!this.order.ord_date) {
+        errors['ord_date'] = 'E\' necessario inserire una data'
+      }
+      if (!this.order.cust_code) {
+        errors['cust_code'] = "E' necessario selezionare un cliente"
+      }
+      if (this.userInfo.is_manager && !this.order.agent_code) {
+        errors['agent_code'] = 'E\' necessario selezionare un agente'
+      }
+      if (!this.order.advance_amount) {
+        errors['advance_amount'] = "E' necessario inserire l'anticipo"
+      }
+      if (!this.order.ord_amount) {
+        errors['ord_amount'] = "E' necessario inserire il totale ordine"
+      }
+      return errors
+    },
     isNew () {
       return !this.order?.ord_num
     },
@@ -72,23 +91,23 @@ export default {
       let orderInfoFields = [
         h('legend', 'Informazioni ordine'),
         this.createTextareaHtml(h, { label: 'Descrizione', placeholder: 'Contenuto ordine' }, this.order, 'order_description'),
-        this.createSelectHtml(h, { label: 'Cliente', options: this.customerOptions }, this.order, 'cust_code')
+        this.createSelectHtml(h, { label: 'Cliente', options: this.customerOptions, error: this.errors.cust_code }, this.order, 'cust_code')
       ]
       if (this.userInfo.is_manager) {
-        orderInfoFields.push(this.createSelectHtml(h, { label: 'Agente', options: this.agentOptions }, this.order, 'agent_code'))
+        orderInfoFields.push(this.createSelectHtml(h, { label: 'Agente', options: this.agentOptions, error: this.errors.agent_code }, this.order, 'agent_code'))
       }
       return [
         // this.createFieldsetHtml(h, { legend: 'Prova' }, [])
         h('fieldset', [
           h('legend', 'Identificazione ordine'),
           this.createInputHtml(h, { label: 'Numero', disabled: true, placeholder: '-' }, this.order, 'ord_num'),
-          this.createInputHtml(h, { label: 'Data', type: 'date' }, this.order, 'ord_date')
+          this.createInputHtml(h, { label: 'Data', type: 'date', error: this.errors.ord_date }, this.order, 'ord_date')
         ]),
         h('fieldset', orderInfoFields),
         h('fieldset', [
-          h('legend', 'Costi?'),
-          this.createInputHtml(h, { label: 'Anticipo', type: 'number', placeholder: '100.00' }, this.order, 'advance_amount'),
-          this.createInputHtml(h, { label: 'Totale', type: 'number', placeholder: '1000.00' }, this.order, 'ord_amount')
+          h('legend', 'Importi'),
+          this.createInputHtml(h, { label: 'Anticipo', type: 'number', placeholder: '100.00', error: this.errors.advance_amount }, this.order, 'advance_amount'),
+          this.createInputHtml(h, { label: 'Totale', type: 'number', placeholder: '1000.00', error: this.errors.ord_amount }, this.order, 'ord_amount')
         ])
         // h('pre', JSON.stringify(this.order))
       ]

@@ -1,4 +1,4 @@
-import SortableDataMixin from './sortable-data-mixin.mjs'
+import SortableDataMixin from './mixin/sortable-data-mixin.mjs'
 
 export default {
   name: 'DynamicTableView',

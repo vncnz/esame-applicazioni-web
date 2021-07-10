@@ -1,10 +1,8 @@
-import SortableDataMixin from './sortable-data-mixin.mjs'
 import dynamicTable from './dynamic-table.mjs'
 
 export default {
   name: 'AgentsView',
   template: '#AgentsViewTemplate',
-  mixins: [SortableDataMixin],
   components: { dynamicTable },
   data () {
     return {

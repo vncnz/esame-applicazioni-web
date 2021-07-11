@@ -74,19 +74,20 @@
                     <template v-slot:cust_name="{ value, row }">
                         <span>{{value}}</span>
                         <button type="button" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
+                        <!--<button class="buttonlink" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`">{{value}}</button>-->
                     </template>
                     <template v-slot:ord_date="{ value }">{{value | date}}</template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:advance_amount="{ value }">{{value | currency}}</template>
                     <template v-slot:actions="{ row }">
-                        <button type="button" @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`"><i class="fa fa-fw fa-edit"></i></button>
-                        <button type="button" @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`" v-if="userInfo?.is_agent"><i class="fa fa-fw fa-trash"></i></button>
+                        <button type="button" @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`" class="fab"><i class="fa fa-fw fa-edit"></i></button>
+                        <button type="button" @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`" v-if="userInfo?.is_agent" class="fab"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
                     <template v-slot:tfoot v-if="canCreateNewOrder">
                         <div class="toolbar">
                             <!--<button type="button">Aggiungi</button>
                             <button type="button" :disabled="selected.length === 0">Elimina selezionati</button>-->
-                            <button type="button" title="Crea un nuovo ordine" @click="createNewOrder"><i class="fa fa-fw fa-plus"></i></button>
+                            <button type="button" title="Crea un nuovo ordine" @click="createNewOrder" class="fab"><i class="fa fa-fw fa-plus"></i></button>
                         </div>
                     </template>
                 </dynamic-table>

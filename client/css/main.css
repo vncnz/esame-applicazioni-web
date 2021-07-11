@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 /* https://coolors.co/ad343e-474747-f2af29-000000-fbfefb */
 /* https://www.quicksprout.com/trending-website-color-schemes/ */
 /* https://a11y-101.com/design/button-vs-link */
+
+/* https://codepen.io/vncnz/pen/rzMEMZ recuperare menu */
 :root {
   --whiteee: whitesmoke;
   --black: hsl(173, 43%, 4%);
@@ -25,7 +27,7 @@
 
   --primary: #8d0000; /* darkred */
   --secondary: #77A0A9; /* pewter blue */
-  --white: #fffcff; /* snow */
+  --white: #fafafa;
 
   /* font-size: calc(3mm + .3vw); */
 }
@@ -49,7 +51,9 @@ html, body, #app {
   grid-template-columns: auto 1fr; */
   display: flex;
   flex-direction: column;
-  font-family: Roboto, sans-serif;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  line-height: 1;
   color: var(--black);
   background-color: var(--white);
 }
@@ -64,7 +68,7 @@ header {
   /*background-image: linear-gradient(141deg, #009e6c 0, #00d1b2 71%, #00e7eb 100%);*/
   /*background-color: var(--space-cadet);*/
   color: var(--primary);
-  font-weight: bold;
+  text-transform: uppercase;
 }
 header > *:first-child {
   font-size: 1.6rem;
@@ -83,6 +87,34 @@ header > div {
   align-items: center;
 }
 
+nav a {
+  padding: 0 0.5rem;
+  line-height: 1.8rem;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  position: relative;
+  color: var(--black);
+}
+nav a.router-link-active:before {
+  font-weight: bold;
+}
+nav a:after {
+  position: absolute;
+  display: block;
+  content: '';
+  background: red;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  width: 0%;
+  transform: translate(-50%);
+  transition: width .3s ease;
+}
+nav a:hover:after {
+  width: 100%;
+  width: calc(100% - 2rem);
+}
+/*
 nav a {
   color: var(--black);
   position: relative;
@@ -108,36 +140,15 @@ nav a:before {
 
 nav a span {
   z-index: 1;
-  position: relative; /* necessario perché prenda in considerazione lo z-index */
+  position: relative;
 }
 nav a:hover:before,
 nav a:active:before {
-  /* width: 100%;
-  width: calc(100% - .5rem);*/
   height: calc(100% - .2rem) !important;
-  /*animation: .3s forwards hover-v ease-in;*/
 }
 nav a.router-link-active:before {
   background-color: var(--deep-saffron);
   height: .3rem;
-  /*height: 100%;*/
-}
-/*@keyframes hover-v {
-  0% {
-    background: var(--white);
-    width: 80%;
-    height: .2rem;
-  }
-  35% {
-    background: var(--black);
-    width: 100%;
-    height: .2rem;
-  }
-  100% {
-    background: var(--black);
-    width: 100%;
-    height: 100%;
-  }
 }*/
 
 #router-box {
@@ -253,7 +264,6 @@ button {
   border-radius: 0.3rem;
   padding: .3rem .5rem;
   cursor: pointer;
-  font-size: 110%;
   box-shadow: 2px 2px 0 var(--gray);
   transition: all .15s ease;
   will-change: background-color, transform;
@@ -270,6 +280,71 @@ button:active {
   background-color: var(--deep-saffron);
   transform: translate(2px, 2px);
 }
+
+/*button {
+  display: inline-block;
+  text-decoration: none;
+  background: #3445B3;
+  color: white;
+  padding: .7rem;
+  margin: .3rem .5rem;
+  border-radius: 0;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+button:before {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  position: absolute;
+  content: '';
+  border: 0px solid #6271d1;
+  transition: all .3s ease;
+  will-change: width, height;
+  pointer-events: none;
+}
+button:hover:before,
+button:focus:before {
+  border-width: .25rem;
+}
+
+button.fab {
+  border-radius: 50%;
+  margin: .1rem;
+}
+button.fab:before {
+  border-radius: 50%;
+}
+
+button.buttonlink {
+  background-color: inherit;
+  border: 2px solid #3445B3;
+  color: inherit;
+}
+button.buttonlink::before {
+  display: inline-block;
+  font: normal normal normal 85%/1rem FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  content: "\f08e";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  background: #3445B3;
+  color: white;
+  padding: .2rem;
+  border-radius: 100%;
+}*/
 
 fieldset {
   border: 1px solid lightgray;
@@ -453,6 +528,9 @@ table tbody tr:nth-child(2n) {
 }
 table tbody tr:hover {
   background: var(--space-cadet-light);
+}
+table th {
+  font-weight: 400;
 }
 table th,
 table td {

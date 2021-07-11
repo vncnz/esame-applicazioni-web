@@ -353,6 +353,7 @@ if INIT_CUSTOMERS:
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
+    print(username, password)
     # user = next(filter(lambda u: u[0] == username, users), None)
     user = User.verify(username, password)
     if not user:

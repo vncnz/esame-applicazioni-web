@@ -1,0 +1,39 @@
+{
+  "json": true,
+  "resultsPath": "WCAG21aa-test/results",
+  "resultsPathPerUrl": "", 
+  "axeConfig": {}, 
+  "threshold": 1000,
+  "imagesPath": "WCAG21aa-test/results/images",
+  "timeout": 30000,
+  "debugMode": false,
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "resultTypes": ["violations", "incomplete"],
+  "runOnly": ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice", "ACT"],
+  "crawl": false,
+  "name": "", 
+  "urlsToAnalyze": ["http://localhost:5000/#/ordini"],
+  "login": {
+    "url": "http://localhost:5000/#/accesso",
+    "steps": [
+      {
+        "input": [
+          {
+              "selector": "#username-input",
+              "value": "C00022"
+          },
+          {
+              "selector": "#password-input",
+              "value": "test"
+          }
+        ],
+        "click": "#login-button"
+      }
+    ]
+  }   
+}

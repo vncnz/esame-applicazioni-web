@@ -10,6 +10,18 @@ const { PromiseDialogsWrapper, createPromiseDialog } = window.vuePromiseDialogs
 // retry mechanism: https://gist.github.com/nivv/f41f2bb2486e8057cc0f5c931a67d7bc
 // tabelle accessibili https://adrianroselli.com/2021/04/sortable-table-columns.html
 
+var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+window.mobileType = false
+
+if (/android/i.test(userAgent)) {
+  window.mobileType = "Android"
+}
+
+if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+  window.mobileType = "iOS"
+}
+
 window.currentFocusedElement = null
 window.previousFocusedElement = null
 document.body.addEventListener('focusin', evt => {
@@ -65,7 +77,7 @@ Vue.filter('date', function (value) {
   return `${value.substring(8,10)}/${value.substring(5,7)}/${value.substring(0,4)}`
 })
 
-Vue.directive('col-sortable', {
+/* Vue.directive('col-sortable', {
   inserted (el, binding, vnode) {
     el.className = vnode.context.classiOrdinamento(binding.value)
     vnode.context.$on('sorted', () => {
@@ -77,6 +89,20 @@ Vue.directive('col-sortable', {
       vnode.context.ordinaPerCol(binding.value)
       vnode.context.$emit('sorted')
     })
+  }
+}) */
+
+const interactionClasses = (evt) => {
+  evt.target.classList.add('dirty')
+}
+Vue.directive('interaction-classes', {
+  inserted(el, binding, vnode) {
+    el.addEventListener('change', interactionClasses)
+    el.addEventListener('blur', interactionClasses)
+  },
+  unbind(el, binding, vnode) {
+    el.addEventListener('change', interactionClasses)
+    el.removeEventListener('blur', interactionClasses)
   }
 })
 

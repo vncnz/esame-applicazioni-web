@@ -18,7 +18,7 @@
   --tiffanyblue: #BCECE0;
 
   --buff: hsl(45, 84%, 76%);
-  --deep-saffron: hsl(30, 100%, 60%);
+  --deep-saffron: #E67300;
   --deep-saffron-transparent: hsl(30, 100%, 60%, 0.3);
   --space-cadet: hsl(254, 31%, 27%);
   --space-cadet-light: hsl(254, 31%, 88%);
@@ -36,7 +36,7 @@
 }
 
 html, body, #app {
-  height: 100vh;
+  height: 100%;
 }
 
 #app {
@@ -95,9 +95,9 @@ nav a:before {
   position: absolute;
   display: block;
   content: '';
-  background: var(--buff);
+  background: var(--deep-saffron);
   padding: 0 .2rem;
-  height: .3rem;
+  height: .1rem;
   bottom: .1rem;
   left: 50%;
   width: 100%;
@@ -114,11 +114,12 @@ nav a:hover:before,
 nav a:active:before {
   /* width: 100%;
   width: calc(100% - .5rem);*/
-  height: calc(100% - .2rem);
+  height: calc(100% - .2rem) !important;
   /*animation: .3s forwards hover-v ease-in;*/
 }
 nav a.router-link-active:before {
   background-color: var(--deep-saffron);
+  height: .3rem;
   /*height: 100%;*/
 }
 /*@keyframes hover-v {
@@ -250,9 +251,9 @@ button {
   background-color: var(--white);
   border: 1px solid var(--space-cadet);
   border-radius: 0.3rem;
-  padding: .2rem .5rem;
+  padding: .3rem .5rem;
   cursor: pointer;
-
+  font-size: 110%;
   box-shadow: 2px 2px 0 var(--gray);
   transition: all .15s ease;
   will-change: background-color, transform;
@@ -291,8 +292,19 @@ legend {
 }
 
 .input-box-2 .error-msg {
-  color: red;
-  margin-top: -1rem;
+  color: gray;
+  margin-top: -1.2rem;
+}
+.input-box-2 input.dirty + .error-msg,
+.input-box-2 select.dirty + .error-msg,
+.input-box-2 textarea.dirty + .error-msg {
+  color: orangered;
+}
+
+.input-box-2 input:invalid,
+.input-box-2 select:invalid,
+.input-box-2 textarea:invalid {
+  border-color: orangered;
 }
 
 .input-box-2 input,
@@ -300,12 +312,25 @@ legend {
 .input-box-2 textarea {
   width: 100%;
   margin-left: 1px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   padding: .3rem;
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
+  border: 1px solid var(--gray);
   font-family: inherit;
+}
+
+.input-box-2 select {
+  -moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+	  /*linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);*/
+  background-color: var(--white);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
 }
 
 .input-box {
@@ -474,7 +499,8 @@ table thead th.sticky {
   }
 
   table.responsive tr,
-  table.responsive td {
+  table.responsive td,
+  table.responsive th {
     display: block;
     text-align: right;
     min-height: 2rem;
@@ -485,11 +511,13 @@ table thead th.sticky {
   table.responsive tbody td:nth-child(2n) {
     background: #eee;
   }
-  table.responsive td::before {
+  table.responsive tbody td::before,
+  table.responsive tbody th::before {
     content: attr(data-title);
     float: left;
   }
-  table.responsive td.sticky {
+  table.responsive td.sticky,
+  table.responsive tbody th.sticky {
     position: sticky;
     top: -0.5rem;
     background-color: var(--space-cadet) !important;
@@ -499,7 +527,7 @@ table thead th.sticky {
   }
 
   .dialog {
-    max-width: calc(100% - 2rem);
+    width: calc(100% - 2rem);
     max-height: calc(100% - 2rem);
   }
 }

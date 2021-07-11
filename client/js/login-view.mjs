@@ -1,14 +1,14 @@
 export default {
   name: 'LoginView',
   template: '#LoginViewTemplate',
-  data() {
+  data () {
     return {
-      username: 'A002',
-      password: 'test'
+      username: null, // 'A002',
+      password: null // 'test'
     }
   },
   methods: {
-    accedi() {
+    login () {
       this.$store.dispatch('doLogin', { username: this.username, password: this.password }).then(() => {
         this.internalBus.$emit('notify', {
           id: 'useraccess',
@@ -31,9 +31,6 @@ export default {
           type: 'error'
         })
       })
-    },
-    esci () {
-      this.$store.commit('doLogout')
     }
   }
 }

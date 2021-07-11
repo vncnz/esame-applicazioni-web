@@ -9,14 +9,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
             integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="css/main.css?v=1" />
+        <link rel="stylesheet" href="css/main.css?v=3" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Progetto esame web sessione estiva 2021</title>
         <meta name="description" content="Questa applicazione web è stata sviluppata come progetto per l'esame Siti ed applicazioni web">
     </head>
     <body>
         <div id="app">
-            <notifier></notifier>
+            <notifier role="alert"></notifier>
             <header>
                 <h1>Exam project</h1>
                 <div>
@@ -26,7 +26,7 @@
                         <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
                         <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
                     </nav>
-                    <button type="button" v-if="userInfo" @click="logout" aria-label="Disconnetti l'utente">Esci</button>
+                    <button type="button" v-if="userInfo" @click="logout" aria-label="Esci">Esci</button>
                 </div>
             </header>
             <div id="router-box">
@@ -106,11 +106,10 @@
                     <label for="password-input">Password</label>
                     <input id="password-input" type="password" v-model="password" placeholder=" " />
                 </div>
-                <button type="button" @click="accedi" id="login-button">Accedi</button>
-                <button type="button" @click="esci">Esci</button>
+                <button type="button" @click="login" id="login-button">Accedi</button>
                 <!-- <button type="button" @click="test">Test protected</button> -->
             </div>
         </template>
-        <script type="module" src="js/main.mjs"></script>
+        <script type="module" src="js/main.mjs?v=4"></script>
     </body>
 </html>

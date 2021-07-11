@@ -18,14 +18,15 @@ export default {
   },
   mounted () {
     let firstInput = this.$el.querySelector('input:enabled')
-    if (firstInput) {
-      firstInput.focus()
-    } else {
-      this.$el.querySelector('button:first-child').focus()
+    if (!window.mobileType) {
+      if (firstInput) {
+        firstInput.focus()
+      } else {
+        this.$el.querySelector('button:first-child').focus()
+      }
     }
   },
   beforeCreate () {
-    console.log(document.activeElement)
     this.lastFocusedElement = document.activeElement
   },
   beforeDestroy () {

@@ -20,7 +20,10 @@ export default {
             input: function (event) {
               self.$set(model, key, event.target.value)
             }
-          }
+          },
+          directives: [
+            { name: 'interaction-classes' }
+          ]
         })
       ]
       if (params.error) {
@@ -50,7 +53,10 @@ export default {
             change: function (event) {
               self.$set(model, key, event.target.value)
             }
-          }
+          },
+          directives: [
+            { name: 'interaction-classes' }
+          ]
         }, [h('option', {
           value: null,
           selected: null === model[key]
@@ -89,7 +95,10 @@ export default {
             input: function (event) {
               self.$set(model, key, event.target.value)
             }
-          }
+          },
+          directives: [
+            { name: 'interaction-classes' }
+          ]
         })
       ])
     },

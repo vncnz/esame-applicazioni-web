@@ -27,21 +27,26 @@ export default {
   },
   computed: {
     errors () {
-      let errors = {}
+      let errors = { any: false }
       if (!this.order.ord_date) {
         errors['ord_date'] = 'E\' necessario inserire una data'
+        errors.any = true
       }
       if (!this.order.cust_code) {
         errors['cust_code'] = "E' necessario selezionare un cliente"
+        errors.any = true
       }
       if (this.userInfo.is_manager && !this.order.agent_code) {
         errors['agent_code'] = 'E\' necessario selezionare un agente'
+        errors.any = true
       }
       if (!this.order.advance_amount) {
         errors['advance_amount'] = "E' necessario inserire l'anticipo"
+        errors.any = true
       }
       if (!this.order.ord_amount) {
         errors['ord_amount'] = "E' necessario inserire il totale ordine"
+        errors.any = true
       }
       return errors
     },
@@ -69,20 +74,24 @@ export default {
   },
   methods: {
     save () {
-      this.$store.dispatch(this.order.ord_num ? 'updateOrder' : 'createOrder', this.order).then(response => {
-        this.internalBus.$emit('notify', {
-          id: 'saveOrder' + this.uid,
-          text: 'Ordine salvato con successo',
-          type: 'success'
+      if (this.errors.any) {
+        // TODO
+      } else {
+        this.$store.dispatch(this.order.ord_num ? 'updateOrder' : 'createOrder', this.order).then(response => {
+          this.internalBus.$emit('notify', {
+            id: 'saveOrder' + this.uid,
+            text: 'Ordine salvato con successo',
+            type: 'success'
+          })
+          this.resolve(response)
+        }).catch(err => {
+          this.internalBus.$emit('notify', {
+            id: 'saveOrder' + this.uid,
+            text: err?.msg || 'Si è verificato un errore',
+            type: 'error'
+          })
         })
-        this.resolve(response)
-      }).catch(err => {
-        this.internalBus.$emit('notify', {
-          id: 'saveOrder' + this.uid,
-          text: err?.msg || 'Si è verificato un errore',
-          type: 'error'
-        })
-      })
+      }
     },
     createTitleHtml(h) {
       return this.isNew ? 'Nuovo ordine' : 'Modifica ordine'

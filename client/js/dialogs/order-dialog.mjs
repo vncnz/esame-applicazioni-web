@@ -92,7 +92,7 @@ export default {
         }).catch(err => {
           this.internalBus.$emit('notify', {
             id: 'saveOrder' + this.uid,
-            text: err?.msg || 'Si è verificato un errore',
+            text: err?.body?.msg || 'Si è verificato un errore',
             type: 'error'
           })
         })

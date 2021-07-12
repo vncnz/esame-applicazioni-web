@@ -343,6 +343,40 @@ if INIT_ORDERS:
         db.session.add(o)
     db.session.commit()
 
+#####################
+# ACCESS DECORATORS #
+#####################
+
+from functools import wraps
+def user_agent_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        current_jwt = get_jwt()
+        if not current_jwt['is_agent']:
+            return jsonify({"msg": "Accesso negato"}), 403
+        return f(*args, **kwargs)
+    return decorated_function
+
+def user_manager_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        current_jwt = get_jwt()
+        if not current_jwt['is_manager']:
+            return jsonify({"msg": "Accesso negato"}), 403
+        return f(*args, **kwargs)
+    return decorated_function
+
+def user_agent_or_manager_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        current_jwt = get_jwt()
+        if not (current_jwt['is_agent'] or current_jwt['is_manager']):
+            return jsonify({"msg": "Accesso negato"}), 403
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+
 
 ##################
 #     ACCESS     #
@@ -378,6 +412,7 @@ def refresh():
 
 
 
+
 ##################
 #     ORDERS     #
 ##################
@@ -403,7 +438,7 @@ def deleteOrders (id):
     identity = get_jwt_identity()
     # current_jwt = get_jwt()
     order = Order.get(id)
-    if order and identity == order.agent_code: # current_jwt['is_agent'] superfluo: mi interessa se è un suo ordine, che sia un altro agente o un altro tipo di utente è indifferente
+    if order and identity == order.agent_code: # current_jwt['is_agent'] superfluo: mi interessa se è un suo ordine, che sia un altro agente o un altro tipo di utente è automatico
         order.delete()
         db.commit()
         return '', 200
@@ -412,11 +447,10 @@ def deleteOrders (id):
 
 @app.route("/order/<id>", methods=["PUT"])
 @jwt_required()
+@user_agent_or_manager_required
 def updateOrder(id):
     identity = get_jwt_identity()
     current_jwt = get_jwt()
-    if not (current_jwt['is_agent'] or current_jwt['is_manager']):
-        return jsonify({"msg": "Accesso negato"}), 403
     order = Order.get(id)
     if order and (identity == order.agent_code or current_jwt['is_manager']):
         order.ord_amount = request.json['ord_amount']
@@ -430,27 +464,26 @@ def updateOrder(id):
     else:
         return jsonify({'msg': 'Order not found'}), 404
 
+
+
 @app.route("/order", methods=["POST"])
 @jwt_required()
+@user_agent_required
 def createOrder():
     identity = get_jwt_identity()
-    current_jwt = get_jwt()
-    if not current_jwt['is_agent']:
-        return jsonify({"msg": "Accesso negato"}), 403
-    else:
-        order = Order(
-            # ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6)),
-            # ord_num = random.randint(1, 10000000),
-            ord_amount = request.json['ord_amount'],
-            advance_amount = request.json['advance_amount'],
-            ord_date = request.json['ord_date'],
-            cust_code = request.json['cust_code'],
-            agent_code = identity,
-            order_description = request.json['order_description']
-        )
-        db.session.add(order)
-        db.session.commit()
-        return jsonify(order.toDict()), 200
+    order = Order(
+        # ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6)),
+        # ord_num = random.randint(1, 10000000),
+        ord_amount = request.json['ord_amount'],
+        advance_amount = request.json['advance_amount'],
+        ord_date = request.json['ord_date'],
+        cust_code = request.json['cust_code'],
+        agent_code = identity,
+        order_description = request.json['order_description']
+    )
+    db.session.add(order)
+    db.session.commit()
+    return jsonify(order.toDict()), 200
 
 
 
@@ -466,10 +499,8 @@ def createOrder():
 
 @app.route("/agents", methods=["GET"])
 @jwt_required()
+@user_manager_required
 def agents():
-    current_jwt = get_jwt()
-    if not current_jwt['is_manager']:
-        return jsonify({"msg": "Accesso negato"}), 403
     return jsonify(list(map(lambda a: a.toDict(), Agent.getAll()))), 200
 
 @app.route("/agent/<code>", methods=["GET"])
@@ -482,11 +513,8 @@ def agent(code):
 
 @app.route("/agents-resume", methods=["GET"])
 @jwt_required()
+@user_manager_required
 def agents_resume():
-    current_jwt = get_jwt()
-    allowed = current_jwt['is_manager']
-    if not allowed:
-        return jsonify({"msg": "Accesso negato"}), 403
     return jsonify(list(map(lambda c: { 'name': c.agent_name, 'code': c.agent_code }, Agent.getAll()))), 200
 
 
@@ -524,10 +552,8 @@ def customers_resume():
 
 @app.route("/customer/<code>", methods=["GET"])
 @jwt_required()
+@user_agent_or_manager_required
 def customer(code):
-    current_jwt = get_jwt()
-    if not (current_jwt['is_manager'] or current_jwt['is_agent']):
-        return jsonify({"msg": "Accesso negato"}), 403
     customer = Customer.get(code)
     if not customer:
         return jsonify({'msg': 'Customer not found'}), 404

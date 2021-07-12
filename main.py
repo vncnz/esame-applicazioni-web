@@ -1,9 +1,7 @@
 from datetime import timedelta, date
-# from os import stat
-# from time import sleep
 import enum
 import sys
-# import random, string
+from functools import wraps
 from json import load as jsonload
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -14,6 +12,9 @@ from flask_jwt_extended import get_jwt_identity, get_jwt
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 # https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
+
+from flask.json import JSONEncoder
+
 
 config = None
 
@@ -49,7 +50,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
 
-from flask.json import JSONEncoder
 class CustomJSONEncoder(JSONEncoder):
   "Add support for serializing dates"
 
@@ -343,11 +343,16 @@ if INIT_ORDERS:
         db.session.add(o)
     db.session.commit()
 
+
+
+
+
+
+
 #####################
 # ACCESS DECORATORS #
 #####################
 
-from functools import wraps
 def user_agent_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -569,4 +574,4 @@ def root():
 #     return f'<p>Hello, {name}!</p>'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=False)

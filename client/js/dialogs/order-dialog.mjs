@@ -40,6 +40,11 @@ export default {
         errors['agent_code'] = 'E\' necessario selezionare un agente'
         errors.any = true
       }
+      console.log((this.userInfo.is_agent || this.userInfo.is_manager), this.order.cust_code)
+      if ((this.userInfo.is_agent || this.userInfo.is_manager) && !this.order.cust_code) {
+        errors['cust_code'] = 'E\' necessario selezionare un cliente'
+        errors.any = true
+      }
       if (!this.order.advance_amount) {
         errors['advance_amount'] = "E' necessario inserire l'anticipo"
         errors.any = true
@@ -75,7 +80,7 @@ export default {
   methods: {
     save () {
       if (this.errors.any) {
-        // TODO
+        this.$el.querySelector('.input-box *:invalid').focus()
       } else {
         this.$store.dispatch(this.order.ord_num ? 'updateOrder' : 'createOrder', this.order).then(response => {
           this.internalBus.$emit('notify', {
@@ -115,8 +120,8 @@ export default {
         h('fieldset', orderInfoFields),
         h('fieldset', [
           h('legend', 'Importi'),
-          this.createInputHtml(h, { label: 'Anticipo', type: 'number', placeholder: '100.00', error: this.errors.advance_amount }, this.order, 'advance_amount'),
-          this.createInputHtml(h, { label: 'Totale', type: 'number', placeholder: '1000.00', error: this.errors.ord_amount }, this.order, 'ord_amount')
+          this.createInputHtml(h, { label: 'Anticipo (euro)', type: 'number', placeholder: '100.00', error: this.errors.advance_amount }, this.order, 'advance_amount'),
+          this.createInputHtml(h, { label: 'Totale (euro)', type: 'number', placeholder: '1000.00', error: this.errors.ord_amount }, this.order, 'ord_amount')
         ])
         // h('pre', JSON.stringify(this.order))
       ]

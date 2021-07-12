@@ -3,8 +3,8 @@ export default {
   template: '#LoginViewTemplate',
   data () {
     return {
-      username: 'A002',
-      password: 'test'
+      username: '',
+      password: ''
     }
   },
   methods: {

@@ -34,7 +34,7 @@ export default {
           }, params.error))
       }
       return h('div', {
-        class: 'input-box-2'
+        class: 'input-box'
       }, children)
     },
     createSelectHtml(h, params, model, key) {
@@ -58,8 +58,10 @@ export default {
             { name: 'interaction-classes' }
           ]
         }, [h('option', {
-          value: null,
-          selected: null === model[key]
+          domProps: {
+            value: null,
+            selected: null === model[key]
+          }
         }, '-')].concat(params.options.map(opt => h('option', {
           domProps: {
             value: opt.key,
@@ -75,14 +77,14 @@ export default {
           }, params.error))
       }
       return h('div', {
-        class: 'input-box-2'
+        class: 'input-box'
       }, children)
     },
     createTextareaHtml(h, params, model, key) {
       const self = this
       params = Object.assign({ disabled: false, placeholder: null }, params)
       return h('div', {
-        class: 'input-box-2'
+        class: 'input-box'
       }, [
         h('label', params.label),
         h('textarea', {

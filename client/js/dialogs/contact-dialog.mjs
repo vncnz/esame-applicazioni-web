@@ -1,4 +1,4 @@
-import dialogMixin from './mixin/dialog-mixin.mjs'
+import dialogMixin from '../mixin/dialog-mixin.mjs'
 
 export default {
   name: 'ContactDialog',

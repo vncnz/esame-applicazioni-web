@@ -1,10 +1,10 @@
-import LoginView from './login-view.mjs'
-import OrdersView from './orders-view.mjs'
-import CustomersView from './customers-view.mjs'
-import AgentsView from './agents-view.mjs'
+import LoginView from './views/login-view.mjs'
+import OrdersView from './views/orders-view.mjs'
+import CustomersView from './views/customers-view.mjs'
+import AgentsView from './views/agents-view.mjs'
 import store from './store.mjs'
-import notifier from './notifier.mjs'
-import ContactDialog from './contact-dialog.mjs'
+import notifier from './components/notifier.mjs'
+import ContactDialog from './dialogs/contact-dialog.mjs'
 const { PromiseDialogsWrapper, createPromiseDialog } = window.vuePromiseDialogs
 
 // retry mechanism: https://gist.github.com/nivv/f41f2bb2486e8057cc0f5c931a67d7bc

@@ -1,4 +1,4 @@
-import dynamicTable from './dynamic-table.mjs'
+import dynamicTable from '../components/dynamic-table.mjs'
 
 export default {
   name: 'AgentsView',

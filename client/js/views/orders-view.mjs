@@ -1,7 +1,7 @@
-import dynamicTable from './dynamic-table.mjs'
-import SimpleDialog from './dialogs/simple-dialog.mjs'
-import OrderDialog from './dialogs/order-dialog.mjs'
-import storeMjs from './store.mjs'
+import dynamicTable from '../components/dynamic-table.mjs'
+import SimpleDialog from '../dialogs/simple-dialog.mjs'
+import OrderDialog from '../dialogs/order-dialog.mjs'
+import storeMjs from '../store.mjs'
 const { createPromiseDialog } = window.vuePromiseDialogs
 
 const simpleDialog = createPromiseDialog(SimpleDialog)

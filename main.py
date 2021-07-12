@@ -15,7 +15,6 @@ from flask_jwt_extended import JWTManager
 
 from flask.json import JSONEncoder
 
-
 config = None
 
 with open('server-configuration.json') as configfile:
@@ -60,6 +59,12 @@ class CustomJSONEncoder(JSONEncoder):
         return super().default(value)
 
 app.json_encoder = CustomJSONEncoder
+
+
+
+##################
+#     MODELS     #
+##################
 
 class UserType(enum.Enum):
     customer = 0

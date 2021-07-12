@@ -359,6 +359,7 @@ if INIT_ORDERS:
 #####################
 
 def user_agent_required(f):
+    ''' Decoratore per la protezione delle API che richiedono semplicemente un utente di tipo agente '''
     @wraps(f)
     def decorated_function(*args, **kwargs):
         current_jwt = get_jwt()
@@ -368,6 +369,7 @@ def user_agent_required(f):
     return decorated_function
 
 def user_manager_required(f):
+    ''' Decoratore per la protezione delle API che richiedono semplicemente un utente di tipo dirigente '''
     @wraps(f)
     def decorated_function(*args, **kwargs):
         current_jwt = get_jwt()
@@ -377,6 +379,7 @@ def user_manager_required(f):
     return decorated_function
 
 def user_agent_or_manager_required(f):
+    ''' Decoratore per la protezione delle API che richiedono semplicemente un utente di tipo agente o dirigente '''
     @wraps(f)
     def decorated_function(*args, **kwargs):
         current_jwt = get_jwt()
@@ -394,6 +397,7 @@ def user_agent_or_manager_required(f):
 
 @app.route("/login", methods=["POST"])
 def login():
+    ''' API per l'ottenimento di un JWT '''
     username = request.json.get("username", None)
     password = request.json.get("password", None)
     user = User.verify(username, password)
@@ -412,6 +416,7 @@ def login():
 @app.route("/refreshtoken", methods=["POST"])
 @jwt_required(refresh=False)
 def refresh():
+    ''' API per l'ottenimento di un nuovo JWT prima della scadenza '''
     identity = get_jwt_identity()
     user = User.get(identity)
     if not user:
@@ -430,7 +435,7 @@ def refresh():
 @app.route("/orders", methods=["GET"])
 @jwt_required()
 def orders():
-    # sleep(2)
+    ''' API per ricevere la lista degli ordini filtrata in base al tipo di utenza '''
     identity = get_jwt_identity()
     current_jwt = get_jwt()
     orders_lst = []
@@ -445,6 +450,7 @@ def orders():
 @app.route("/order/<id>", methods=["DELETE"])
 @jwt_required()
 def deleteOrders (id):
+    '''API per l'eliminazione di un ordine'''
     identity = get_jwt_identity()
     # current_jwt = get_jwt()
     order = Order.get(id)
@@ -459,6 +465,7 @@ def deleteOrders (id):
 @jwt_required()
 @user_agent_or_manager_required
 def updateOrder(id):
+    '''API per l'aggiornamento di un ordine'''
     identity = get_jwt_identity()
     current_jwt = get_jwt()
     order = Order.get(id)
@@ -480,6 +487,7 @@ def updateOrder(id):
 @jwt_required()
 @user_agent_required
 def createOrder():
+    '''API per la creazione di un ordine'''
     identity = get_jwt_identity()
     order = Order(
         # ord_num = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6)),
@@ -511,11 +519,13 @@ def createOrder():
 @jwt_required()
 @user_manager_required
 def agents():
+    '''API per ricevere la lista degli agenti completa di dati'''
     return jsonify(list(map(lambda a: a.toDict(), Agent.getAll()))), 200
 
 @app.route("/agent/<code>", methods=["GET"])
 @jwt_required()
 def agent(code):
+    '''API per ottenere i dati di contatto di un agente'''
     agent = Agent.get(code)
     if not agent:
         return jsonify({'msg': 'Agent not found'}), 404
@@ -525,6 +535,7 @@ def agent(code):
 @jwt_required()
 @user_manager_required
 def agents_resume():
+    '''API per ottenere la lista di agenti con solo nome e codice'''
     return jsonify(list(map(lambda c: { 'name': c.agent_name, 'code': c.agent_code }, Agent.getAll()))), 200
 
 
@@ -537,6 +548,7 @@ def agents_resume():
 @app.route("/customers", methods=["GET"])
 @jwt_required()
 def customers():
+    '''API per ricevere la lista clienti filtrata secondo l'utente'''
     current_jwt = get_jwt()
     if current_jwt['is_manager']:
         return jsonify(list(map(lambda cust: cust.toDict(), Customer.getAll()))), 200
@@ -550,6 +562,7 @@ def customers():
 @app.route("/customers-resume", methods=["GET"])
 @jwt_required()
 def customers_resume():
+    '''API per ricevere la lista clienti filtrata secondo l'utente, solo nome e codice'''
     current_jwt = get_jwt()
     if current_jwt['is_manager']:
         return jsonify(list(map(lambda c: { 'name': c.cust_name, 'code': c.cust_code }, Customer.getAll()))), 200
@@ -564,6 +577,7 @@ def customers_resume():
 @jwt_required()
 @user_agent_or_manager_required
 def customer(code):
+    '''API per ricevere i dati di contatto di un cliente'''
     customer = Customer.get(code)
     if not customer:
         return jsonify({'msg': 'Customer not found'}), 404
@@ -572,6 +586,7 @@ def customer(code):
 
 @app.route('/')
 def root():
+    '''Invia l'index.html nel caso l'utente stia cercando di caricare il base address'''
     return app.send_static_file('index.html')
 
 # @app.route("/api/<name>")

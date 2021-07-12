@@ -1,0 +1,60 @@
+{
+    "id": "7d81a4c5-30c3-4bb4-b649-2ee0826a8239",
+    "name": "",
+    "toolOptions": {
+        "runOnly": {
+            "type": "tag",
+            "values": [
+                "wcag2aa",
+                "wcag2a",
+                "wcag21a",
+                "wcag21aa",
+                "best-practice",
+                "ACT",
+                "experimental"
+            ]
+        },
+        "resultTypes": [
+            "violations",
+            "incomplete"
+        ],
+        "reporter": "v1"
+    },
+    "testEngine": {
+        "name": "axe-core",
+        "version": "4.2.3"
+    },
+    "testRunner": {
+        "name": "axe"
+    },
+    "testEnvironment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/90.0.4427.0 Safari/537.36",
+        "windowWidth": 1920,
+        "windowHeight": 1080,
+        "orientationAngle": 0,
+        "orientationType": "portrait-primary"
+    },
+    "timestamp": "2021-07-12T20:20:05.668Z",
+    "analyzedUrls": [
+        "http://192.168.1.7:5000/#/accesso",
+        "http://192.168.1.7:5000/#/ordini"
+    ],
+    "countViolations": 0,
+    "countPasses": 45,
+    "countIncomplete": 6,
+    "countInapplicable": 63,
+    "tabableImages": [
+        {
+            "url": "http://192.168.1.7:5000/#/accesso",
+            "images": [
+                "ad6acd83-a5ec-4f14-a0d2-f55c2f7eef8f_0.png"
+            ]
+        },
+        {
+            "url": "http://192.168.1.7:5000/#/ordini",
+            "images": [
+                "afd0aa6a-dec3-4278-9b50-f8fe5165f379_0.png"
+            ]
+        }
+    ]
+}

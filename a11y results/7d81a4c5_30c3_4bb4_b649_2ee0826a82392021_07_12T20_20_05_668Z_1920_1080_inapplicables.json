@@ -1,0 +1,875 @@
+[
+    {
+        "help": "accesskey attribute value should be unique",
+        "description": "Ensures every accesskey attribute value is unique",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/accesskeys?application=axe-puppeteer",
+        "id": "accesskeys",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Active <area> elements must have alternate text",
+        "description": "Ensures <area> elements of image maps have alternate text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/area-alt?application=axe-puppeteer",
+        "id": "area-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "wcag244",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA commands must have an accessible name",
+        "description": "Ensures every ARIA button, link and menuitem has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-command-name?application=axe-puppeteer",
+        "id": "aria-command-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA dialog and alertdialog nodes should have an accessible name",
+        "description": "Ensures every ARIA dialog and alertdialog node has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-dialog-name?application=axe-puppeteer",
+        "id": "aria-dialog-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA hidden element must not contain focusable elements",
+        "description": "Ensures aria-hidden elements do not contain focusable elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-hidden-focus?application=axe-puppeteer",
+        "id": "aria-hidden-focus",
+        "impact": null,
+        "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA input fields must have an accessible name",
+        "description": "Ensures every ARIA input field has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-input-field-name?application=axe-puppeteer",
+        "id": "aria-input-field-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA meter nodes must have an accessible name",
+        "description": "Ensures every ARIA meter node has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-meter-name?application=axe-puppeteer",
+        "id": "aria-meter-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag111"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA progressbar nodes must have an accessible name",
+        "description": "Ensures every ARIA progressbar node has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-progressbar-name?application=axe-puppeteer",
+        "id": "aria-progressbar-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag111"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Certain ARIA roles must contain particular children",
+        "description": "Ensures elements with an ARIA role that require child roles contain them",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-required-children?application=axe-puppeteer",
+        "id": "aria-required-children",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Certain ARIA roles must be contained by particular parents",
+        "description": "Ensures elements with an ARIA role that require parent roles are contained by them",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-required-parent?application=axe-puppeteer",
+        "id": "aria-required-parent",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Use aria-roledescription on elements with a semantic role",
+        "description": "Ensure aria-roledescription is only used on elements with an implicit or explicit role",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-roledescription?application=axe-puppeteer",
+        "id": "aria-roledescription",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "\"role=text\" should have no focusable descendants",
+        "description": "Ensures \"role=text\" is used on elements with no focusable descendants",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-text?application=axe-puppeteer",
+        "id": "aria-text",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA toggle fields have an accessible name",
+        "description": "Ensures every ARIA toggle field has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-toggle-field-name?application=axe-puppeteer",
+        "id": "aria-toggle-field-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA tooltip nodes must have an accessible name",
+        "description": "Ensures every ARIA tooltip node has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-tooltip-name?application=axe-puppeteer",
+        "id": "aria-tooltip-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "ARIA treeitem nodes should have an accessible name",
+        "description": "Ensures every ARIA treeitem node has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-treeitem-name?application=axe-puppeteer",
+        "id": "aria-treeitem-name",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<audio> elements must have a captions track",
+        "description": "Ensures <audio> elements have captions",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/audio-caption?application=axe-puppeteer",
+        "id": "audio-caption",
+        "impact": null,
+        "tags": [
+            "cat.time-and-media",
+            "wcag2a",
+            "wcag121",
+            "section508",
+            "section508.22.a"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "autocomplete attribute must be used correctly",
+        "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/autocomplete-valid?application=axe-puppeteer",
+        "id": "autocomplete-valid",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "wcag21aa",
+            "wcag135"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Inline text spacing must be adjustable with custom stylesheets",
+        "description": "Ensure that text spacing set through style attributes can be adjusted with custom stylesheets",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/avoid-inline-spacing?application=axe-puppeteer",
+        "id": "avoid-inline-spacing",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "wcag21aa",
+            "wcag1412"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<blink> elements are deprecated and must not be used",
+        "description": "Ensures <blink> elements are not used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/blink?application=axe-puppeteer",
+        "id": "blink",
+        "impact": null,
+        "tags": [
+            "cat.time-and-media",
+            "wcag2a",
+            "wcag222",
+            "section508",
+            "section508.22.j"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Page must have means to bypass repeated blocks",
+        "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/bypass?application=axe-puppeteer",
+        "id": "bypass",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "wcag2a",
+            "wcag241",
+            "section508",
+            "section508.22.o"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
+        "description": "Ensures <dl> elements are structured correctly",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/definition-list?application=axe-puppeteer",
+        "id": "definition-list",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<dt> and <dd> elements must be contained by a <dl>",
+        "description": "Ensures <dt> and <dd> elements are contained by a <dl>",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/dlitem?application=axe-puppeteer",
+        "id": "dlitem",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Elements in the focus order need a role appropriate for interactive content",
+        "description": "Ensures elements in the focus order have an appropriate role",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/focus-order-semantics?application=axe-puppeteer",
+        "id": "focus-order-semantics",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "experimental"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Frames with focusable content must not have tabindex=-1",
+        "description": "Ensures <frame> and <iframe> elements with focusable content do not have tabindex=-1",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/frame-focusable-content?application=axe-puppeteer",
+        "id": "frame-focusable-content",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "wcag2a",
+            "wcag211"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Frames should be tested with axe-core",
+        "description": "Ensures <iframe> and <frame> elements contain the axe-core script",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/frame-tested?application=axe-puppeteer",
+        "id": "frame-tested",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "review-item",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Frames should have a unique title attribute",
+        "description": "Ensures <iframe> and <frame> elements contain a unique title attribute",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/frame-title-unique?application=axe-puppeteer",
+        "id": "frame-title-unique",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Frames must have an accessible name",
+        "description": "Ensures <iframe> and <frame> elements have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/frame-title?application=axe-puppeteer",
+        "id": "frame-title",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag241",
+            "wcag412",
+            "section508",
+            "section508.22.i"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "HTML elements with lang and xml:lang must have the same base language",
+        "description": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/html-xml-lang-mismatch?application=axe-puppeteer",
+        "id": "html-xml-lang-mismatch",
+        "impact": null,
+        "tags": [
+            "cat.language",
+            "wcag2a",
+            "wcag311",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Links with the same name have a similar purpose",
+        "description": "Ensure that links with the same accessible name serve a similar purpose",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/identical-links-same-purpose?application=axe-puppeteer",
+        "id": "identical-links-same-purpose",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "wcag2aaa",
+            "wcag249",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Images must have alternate text",
+        "description": "Ensures <img> elements have alternate text or a role of none or presentation",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/image-alt?application=axe-puppeteer",
+        "id": "image-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Alternative text of images should not be repeated as text",
+        "description": "Ensure image alternative is not repeated as text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/image-redundant-alt?application=axe-puppeteer",
+        "id": "image-redundant-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Input buttons must have discernible text",
+        "description": "Ensures input buttons have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/input-button-name?application=axe-puppeteer",
+        "id": "input-button-name",
+        "impact": null,
+        "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Image buttons must have alternate text",
+        "description": "Ensures <input type=\"image\"> elements have alternate text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/input-image-alt?application=axe-puppeteer",
+        "id": "input-image-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Aside should not be contained in another landmark",
+        "description": "Ensures the complementary landmark or aside is at top level",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-complementary-is-top-level?application=axe-puppeteer",
+        "id": "landmark-complementary-is-top-level",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Links must be distinguished from surrounding text in a way that does not rely on color",
+        "description": "Links can be distinguished without relying on color",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/link-in-text-block?application=axe-puppeteer",
+        "id": "link-in-text-block",
+        "impact": null,
+        "tags": [
+            "cat.color",
+            "experimental",
+            "wcag2a",
+            "wcag141"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Links must have discernible text",
+        "description": "Ensures links have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/link-name?application=axe-puppeteer",
+        "id": "link-name",
+        "impact": null,
+        "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "wcag244",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+        "description": "Ensures that lists are structured correctly",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/list?application=axe-puppeteer",
+        "id": "list",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<li> elements must be contained in a <ul> or <ol>",
+        "description": "Ensures <li> elements are used semantically",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/listitem?application=axe-puppeteer",
+        "id": "listitem",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "wcag2a",
+            "wcag131"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<marquee> elements are deprecated and must not be used",
+        "description": "Ensures <marquee> elements are not used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/marquee?application=axe-puppeteer",
+        "id": "marquee",
+        "impact": null,
+        "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag222"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Timed refresh must not exist",
+        "description": "Ensures <meta http-equiv=\"refresh\"> is not used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/meta-refresh?application=axe-puppeteer",
+        "id": "meta-refresh",
+        "impact": null,
+        "tags": [
+            "cat.time-and-media",
+            "wcag2a",
+            "wcag2aaa",
+            "wcag221",
+            "wcag224",
+            "wcag325"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<object> elements must have alternate text",
+        "description": "Ensures <object> elements have alternate text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/object-alt?application=axe-puppeteer",
+        "id": "object-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Bold, italic text and font-size are not used to style p elements as a heading",
+        "description": "Ensure p elements are not used to style headings",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/p-as-heading?application=axe-puppeteer",
+        "id": "p-as-heading",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "wcag2a",
+            "wcag131",
+            "experimental"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Elements of role none or presentation should be flagged",
+        "description": "Flags elements whose role is none or presentation and which cause the role conflict resolution to trigger.",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/presentation-role-conflict?application=axe-puppeteer",
+        "id": "presentation-role-conflict",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "[role='img'] elements have an alternative text",
+        "description": "Ensures [role='img'] elements have alternate text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/role-img-alt?application=axe-puppeteer",
+        "id": "role-img-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "scope attribute should be used correctly",
+        "description": "Ensures the scope attribute is used correctly on tables",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/scope-attr-valid?application=axe-puppeteer",
+        "id": "scope-attr-valid",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Ensure that scrollable region has keyboard access",
+        "description": "Elements that have scrollable content must be accessible by keyboard",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/scrollable-region-focusable?application=axe-puppeteer",
+        "id": "scrollable-region-focusable",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "wcag2a",
+            "wcag211"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Select element must have an accessible name",
+        "description": "Ensures select element has an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/select-name?application=axe-puppeteer",
+        "id": "select-name",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag412",
+            "wcag131",
+            "section508",
+            "section508.22.n",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Server-side image maps must not be used",
+        "description": "Ensures that server-side image maps are not used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/server-side-image-map?application=axe-puppeteer",
+        "id": "server-side-image-map",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag211",
+            "section508",
+            "section508.22.f"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "The skip-link target should exist and be focusable",
+        "description": "Ensure all skip links have a focusable target",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/skip-link?application=axe-puppeteer",
+        "id": "skip-link",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "svg elements with an img role have an alternative text",
+        "description": "Ensures svg elements with an img, graphics-document or graphics-symbol role have an accessible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/svg-img-alt?application=axe-puppeteer",
+        "id": "svg-img-alt",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag111",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Elements should not have tabindex greater than zero",
+        "description": "Ensures tabindex attribute values are not greater than 0",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/tabindex?application=axe-puppeteer",
+        "id": "tabindex",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "The <caption> element should not contain the same text as the summary attribute",
+        "description": "Ensure that tables do not have the same summary and caption",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/table-duplicate-name?application=axe-puppeteer",
+        "id": "table-duplicate-name",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Data or header cells must not be used to give caption to a data table.",
+        "description": "Ensure that tables with a caption use the <caption> element.",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/table-fake-caption?application=axe-puppeteer",
+        "id": "table-fake-caption",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "experimental",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "All non-empty td element in table larger than 3 by 3 must have an associated table header",
+        "description": "Ensure that each non-empty data cell in a large table has one or more table headers",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/td-has-header?application=axe-puppeteer",
+        "id": "td-has-header",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "experimental",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "All cells in a table element that use the headers attribute must only refer to other cells of that same table",
+        "description": "Ensure that each cell in a table using the headers refers to another cell in that table",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/td-headers-attr?application=axe-puppeteer",
+        "id": "td-headers-attr",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "All th elements and elements with role=columnheader/rowheader must have data cells they describe",
+        "description": "Ensure that each table header in a data table refers to data cells",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/th-has-data-cells?application=axe-puppeteer",
+        "id": "th-has-data-cells",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "lang attribute must have a valid value",
+        "description": "Ensures lang attributes have valid values",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/valid-lang?application=axe-puppeteer",
+        "id": "valid-lang",
+        "impact": null,
+        "tags": [
+            "cat.language",
+            "wcag2aa",
+            "wcag312"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<video> elements must have captions",
+        "description": "Ensures <video> elements have captions",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/video-caption?application=axe-puppeteer",
+        "id": "video-caption",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag122",
+            "section508",
+            "section508.22.a"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "<video> or <audio> elements do not autoplay audio",
+        "description": "Ensures <video> or <audio> elements do not autoplay audio for more than 3 seconds without a control mechanism to stop or mute the audio",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/no-autoplay-audio?application=axe-puppeteer",
+        "id": "no-autoplay-audio",
+        "impact": null,
+        "tags": [
+            "cat.time-and-media",
+            "wcag2a",
+            "wcag142",
+            "experimental"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "IDs of active elements must be unique",
+        "description": "Ensures every id attribute value of active elements is unique",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/duplicate-id-active?application=axe-puppeteer",
+        "id": "duplicate-id-active",
+        "impact": null,
+        "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Form field must not have multiple label elements",
+        "description": "Ensures form field does not have multiple label elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/form-field-multiple-labels?application=axe-puppeteer",
+        "id": "form-field-multiple-labels",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Form elements should have a visible label",
+        "description": "Ensures that every form element is not solely labeled using the title or aria-describedby attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/label-title-only?application=axe-puppeteer",
+        "id": "label-title-only",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "best-practice"
+        ],
+        "nodes": []
+    },
+    {
+        "help": "Form elements must have labels",
+        "description": "Ensures every form element has a label",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/label?application=axe-puppeteer",
+        "id": "label",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag412",
+            "wcag131",
+            "section508",
+            "section508.22.n",
+            "ACT"
+        ],
+        "nodes": []
+    }
+]

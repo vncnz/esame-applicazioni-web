@@ -1,0 +1,1742 @@
+[
+    {
+        "help": "Elements must only use allowed ARIA attributes",
+        "description": "Ensures ARIA attributes are allowed for an element's role",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-allowed-attr?application=axe-puppeteer",
+        "id": "aria-allowed-attr",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" aria-label=\"Esci\">Esci</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "aria-allowed-attr",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "ARIA attributes are used correctly for the defined role"
+                    }
+                ],
+                "none": [
+                    {
+                        "id": "aria-unsupported-attr",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "ARIA attribute is supported"
+                    },
+                    {
+                        "id": "aria-prohibited-attr",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "ARIA attribute is allowed"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "button[aria-label=\"Esci\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "ARIA role should be appropriate for the element",
+        "description": "Ensures role attribute has an appropriate value for the element",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-allowed-role?application=axe-puppeteer",
+        "id": "aria-allowed-role",
+        "impact": "minor",
+        "tags": [
+            "cat.aria",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"notify\" role=\"alert\"><span></span></div>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "aria-allowed-role",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "minor",
+                        "message": "ARIA role is allowed for given element"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "#notify"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "aria-hidden='true' must not be present on the document body",
+        "description": "Ensures aria-hidden='true' is not present on the document body.",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-hidden-body?application=axe-puppeteer",
+        "id": "aria-hidden-body",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<body>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "aria-hidden-body",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "No aria-hidden attribute is present on document body"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "body"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Required ARIA attributes must be provided",
+        "description": "Ensures elements with ARIA roles have all required ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-required-attr?application=axe-puppeteer",
+        "id": "aria-required-attr",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"notify\" role=\"alert\"><span></span></div>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "aria-required-attr",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "All required ARIA attributes are present"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "#notify"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "ARIA roles used must conform to valid values",
+        "description": "Ensures all elements with a role attribute use a valid value",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-roles?application=axe-puppeteer",
+        "id": "aria-roles",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"notify\" role=\"alert\"><span></span></div>",
+                "all": [],
+                "any": [],
+                "none": [
+                    {
+                        "id": "fallbackrole",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Only one role value used"
+                    },
+                    {
+                        "id": "invalidrole",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "ARIA role is valid"
+                    },
+                    {
+                        "id": "abstractrole",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Abstract roles are not used"
+                    },
+                    {
+                        "id": "unsupportedrole",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "ARIA role is supported"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "#notify"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "ARIA attributes must conform to valid values",
+        "description": "Ensures all ARIA attributes have valid values",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-valid-attr-value?application=axe-puppeteer",
+        "id": "aria-valid-attr-value",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" aria-label=\"Esci\">Esci</button>",
+                "all": [
+                    {
+                        "id": "aria-valid-attr-value",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "ARIA attribute values are valid"
+                    },
+                    {
+                        "id": "aria-errormessage",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "aria-errormessage exists and references elements visible to screen readers that use a supported aria-errormessage technique"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "button[aria-label=\"Esci\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "ARIA attributes must conform to valid names",
+        "description": "Ensures attributes that begin with aria- are valid ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/aria-valid-attr?application=axe-puppeteer",
+        "id": "aria-valid-attr",
+        "impact": null,
+        "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" aria-label=\"Esci\">Esci</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "aria-valid-attr",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "ARIA attribute name is valid"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "button[aria-label=\"Esci\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Buttons must have discernible text",
+        "description": "Ensures buttons have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/button-name?application=axe-puppeteer",
+        "id": "button-name",
+        "impact": null,
+        "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "ACT"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" aria-label=\"Esci\">Esci</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "button-has-visible-text",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "Element has inner text that is visible to screen readers"
+                    },
+                    {
+                        "id": "aria-label",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "aria-label attribute exists and is not empty"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "button[aria-label=\"Esci\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Elements must have sufficient color contrast",
+        "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/color-contrast?application=axe-puppeteer",
+        "id": "color-contrast",
+        "impact": null,
+        "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+        ],
+        "nodes": [
+            {
+                "html": "<h1>Exam project</h1>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "color-contrast",
+                        "data": {
+                            "fgColor": "#8d0000",
+                            "bgColor": "#fafafa",
+                            "contrastRatio": 9.43,
+                            "fontSize": "19.2pt (25.6px)",
+                            "fontWeight": "bold",
+                            "expectedContrastRatio": "3:1"
+                        },
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Element has sufficient color contrast of 9.43"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "h1"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Documents must have <title> element to aid in navigation",
+        "description": "Ensures each HTML document contains a non-empty <title> element",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/document-title?application=axe-puppeteer",
+        "id": "document-title",
+        "impact": null,
+        "tags": [
+            "cat.text-alternatives",
+            "wcag2a",
+            "wcag242",
+            "ACT"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "doc-has-title",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Document has a non-empty <title> element"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "IDs of active elements must be unique",
+        "description": "Ensures every id attribute value of active elements is unique",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/duplicate-id-active?application=axe-puppeteer",
+        "id": "duplicate-id-active",
+        "impact": null,
+        "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" id=\"login-button\">Accedi</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "duplicate-id-active",
+                        "data": "login-button",
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Document has no active elements that share the same id attribute"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso"
+                    ],
+                    "target": [
+                        "#login-button"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "IDs used in ARIA and labels must be unique",
+        "description": "Ensures every id attribute value used in ARIA and in labels is unique",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/duplicate-id-aria?application=axe-puppeteer",
+        "id": "duplicate-id-aria",
+        "impact": null,
+        "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+        ],
+        "nodes": [
+            {
+                "html": "<input type=\"checkbox\" role=\"button\" id=\"menuopened\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "duplicate-id-aria",
+                        "data": "menuopened",
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "Document has no elements referenced with ARIA or labels that share the same id attribute"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "#menuopened"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "id attribute value must be unique",
+        "description": "Ensures every id attribute value is unique",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/duplicate-id?application=axe-puppeteer",
+        "id": "duplicate-id",
+        "impact": null,
+        "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag411"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"app\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "duplicate-id",
+                        "data": "app",
+                        "relatedNodes": [],
+                        "impact": "minor",
+                        "message": "Document has no static elements that share the same id attribute"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "#app"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Headings should not be empty",
+        "description": "Ensures headings have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/empty-heading?application=axe-puppeteer",
+        "id": "empty-heading",
+        "impact": null,
+        "tags": [
+            "cat.name-role-value",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<h1>Exam project</h1>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "has-visible-text",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "minor",
+                        "message": "Element has text that is visible to screen readers"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "h1"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Form field must not have multiple label elements",
+        "description": "Ensures form field does not have multiple label elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/form-field-multiple-labels?application=axe-puppeteer",
+        "id": "form-field-multiple-labels",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332"
+        ],
+        "nodes": [
+            {
+                "html": "<input id=\"username-input\" type=\"text\" placeholder=\" \">",
+                "all": [],
+                "any": [],
+                "none": [
+                    {
+                        "id": "multiple-label",
+                        "data": null,
+                        "relatedNodes": [
+                            {
+                                "html": "<label for=\"username-input\">Nome utente</label>",
+                                "target": [
+                                    "label[for=\"username-input\"]"
+                                ]
+                            }
+                        ],
+                        "impact": "moderate",
+                        "message": "Form field does not have multiple label elements"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso"
+                    ],
+                    "target": [
+                        "#username-input"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Heading levels should only increase by one",
+        "description": "Ensures the order of headings is semantically correct",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/heading-order?application=axe-puppeteer",
+        "id": "heading-order",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<h1>Exam project</h1>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "heading-order",
+                        "data": {
+                            "headingOrder": [
+                                {
+                                    "ancestry": [
+                                        "html > body > div:nth-child(1) > header:nth-child(2) > h1:nth-child(1)"
+                                    ],
+                                    "level": 1
+                                }
+                            ]
+                        },
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Heading order valid"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "h1"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Hidden content on the page cannot be analyzed",
+        "description": "Informs users about hidden content.",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/hidden-content?application=axe-puppeteer",
+        "id": "hidden-content",
+        "impact": "minor",
+        "tags": [
+            "cat.structure",
+            "experimental",
+            "review-item",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "hidden-content",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "minor",
+                        "message": "All content on the page has been analyzed."
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "<html> element must have a lang attribute",
+        "description": "Ensures every HTML document has a lang attribute",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/html-has-lang?application=axe-puppeteer",
+        "id": "html-has-lang",
+        "impact": null,
+        "tags": [
+            "cat.language",
+            "wcag2a",
+            "wcag311",
+            "ACT"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "has-lang",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "The <html> element has a lang attribute"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "<html> element must have a valid value for the lang attribute",
+        "description": "Ensures the lang attribute of the <html> element has a valid value",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/html-lang-valid?application=axe-puppeteer",
+        "id": "html-lang-valid",
+        "impact": null,
+        "tags": [
+            "cat.language",
+            "wcag2a",
+            "wcag311",
+            "ACT"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [],
+                "any": [],
+                "none": [
+                    {
+                        "id": "valid-lang",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Value of lang attribute is included in the list of valid languages"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Elements must have their visible text as part of their accessible name",
+        "description": "Ensures that elements labelled through their content must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/label-content-name-mismatch?application=axe-puppeteer",
+        "id": "label-content-name-mismatch",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "wcag21a",
+            "wcag253",
+            "experimental"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" aria-label=\"Esci\">Esci</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "label-content-name-mismatch",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Element contains visible text as part of it's accessible name"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "button[aria-label=\"Esci\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Form elements should have a visible label",
+        "description": "Ensures that every form element is not solely labeled using the title or aria-describedby attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/label-title-only?application=axe-puppeteer",
+        "id": "label-title-only",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<input id=\"username-input\" type=\"text\" placeholder=\" \">",
+                "all": [],
+                "any": [],
+                "none": [
+                    {
+                        "id": "title-only",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Form element does not solely use title attribute for its label"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso"
+                    ],
+                    "target": [
+                        "#username-input"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Form elements must have labels",
+        "description": "Ensures every form element has a label",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/label?application=axe-puppeteer",
+        "id": "label",
+        "impact": null,
+        "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag412",
+            "wcag131",
+            "section508",
+            "section508.22.n",
+            "ACT"
+        ],
+        "nodes": [
+            {
+                "html": "<input id=\"username-input\" type=\"text\" placeholder=\" \">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "explicit-label",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "Form element has an explicit <label>"
+                    }
+                ],
+                "none": [
+                    {
+                        "id": "hidden-explicit-label",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "Form element has a visible explicit <label>"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso"
+                    ],
+                    "target": [
+                        "#username-input"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Banner landmark should not be contained in another landmark",
+        "description": "Ensures the banner landmark is at top level",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-banner-is-top-level?application=axe-puppeteer",
+        "id": "landmark-banner-is-top-level",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<header><h1>Exam project</h1> <div><input type=\"checkbox\" role=\"button\" id=\"menuopened\"> <label for=\"menuopened\" id=\"menuopenedlabel\">Menu</label> <label for=\"menuopened\" id=\"menuglass\"></label> <nav><!----> <!----> <!----> <button type=\"button\" aria-label=\"Esci\">Esci</button></nav></div></header>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "landmark-is-top-level",
+                        "data": {
+                            "role": "banner"
+                        },
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "The banner landmark is at the top level."
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "header"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Contentinfo landmark should not be contained in another landmark",
+        "description": "Ensures the contentinfo landmark is at top level",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-contentinfo-is-top-level?application=axe-puppeteer",
+        "id": "landmark-contentinfo-is-top-level",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<footer>\n                Creato da Vincenzo Minolfi\n            </footer>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "landmark-is-top-level",
+                        "data": {
+                            "role": "contentinfo"
+                        },
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "The contentinfo landmark is at the top level."
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "footer"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Main landmark should not be contained in another landmark",
+        "description": "Ensures the main landmark is at top level",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-main-is-top-level?application=axe-puppeteer",
+        "id": "landmark-main-is-top-level",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"login-box\" role=\"main\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "landmark-is-top-level",
+                        "data": {
+                            "role": "main"
+                        },
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "The main landmark is at the top level."
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso"
+                    ],
+                    "target": [
+                        "#login-box"
+                    ]
+                }
+            },
+            {
+                "none": [],
+                "any": [
+                    {
+                        "id": "landmark-is-top-level",
+                        "data": {
+                            "role": "main"
+                        },
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "The main landmark is at the top level."
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "div[role=\"main\"]"
+                    ]
+                },
+                "all": [],
+                "html": "<div role=\"main\">"
+            }
+        ]
+    },
+    {
+        "help": "Document should not have more than one banner landmark",
+        "description": "Ensures the document has at most one banner landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-no-duplicate-banner?application=axe-puppeteer",
+        "id": "landmark-no-duplicate-banner",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<header><h1>Exam project</h1> <div><input type=\"checkbox\" role=\"button\" id=\"menuopened\"> <label for=\"menuopened\" id=\"menuopenedlabel\">Menu</label> <label for=\"menuopened\" id=\"menuglass\"></label> <nav><!----> <!----> <!----> <button type=\"button\" aria-label=\"Esci\">Esci</button></nav></div></header>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "page-no-duplicate-banner",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Document does not have more than one banner landmark"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "header"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Document should not have more than one contentinfo landmark",
+        "description": "Ensures the document has at most one contentinfo landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-no-duplicate-contentinfo?application=axe-puppeteer",
+        "id": "landmark-no-duplicate-contentinfo",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<footer>\n                Creato da Vincenzo Minolfi\n            </footer>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "page-no-duplicate-contentinfo",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Document does not have more than one contentinfo landmark"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "footer"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Document should not have more than one main landmark",
+        "description": "Ensures the document has at most one main landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-no-duplicate-main?application=axe-puppeteer",
+        "id": "landmark-no-duplicate-main",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"login-box\" role=\"main\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "page-no-duplicate-main",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Document does not have more than one main landmark"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso"
+                    ],
+                    "target": [
+                        "#login-box"
+                    ]
+                }
+            },
+            {
+                "none": [],
+                "any": [
+                    {
+                        "id": "page-no-duplicate-main",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Document does not have more than one main landmark"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "div[role=\"main\"]"
+                    ]
+                },
+                "all": [],
+                "html": "<div role=\"main\">"
+            }
+        ]
+    },
+    {
+        "help": "Document should have one main landmark",
+        "description": "Ensures the document has a main landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-one-main?application=axe-puppeteer",
+        "id": "landmark-one-main",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [
+                    {
+                        "id": "page-has-main",
+                        "data": null,
+                        "relatedNodes": [
+                            {
+                                "html": "<div id=\"login-box\" role=\"main\">",
+                                "target": [
+                                    "#login-box"
+                                ]
+                            }
+                        ],
+                        "impact": "moderate",
+                        "message": "Document has at least one main landmark"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Ensures landmarks are unique",
+        "description": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/landmark-unique?application=axe-puppeteer",
+        "id": "landmark-unique",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<header><h1>Exam project</h1> <div><input type=\"checkbox\" role=\"button\" id=\"menuopened\"> <label for=\"menuopened\" id=\"menuopenedlabel\">Menu</label> <label for=\"menuopened\" id=\"menuglass\"></label> <nav><!----> <!----> <!----> <button type=\"button\" aria-label=\"Esci\">Esci</button></nav></div></header>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "landmark-is-unique",
+                        "data": {
+                            "role": "banner",
+                            "accessibleText": null
+                        },
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "header"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Users should be able to zoom and scale the text up to 500%",
+        "description": "Ensures <meta name=\"viewport\"> can scale a significant amount",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/meta-viewport-large?application=axe-puppeteer",
+        "id": "meta-viewport-large",
+        "impact": null,
+        "tags": [
+            "cat.sensory-and-visual-cues",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "meta-viewport-large",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "minor",
+                        "message": "<meta> tag does not prevent significant zooming on mobile devices"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "meta[name=\"viewport\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Zooming and scaling should not be disabled",
+        "description": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/meta-viewport?application=axe-puppeteer",
+        "id": "meta-viewport",
+        "impact": null,
+        "tags": [
+            "cat.sensory-and-visual-cues",
+            "best-practice",
+            "ACT"
+        ],
+        "nodes": [
+            {
+                "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "meta-viewport",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "<meta> tag does not disable zooming on mobile devices"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "meta[name=\"viewport\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Ensure interactive controls are not nested",
+        "description": "Nested interactive controls are not announced by screen readers",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/nested-interactive?application=axe-puppeteer",
+        "id": "nested-interactive",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "wcag2a",
+            "wcag412"
+        ],
+        "nodes": [
+            {
+                "html": "<button type=\"button\" aria-label=\"Esci\">Esci</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "no-focusable-content",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Element does not have focusable descendants"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "button[aria-label=\"Esci\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Page should contain a level-one heading",
+        "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/page-has-heading-one?application=axe-puppeteer",
+        "id": "page-has-heading-one",
+        "impact": null,
+        "tags": [
+            "cat.semantics",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [
+                    {
+                        "id": "page-has-heading-one",
+                        "data": null,
+                        "relatedNodes": [
+                            {
+                                "html": "<h1>Exam project</h1>",
+                                "target": [
+                                    "h1"
+                                ]
+                            }
+                        ],
+                        "impact": "moderate",
+                        "message": "Page has at least one level-one heading"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "All page content should be contained by landmarks",
+        "description": "Ensures all page content is contained by landmarks",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/region?application=axe-puppeteer",
+        "id": "region",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<div id=\"app\">",
+                "all": [],
+                "any": [
+                    {
+                        "id": "region",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "All page content is contained by landmarks"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "#app"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "CSS Media queries are not used to lock display orientation",
+        "description": "Ensures content is not locked to any specific display orientation, and the content is operable in all display orientations",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/css-orientation-lock?application=axe-puppeteer",
+        "id": "css-orientation-lock",
+        "impact": null,
+        "tags": [
+            "cat.structure",
+            "wcag134",
+            "wcag21aa",
+            "experimental"
+        ],
+        "nodes": [
+            {
+                "html": "<html lang=\"it\">",
+                "all": [
+                    {
+                        "id": "css-orientation-lock",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Display is operable, and orientation lock does not exist"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/accesso",
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "html"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "scope attribute should be used correctly",
+        "description": "Ensures the scope attribute is used correctly on tables",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/scope-attr-valid?application=axe-puppeteer",
+        "id": "scope-attr-valid",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<th class=\"sticky sortable unsorted\" scope=\"col\"><div><span>Numero</span><button class=\"fab\" title=\"Ordina per Numero\" type=\"button\"><i class=\"fa fa-fw fa-sort unsorted\"></i></button></div></th>",
+                "all": [
+                    {
+                        "id": "html5-scope",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "moderate",
+                        "message": "Scope attribute is only used on table header elements (<th>)"
+                    },
+                    {
+                        "id": "scope-value",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "Scope attribute is used correctly"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        ".sticky.sortable[scope=\"col\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Elements should not have tabindex greater than zero",
+        "description": "Ensures tabindex attribute values are not greater than 0",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/tabindex?application=axe-puppeteer",
+        "id": "tabindex",
+        "impact": null,
+        "tags": [
+            "cat.keyboard",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<button tabindex=\"0\" title=\"Apri agente Mukesh\" class=\"buttonlink\">Mukesh</button>",
+                "all": [],
+                "any": [
+                    {
+                        "id": "tabindex",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "Element does not have a tabindex greater than 0"
+                    }
+                ],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "tr:nth-child(1) > td[data-title=\"Agente\"] > .buttonlink[title=\"Apri\\ agente\\ Mukesh\"]"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "The <caption> element should not contain the same text as the summary attribute",
+        "description": "Ensure that tables do not have the same summary and caption",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/table-duplicate-name?application=axe-puppeteer",
+        "id": "table-duplicate-name",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "best-practice"
+        ],
+        "nodes": [
+            {
+                "html": "<table class=\"responsive\">",
+                "all": [],
+                "any": [],
+                "none": [
+                    {
+                        "id": "same-caption-summary",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "minor",
+                        "message": "Content of summary attribute and <caption> are not duplicated"
+                    }
+                ],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "table"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "Data or header cells must not be used to give caption to a data table.",
+        "description": "Ensure that tables with a caption use the <caption> element.",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/table-fake-caption?application=axe-puppeteer",
+        "id": "table-fake-caption",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "experimental",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": [
+            {
+                "html": "<table class=\"responsive\">",
+                "all": [
+                    {
+                        "id": "caption-faked",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "The first row of a table is not used as a caption"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "table"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "All non-empty td element in table larger than 3 by 3 must have an associated table header",
+        "description": "Ensure that each non-empty data cell in a large table has one or more table headers",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/td-has-header?application=axe-puppeteer",
+        "id": "td-has-header",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "experimental",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": [
+            {
+                "html": "<table class=\"responsive\">",
+                "all": [
+                    {
+                        "id": "td-has-header",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "critical",
+                        "message": "All non-empty data cells have table headers"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "table"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "All cells in a table element that use the headers attribute must only refer to other cells of that same table",
+        "description": "Ensure that each cell in a table using the headers refers to another cell in that table",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/td-headers-attr?application=axe-puppeteer",
+        "id": "td-headers-attr",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": [
+            {
+                "html": "<table class=\"responsive\">",
+                "all": [
+                    {
+                        "id": "td-headers-attr",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "The headers attribute is exclusively used to refer to other cells in the table"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "table"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "help": "All th elements and elements with role=columnheader/rowheader must have data cells they describe",
+        "description": "Ensure that each table header in a data table refers to data cells",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.2/th-has-data-cells?application=axe-puppeteer",
+        "id": "th-has-data-cells",
+        "impact": null,
+        "tags": [
+            "cat.tables",
+            "wcag2a",
+            "wcag131",
+            "section508",
+            "section508.22.g"
+        ],
+        "nodes": [
+            {
+                "html": "<table class=\"responsive\">",
+                "all": [
+                    {
+                        "id": "th-has-data-cells",
+                        "data": null,
+                        "relatedNodes": [],
+                        "impact": "serious",
+                        "message": "All table header cells refer to data cells"
+                    }
+                ],
+                "any": [],
+                "none": [],
+                "targetResult": {
+                    "urls": [
+                        "http://192.168.1.7:5000/#/ordini"
+                    ],
+                    "target": [
+                        "table"
+                    ]
+                }
+            }
+        ]
+    }
+]

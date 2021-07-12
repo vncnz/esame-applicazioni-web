@@ -37,20 +37,5 @@ export default {
       }, notification)
       this.notifications.push(notification)
     })
-    /* function makeid(length) {
-      var result           = '';
-      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789        ';
-      var charactersLength = characters.length;
-      for ( var i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      }
-      return result;
-    } */
-    /* setInterval(() => {
-      this.$emit('notify', {
-        text: makeid(Math.random() * 30),
-        type: Math.random() > 0.45 ? 'success' : 'error'
-      })
-    }, 3565) */
   }
 }

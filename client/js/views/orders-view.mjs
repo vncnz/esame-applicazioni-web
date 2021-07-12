@@ -74,6 +74,11 @@ export default {
           window.previousFocusedElement?.focus()
         } else {
           storeMjs.dispatch('deleteOrder', row.ord_num).then(() => {
+            this.internalBus.$emit('notify', {
+              id: 'deleteOrder' + this.uid,
+              text: 'Ordine salvato con successo',
+              type: 'success'
+            })
             this.results = this.results.filter(r => r !== row)
           }).catch(() => {
             simpleDialog({ text: 'Si è verificato un errore' })

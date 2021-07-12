@@ -33,7 +33,17 @@ export default {
         this.sortedBy = col
         this.sortedAsc = true
       }
-      this.$router.replace({ ...this.$route.query, sortedby: this.sortby, sortedasc: this.sortedAsc })
+      this.$router.replace({ query: { ...this.$route.query, sortedby: this.sortedBy, sortedasc: this.sortedAsc }})
+    }
+  },
+  mounted () {
+    if (this.$route.query) {
+      if (this.$route.query.sortedasc !== undefined) {
+        this.sortedAsc = this.$route.query.sortedasc
+      }
+      if (this.$route.query.sortedby) {
+        this.sortedBy = this.$route.query.sortedby
+      }
     }
   }
 }

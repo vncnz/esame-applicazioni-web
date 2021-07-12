@@ -439,8 +439,8 @@ def deleteOrders (id):
     # current_jwt = get_jwt()
     order = Order.get(id)
     if order and identity == order.agent_code: # current_jwt['is_agent'] superfluo: mi interessa se è un suo ordine, che sia un altro agente o un altro tipo di utente è automatico
-        order.delete()
-        db.commit()
+        db.session.delete(order)
+        db.session.commit()
         return '', 200
     else:
         return jsonify({"msg": "Accesso negato"}), 403

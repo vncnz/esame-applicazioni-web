@@ -11,6 +11,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="css/main.css?v=3" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
         <title>Progetto esame web sessione estiva 2021</title>
         <meta name="description" content="Questa applicazione web è stata sviluppata come progetto per l'esame Siti ed applicazioni web">
     </head>
@@ -20,13 +21,16 @@
             <header>
                 <h1>Exam project</h1>
                 <div>
+                    <input type="checkbox" role="button" id="menuopened" v-model="menuOpened" />
+                    <label for="menuopened" id="menuopenedlabel" v-if="userInfo">Menu</label>
+                    <label for="menuopened" id="menuglass"></label>
                     <nav>
                         <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
                         <router-link to="/ordini" v-if="userInfo" aria-label="Vai agli ordini"><span>Ordini</span></router-link>
                         <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
                         <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
+                        <button type="button" v-if="userInfo" @click="logout" aria-label="Esci">Esci</button>
                     </nav>
-                    <button type="button" v-if="userInfo" @click="logout" aria-label="Esci">Esci</button>
                 </div>
             </header>
             <div id="router-box">
@@ -53,9 +57,7 @@
             <div>
                 <dynamic-table :datalist="results" :columns="columns">
                     <template v-slot:agent_name="{ value, row }">
-                        <span>{{value}}</span>
-                        <button type="button" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i
-                                class="fa fa-fw fa-external-link"></i></button>
+                        <button class="buttonlink" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`">{{value}}</button>
                     </template>
                     <template v-slot:opening_amt="{ value }">{{value | currency}}</template>
                     <template v-slot:receive_amt="{ value }">{{value | currency}}</template>
@@ -68,13 +70,12 @@
             <div>
                 <dynamic-table :datalist="results" :columns="columns"><!-- v-model="selected" :sel-key="userInfo?.is_customer ? null : 'ord_num'" -->
                     <template v-slot:agent_name="{ value, row }">
-                        <span>{{value}}</span>
-                        <button type="button" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
+                        <button class="buttonlink" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`">{{value}}</button>
                     </template>
                     <template v-slot:cust_name="{ value, row }">
-                        <span>{{value}}</span>
-                        <button type="button" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>
-                        <!--<button class="buttonlink" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`">{{value}}</button>-->
+                        <!--<span>{{value}}</span>
+                        <button type="button" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`" class="on-right"><i class="fa fa-fw fa-external-link"></i></button>-->
+                        <button class="buttonlink" @click="openCustomerInfo(row.cust_code)" tabindex="0" :title="`Apri cliente ${value}`">{{value}}</button>
                     </template>
                     <template v-slot:ord_date="{ value }">{{value | date}}</template>
                     <template v-slot:ord_amount="{ value }">{{value | currency}}</template>
@@ -87,7 +88,7 @@
                         <div class="toolbar">
                             <!--<button type="button">Aggiungi</button>
                             <button type="button" :disabled="selected.length === 0">Elimina selezionati</button>-->
-                            <button type="button" title="Crea un nuovo ordine" @click="createNewOrder" class="fab"><i class="fa fa-fw fa-plus"></i></button>
+                            <button type="button" title="Crea un nuovo ordine" @click="createNewOrder"><i class="fa fa-fw fa-plus"></i>&nbsp;Nuovo</button>
                         </div>
                     </template>
                 </dynamic-table>
@@ -99,11 +100,11 @@
         </template>
         <template id="LoginViewTemplate">
             <div id="login-box">
-                <div class="input-box-2">
+                <div class="input-box">
                     <label for="username-input">Nome utente</label>
                     <input id="username-input" type="text" v-model="username" placeholder=" " />
                 </div>
-                <div class="input-box-2">
+                <div class="input-box">
                     <label for="password-input">Password</label>
                     <input id="password-input" type="password" v-model="password" placeholder=" " />
                 </div>

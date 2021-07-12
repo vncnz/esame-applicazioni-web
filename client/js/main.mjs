@@ -180,6 +180,11 @@ const router = new VueRouter({
   router,
   store,
   components: { PromiseDialogsWrapper, notifier },
+  data () {
+    return {
+      menuOpened: false
+    }
+  },
   methods: {
     logout () {
       this.$store.commit('doLogout')
@@ -200,6 +205,13 @@ const router = new VueRouter({
         this.$store.dispatch('refreshToken')
       }
     }, 20000)
+    this.internalBus.$on('closeMenu', () => {
+      this.menuOpened = false
+    })
+    router.beforeEach((_to, _from, next) => {
+      this.menuOpened = false
+      next()
+    })
   },
   beforeDestroy () {
     clearInterval(this.tokenInterval)
@@ -207,6 +219,7 @@ const router = new VueRouter({
   watch: {
     userToken (newV) {
       if (!newV) {
+        this.menuOpened = false
         this.$router.push('/accesso')
       }
     }

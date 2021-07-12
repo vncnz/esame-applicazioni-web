@@ -387,6 +387,10 @@ table {
   border-spacing: 0;
   min-width: 100%;
 }
+table caption {
+  text-align: left;
+  font-weight: bold;
+}
 table tr {
   background: var(--white);
 }

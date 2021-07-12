@@ -26,9 +26,9 @@
                     <label for="menuopened" id="menuglass"></label>
                     <nav>
                         <!-- Negli ordini mettere v-if="userInfo?.is_agente || userInfo?.is_manager" perché è inutile mostrare un'unica voce di menu -->
-                        <router-link to="/ordini" v-if="userInfo" aria-label="Vai agli ordini"><span>Ordini</span></router-link>
-                        <router-link to="/agenti" v-if="userInfo?.is_manager"><span>Agenti</span></router-link>
-                        <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager"><span>Clienti</span></router-link>
+                        <router-link to="/ordini" v-if="userInfo?.is_agent || userInfo?.is_manager" aria-label="Vai agli ordini"><span>Ordini</span></router-link>
+                        <router-link to="/agenti" v-if="userInfo?.is_manager" aria-label="Vai agli agenti"><span>Agenti</span></router-link>
+                        <router-link to="/clienti" v-if="userInfo?.is_agent || userInfo?.is_manager" aria-label="Vai ai clienti"><span>Clienti</span></router-link>
                         <button type="button" v-if="userInfo" @click="logout" aria-label="Esci">Esci</button>
                     </nav>
                 </div>
@@ -63,12 +63,16 @@
                     <template v-slot:receive_amt="{ value }">{{value | currency}}</template>
                     <template v-slot:payment_amt="{ value }">{{value | currency}}</template>
                     <template v-slot:outstanding_amt="{ value }">{{value | currency}}</template>
+                    <template v-slot:caption>
+                        <span v-if="userInfo?.is_agent">Lista dei clienti da te seguiti</span>
+                        <span v-if="userInfo?.is_manager">Lista di tutti i clienti presenti nel sistema</span>
+                    </template>
                 </dynamic-table>
             </div>
         </template>
         <template id="OrdersViewTemplate">
             <div>
-                <dynamic-table :datalist="results" :columns="columns"><!-- v-model="selected" :sel-key="userInfo?.is_customer ? null : 'ord_num'" -->
+                <dynamic-table :datalist="results" :columns="columns">
                     <template v-slot:agent_name="{ value, row }">
                         <button class="buttonlink" @click="openAgentInfo(row.agent_code)" tabindex="0" :title="`Apri agente ${value}`">{{value}}</button>
                     </template>
@@ -84,6 +88,11 @@
                         <button type="button" @click="editOrder(row)" :title="`Modifica l'ordine ${row.ord_num}`" class="fab"><i class="fa fa-fw fa-edit"></i></button>
                         <button type="button" @click="deleteOrder(row)" :title="`Elimina l'ordine ${row.ord_num}`" v-if="userInfo?.is_agent" class="fab"><i class="fa fa-fw fa-trash"></i></button>
                     </template>
+                    <template v-slot:caption>
+                        <span v-if="userInfo?.is_customer">Lista dei tuoi ordini</span>
+                        <span v-else-if="userInfo?.is_agent">Lista degli ordini da te gestiti</span>
+                        <span v-else-if="userInfo?.is_manager">Lista di tutti gli ordini presenti nel sistema</span>
+                    </template>
                     <template v-slot:tfoot v-if="canCreateNewOrder">
                         <div class="toolbar">
                             <!--<button type="button">Aggiungi</button>
@@ -95,7 +104,11 @@
             </div>
         </template><template id="AgentsViewTemplate">
             <div>
-                <dynamic-table :datalist="results" :columns="columns" />
+                <dynamic-table :datalist="results" :columns="columns">
+                    <template v-slot:caption>
+                        <span>Lista di tutti gli agenti presenti nel sistema</span>
+                    </template>
+                </dynamic-table>
             </div>
         </template>
         <template id="LoginViewTemplate">

@@ -117,10 +117,12 @@ export default {
       }, [row])
     })
     let children = [
-      // h('caption', ''),
       h('thead', [h('tr', headrow)]),
       h('tbody', [data])
     ]
+    if (this.$slots['caption']) {
+      children.unshift(h('caption', this.$slots['caption']))
+    }
     if (this.$slots['tfoot']) {
       children.push(h('tfoot', null, [
         h('tr', null, [

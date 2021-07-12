@@ -45,7 +45,7 @@ export default {
             class: 'primary',
             domProps: { type: 'button' },
             on: {
-              click: () => { this.yes() }
+              click: () => { this.resolve() }
             }
           }, ['ok'])
         ]

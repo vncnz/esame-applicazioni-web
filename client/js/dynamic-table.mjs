@@ -46,18 +46,20 @@ export default {
           click: () => this.setSorting(col.k)
         }
       }, [
-        h('span', [col.l]),
-        isColSortable ? h('button', {
-          class: 'on-right',
-          domProps: {
-            title: (isColSorted ? 'Inverti ordinamento per' : 'Ordina per ') + col.l,
-            type: 'button'
-          }
-        }, [
-          h('i', {
-            class: 'fa fa-fw ' + (isColSorted ? (this.sortedAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort unsorted'),
-          })
-        ]) : null
+        h('div', [
+          h('span', [col.l]),
+          isColSortable ? h('button', {
+            class: 'fab',
+            domProps: {
+              title: (isColSorted ? 'Inverti ordinamento per' : 'Ordina per ') + col.l,
+              type: 'button'
+            }
+          }, [
+            h('i', {
+              class: 'fa fa-fw ' + (isColSorted ? (this.sortedAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort unsorted'),
+            })
+          ]) : null
+        ])
       ])
     })
     if (this.selKey) {
